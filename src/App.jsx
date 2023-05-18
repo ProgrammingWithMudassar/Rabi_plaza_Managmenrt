@@ -8,10 +8,6 @@ function App() {
 
   return (
     <div className="App">
-      Well Mudassar G.
-      <Button variant="contained" color="primary">
-        click me
-      </Button>
       <Home />
     </div>
   )
