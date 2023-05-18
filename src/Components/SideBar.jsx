@@ -1,8 +1,12 @@
 import React from 'react'
+import { Box } from '@mui/material'
+import './Style.css'
 
 const SideBar = () => {
   return (
-    <div>SideBar</div>
+    <Box className="sidebar">
+      sidebar 
+    </Box>
   )
 }
 

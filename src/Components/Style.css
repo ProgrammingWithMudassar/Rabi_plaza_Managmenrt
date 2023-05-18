@@ -1,0 +1,29 @@
+.sidebar {
+    position: static;
+    top: 0px;
+    left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: flex-start;
+    background-color: rgba(91, 91, 91, 0.85);
+    backdrop-filter: blur(5px);
+    padding: 20px 120px 30px 10px;
+    border-radius: 10px;
+    animation: mobileNav 0.2s;
+    margin: 0.2rem;
+    color: #fff;
+    height: 92vh;
+    box-shadow: 0 3px 5px 2px rgba(75, 75, 75, 0.3);
+    padding-left: 20px;
+}
+
+/* @keyframes mobileNav {
+    0% {
+        margin-left: -200px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+} */

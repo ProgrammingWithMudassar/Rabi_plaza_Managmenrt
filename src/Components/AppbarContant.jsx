@@ -1,8 +1,11 @@
 import React from 'react'
+import {Typography} from '@mui/material'
 
 const AppbarContant = () => {
   return (
-    <div>AppbarContant</div>
+    <>
+    <Typography variant="h5" fontWeight={600}> Rabi Managment system </Typography>
+    </>
   )
 }
 

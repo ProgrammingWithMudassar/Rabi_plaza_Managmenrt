@@ -1,23 +1,25 @@
-* {
-  padding: 0px;
-  margin: 0px;
-  box-sizing: border-box;
-  border: none;
-  outline: none;
-  text-decoration: none;
-  transition: all 0.3s linear;
-}
+  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900;1000&display=swap');
 
-.App {
-  font-size: 100%;
-  scroll-behavior: smooth;
-}
+  * {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    text-decoration: none;
+    transition: all 0.3s linear;
+  }
 
-Button {
-  background-color: blue;
-  transition: background-color 0.5s ease;
-}
+  .App {
+    font-size: 100%;
+    scroll-behavior: smooth;
+  }
 
-Button:hover {
-  background-color: red;
-}
+  Button {
+    background-color: blue;
+    transition: background-color 0.5s ease;
+  }
+
+  Button:hover {
+    background-color: red;
+  }
