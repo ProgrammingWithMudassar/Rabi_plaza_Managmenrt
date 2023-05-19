@@ -4,8 +4,10 @@ import './Style.css'
 
 const SideBar = () => {
   return (
-    <Box className="sidebar">
-      sidebar 
+    <Box sx={{p:1}}>
+      <Box className="sidebar">
+        sidebar
+      </Box>
     </Box>
   )
 }

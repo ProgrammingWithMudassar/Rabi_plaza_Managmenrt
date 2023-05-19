@@ -8,7 +8,7 @@ import PrivateRotues from './Utils/PrivateRoutes'
 import './App.css';
 
 function AppWithRouter() {
-  const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [sidebarOpen, setSidebarOpen] = useState(false);
   const location = useLocation();
 
   const toggleSidebar = () => {
