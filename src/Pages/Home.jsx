@@ -1,11 +1,15 @@
 import React from 'react'
-import { Box, Card, CardContent, CardActions, Button } from '@mui/material'
+import { Box } from '@mui/material'
+import { HomeCard } from '../Components/index'
 import './Style.css'
 
 const Home = () => {
+  const card={
+    
+  }
   return (
-    <Box >
-      home
+    <Box sx={{ p:0.4 }}>
+      <HomeCard />
     </Box>
   )
 }

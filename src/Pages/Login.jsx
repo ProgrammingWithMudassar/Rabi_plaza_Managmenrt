@@ -5,7 +5,7 @@ import './Style.css'
 const Login = () => {
   return (
     <Box >
-      <Box sx={{ display: 'grid', placeItems: 'center', height: '100vh', width: { xs: "100%", md: "120%" } }}>
+      <Box sx={{ display: 'grid', placeItems: 'center', height: '100vh', width: { xs: "100%", md: "100%" } }}>
         <Card variant="outlined" sx={{minWidth:{xs:"95%",sm:''}}}>
           <CardContent>
             <Box sx={{p:2}}>
