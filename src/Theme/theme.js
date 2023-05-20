@@ -25,17 +25,22 @@ const theme = createTheme({
   },
   typography: {
     fontFamily: font,
-    button: {
-      background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-      border: 0,
-      color: '#000000',
-      height: 30,
-      fontSize: '20px',
-      padding: '10px',
-      boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
-      textTransform: 'none',
-      '&': {
-        color: red
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          background: '#222222',
+          border: 0,
+          color: '#fff',
+          height: 30,
+          padding: '10px',
+          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          textTransform: 'none',
+          '&:hover': {
+            background: '#000000', // Change the background color to black on hover
+          }
+        }
       }
     }
   },
@@ -48,16 +53,16 @@ const theme = createTheme({
     }
   },
   '@global': {
-      '*::-webkit-scrollbar': {
-        width: '0px',
-        height: '10px',
-      },
-      '*::-webkit-scrollbar-thumb': {
-        width: '0rem',
-        backgroundColor: '#D5073C',
-        borderRadius: "2rem",
-      },
+    '*::-webkit-scrollbar': {
+      width: '0px',
+      height: '10px',
     },
+    '*::-webkit-scrollbar-thumb': {
+      width: '0rem',
+      backgroundColor: '#D5073C',
+      borderRadius: "2rem",
+    },
+  },
 });
 
 export default theme;

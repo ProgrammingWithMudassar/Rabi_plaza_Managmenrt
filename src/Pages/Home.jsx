@@ -1,10 +1,6 @@
 import React from 'react'
-import Card from '@mui/material/Card'
-import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
-import Button from '@mui/material/Button'
-import { Grid, Box } from '@mui/material'
-import { CardData } from '../Data/DummyData.js'
+import { Box } from '@mui/material'
+import { HomeCard } from '../Components/index'
 import './Style.css'
 
 const Home = () => {
@@ -12,12 +8,8 @@ const Home = () => {
 
   }
   return (
-    <Box sx={{ p: 0.4, width: '200%',overflow:'hidden' }}>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, dolorum omnis assumenda, fugit rerum quis minus nisi quo, voluptate qui cupiditate natus et ab esse sit ut. Dolores, laborum fugiat!<br/>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, dolorum omnis assumenda, fugit rerum quis minus nisi quo, voluptate qui cupiditate natus et ab esse sit ut. Dolores, laborum fugiat!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, dolorum omnis assumenda, fugit rerum quis minus nisi quo, voluptate qui cupiditate natus et ab esse sit ut. Dolores, laborum fugiat!
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. A, dolorum omnis assumenda, fugit rerum quis minus nisi quo, voluptate qui cupiditate natus et ab esse sit ut. Dolores, laborum fugiat!
-    
+    <Box sx={{ p: 1.4, width: '100%',overflow:'hidden' }}>
+      <HomeCard />
     </Box>
   )
 }

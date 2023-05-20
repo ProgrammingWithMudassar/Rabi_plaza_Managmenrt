@@ -7,7 +7,7 @@
     border: none;
     outline: none;
     text-decoration: none;
-    transition: all 0.3s linear;
+    /* transition: all 0.3s linear; */
   }
 
   .App {
