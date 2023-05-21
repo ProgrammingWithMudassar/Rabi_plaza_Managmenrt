@@ -28,8 +28,7 @@ const HomeCard = () => {
                                             variant="text"
                                             color="primary"
                                             size="small"
-                                        >
-                                            Learn more
+                                        >     Learn more
                                         </Button>
                                     </CardActions>
                                 </Card>
