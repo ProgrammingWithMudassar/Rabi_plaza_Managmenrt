@@ -18,6 +18,12 @@
     margin: 10px 0;
     color: white;
 }
+active{
+    background-color: #ffa06c;
+    border-radius: 10px;
+    padding: 10px;
+    cursor: alias;
+}
 .sidebar__list li:hover {
     background-color: #ffa06c;
     border-radius: 10px;
