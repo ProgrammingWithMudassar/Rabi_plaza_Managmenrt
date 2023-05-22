@@ -21,6 +21,7 @@ const App = () => {
               {/* PrivateRoutes   */}
               <Route path='/' element={<PrivateRoutes />} >
                 <Route exact path='/' element={<Home />} />
+                <Route exact path='/All_Shop_data' element={<Home />} />
               </Route>
             </Routes>
           </Grid>
