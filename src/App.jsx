@@ -1,7 +1,7 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import { Sidebar, AppbarContant } from './Components/index'
-import { Home } from './Pages/index'
+import { Home, All_shops_data } from './Pages/index'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './Utils/PrivateRoutes'
 import './App.css'
@@ -21,7 +21,7 @@ const App = () => {
               {/* PrivateRoutes   */}
               <Route path='/' element={<PrivateRoutes />} >
                 <Route exact path='/' element={<Home />} />
-                <Route exact path='/All_Shop_data' element={<Home />} />
+                <Route exact path='/All_Shop_data' element={<All_shops_data />} />
               </Route>
             </Routes>
           </Grid>

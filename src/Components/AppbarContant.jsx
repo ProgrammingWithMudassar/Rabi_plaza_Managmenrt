@@ -10,9 +10,9 @@ const AppbarContant = () => {
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
-          width: "98%",
+          width: "99%",
           backgroundColor: "#FF8E53",
-          m: 1, px:2,py:1,
+          my: 1, px:2,py:1,
           borderRadius:"10px"
         }}
       >
