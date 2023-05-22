@@ -16,6 +16,7 @@
     display: flex;
     justify-content: space-between;
     margin: 10px 0;
+    color: white;
 }
 .sidebar__list li:hover {
     background-color: #FF8E53;

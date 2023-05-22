@@ -10,26 +10,31 @@ import HomeIcon from '@mui/icons-material/Home';
 export const SlideBarData =[
     {
         key:1,
+        route:"",
         text:"Home",
         Icon :faHouse
     },
     {
         key:2,
+        route:"All_Shop_data",
         text:"All Shop's",
         Icon :faShop
     },
     {
-        key:1,
+        key:3,
+        route:"",
         text:"first",
         Icon :faHouse
     },
     {
-        key:1,
+        key:4,
+        route:"",
         text:"first",
         Icon :faHouse
     },
     {
-        key:1,
+        key:5,
+        route:"",
         text:"LogOut",
         Icon :faArrowRightFromBracket
     },

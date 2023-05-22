@@ -3,6 +3,7 @@ import { Box, Slide, Typography } from '@mui/material'
 import { SlideBarData } from '../Data/DummyData'
 import './Style.css'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom';
 
 
 const SideBar = () => {
@@ -15,10 +16,12 @@ const SideBar = () => {
             {
               SlideBarData.map((data, key) => {
                 return (
+                  <Link to={`/${data.route}`} >
                   <li key={key}>
                     {data.text}
                     <FontAwesomeIcon icon={data.Icon} />
                   </li>
+                  </Link>
                 );
               })
             }
