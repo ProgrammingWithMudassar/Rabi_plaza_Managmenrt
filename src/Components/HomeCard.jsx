@@ -17,20 +17,17 @@ const HomeCard = () => {
                 {
                     HomeCardData.map((data, key) => {
                         return (
-                            <Grid item xs={4} display='flex'>
+                            <Grid item xs={4} display='flex' >
                                 <Card variant="outlined" className='card'>
-                                    <CardContent sx={{display:'flex'}}>
-                                       {data.text}
-                                       {/* <data.Icon /> */}
+                                    <CardContent sx={{ display: 'flex',alignItems:'center',justifyContent:'space-between' }}>
+                                        <Box className="Card__Icon">
+                                            <data.Icon style={{fontSize:"35px"}}/>
+                                        </Box>
+                                        <Typography variant="h5" color="initial">{data.count}</Typography>
                                     </CardContent>
-                                    <CardActions>
-                                        <Button
-                                            variant="text"
-                                            color="primary"
-                                            size="small"
-                                        >     Learn more
-                                        </Button>
-                                    </CardActions>
+                                    <CardContent sx={{ textAlign:'right',mt:-4}}>
+                                        <Typography variant="h6" color="initial" fontWeight={800}>{data.text}</Typography>
+                                    </CardContent>
                                 </Card>
                             </Grid>
                         )
