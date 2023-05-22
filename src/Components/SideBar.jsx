@@ -2,6 +2,8 @@ import React from 'react'
 import { Box, Slide, Typography } from '@mui/material'
 import { SlideBarData } from '../Data/DummyData'
 import './Style.css'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 const SideBar = () => {
   return (
@@ -15,7 +17,7 @@ const SideBar = () => {
                 return (
                   <li key={key}>
                     {data.text}
-                    <data.Icon />
+                    <FontAwesomeIcon icon={data.Icon} />
                   </li>
                 );
               })
