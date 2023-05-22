@@ -1,7 +1,7 @@
 import React from 'react'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
-import { Grid} from '@mui/material'
+import { Grid } from '@mui/material'
 import { HomeCardData } from '../Data/DummyData'
 import { Box, Typography } from '@mui/material'
 import './Style.css'
@@ -20,11 +20,12 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
+    createData(262, 16.0, "Ali Humza"),
+    createData(262, 16.0, "Ali Humza"),
+    createData(262, 16.0, "Ali Humza"),
+    createData(262, 16.0, "Ali Humza"),
+    createData(262, 16.0, "Ali Humza"),
+    createData(262, 16.0, "Ali Humza"),
 ];
 
 
@@ -54,21 +55,19 @@ const HomeCard = () => {
                     })
                 }
                 <Grid xs={6} mt={2} pl={2} >
-                    <TableContainer component={Paper} >
+                    <TableContainer component={Paper} sx={{ boxShadow: "0 1px 5px 1.5px rgba(128, 128, 128, 0.3)" }}>
+                        <Typography variant="h6" fontWeight={700} textAlign='center' color="initial" p={1}>Latest Register Shop</Typography>
                         <Table aria-label="simple table">
-                            <TableHead sx={{backgroundColor:'#222222'}}>
+                            <TableHead sx={{ backgroundColor: '#222222' }}>
                                 <TableRow >
-                                    <TableCell sx={{color:'#fff'}}>Dessert </TableCell>
-                                    <TableCell sx={{color:'#fff'}}>Calories</TableCell>
-                                    <TableCell sx={{color:'#fff'}}>Fat&nbsp;(g)</TableCell>
+                                    <TableCell sx={{ color: '#fff', width: '200px' }} align="left"># Shop No.</TableCell>
+                                    <TableCell sx={{ color: '#fff' }} align="left">Floor</TableCell>
+                                    <TableCell sx={{ color: '#fff' }} align="left">Honor Name</TableCell>
                                 </TableRow>
                             </TableHead>
                             <TableBody>
-                                {rows.map((row) => (
-                                    <TableRow
-                                        key={row.name}
-                                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                                    >
+                                {rows.slice(0, 5).reverse().map((row) => (
+                                    <TableRow key={row.name} >
                                         <TableCell component="th" scope="row">{row.name}</TableCell>
                                         <TableCell align="left">{row.calories}</TableCell>
                                         <TableCell align="left">{row.fat}</TableCell>
@@ -79,6 +78,31 @@ const HomeCard = () => {
                     </TableContainer>
                 </Grid>
 
+
+
+                <Grid xs={6} mt={2} pl={2} >
+                    <TableContainer component={Paper} sx={{ boxShadow: "0 1px 5px 1.5px rgba(128, 128, 128, 0.3)" }}>
+                        <Typography variant="h6" fontWeight={700} textAlign='center' color="initial" p={1}>Latest Income</Typography>
+                        <Table aria-label="simple table">
+                            <TableHead sx={{ backgroundColor: '#222222' }}>
+                                <TableRow >
+                                    <TableCell sx={{ color: '#fff', width: '200px' }} align="left"># Shop No.</TableCell>
+                                    <TableCell sx={{ color: '#fff' }} align="left">Floor</TableCell>
+                                    <TableCell sx={{ color: '#fff' }} align="left">Honor Name</TableCell>
+                                </TableRow>
+                            </TableHead>
+                            <TableBody>
+                                {rows.slice(0, 5).reverse().map((row) => (
+                                    <TableRow key={row.name} >
+                                        <TableCell component="th" scope="row">{row.name}</TableCell>
+                                        <TableCell align="left">{row.calories}</TableCell>
+                                        <TableCell align="left">{row.fat}</TableCell>
+                                    </TableRow>
+                                ))}
+                            </TableBody>
+                        </Table>
+                    </TableContainer>
+                </Grid>
 
             </Grid>
         </Box>

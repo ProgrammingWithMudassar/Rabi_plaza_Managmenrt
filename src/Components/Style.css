@@ -26,6 +26,7 @@
 .card{
     width: 100%;
     min-height: 130px;
+    box-shadow: 0 1px 5px 1.5px rgba(128, 128, 128, 0.3);
 }
 .Card__Icon{
     width: 60px;
