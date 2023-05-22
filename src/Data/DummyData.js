@@ -2,14 +2,14 @@ import GroupsIcon from '@mui/icons-material/Groups';
 import LogoutIcon from '@mui/icons-material/Logout';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-
+import HomeIcon from '@mui/icons-material/Home';
 
 
 export const SlideBarData =[
     {
         key:1,
-        text:"first",
-        Icon :LogoutIcon
+        text:"Home",
+        Icon :HomeIcon
     },
     {
         key:2,
