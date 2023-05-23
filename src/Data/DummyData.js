@@ -25,7 +25,7 @@ export const SlideBarData =[
     },
     {
         key:3,
-        route:"Add_shop",
+        route:"ShopForm",
         text:"Add New Shop",
         Icon :faChartSimple
     },
