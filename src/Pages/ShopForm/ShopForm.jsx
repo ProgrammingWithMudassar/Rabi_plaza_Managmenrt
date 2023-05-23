@@ -2,7 +2,9 @@ import React from 'react'
 
 const ShopForm = () => {
   return (
-    <div>ShopForm</div>
+    <div>
+        this is shop form
+    </div>
   )
 }
 
