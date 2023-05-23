@@ -1,10 +1,13 @@
 import GroupsIcon from '@mui/icons-material/Groups';
 import { faHouse } from '@fortawesome/free-solid-svg-icons';
 import { faShop } from '@fortawesome/free-solid-svg-icons';
+import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
+
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import HomeIcon from '@mui/icons-material/Home';
+
 
 
 export const SlideBarData =[
@@ -22,9 +25,9 @@ export const SlideBarData =[
     },
     {
         key:3,
-        route:"",
-        text:"first",
-        Icon :faHouse
+        route:"Add_shop",
+        text:"Add New Shop",
+        Icon :faChartSimple
     },
     {
         key:4,
