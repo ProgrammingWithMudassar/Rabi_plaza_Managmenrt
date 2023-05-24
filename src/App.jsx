@@ -1,7 +1,15 @@
 import React from 'react'
 import { Grid } from '@mui/material'
 import { Sidebar, AppbarContant } from './Components/index'
-import { Home, All_shops_data, ShopForm, Expence_calculate,Report, Logout } from './Pages/index'
+import {
+  Home,
+  All_shops_data,
+  ShopForm,
+  Expence_calculate,
+  Report,
+  Logout,
+  Shop_Details
+} from './Pages/index'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './Utils/PrivateRoutes'
 import './App.css'
@@ -26,6 +34,8 @@ const App = () => {
                 <Route exact path='/Expence_calculate' element={<Expence_calculate />} />
                 <Route exact path='/report' element={<Report />} />
                 <Route exact path='/logOut' element={<Logout />} />
+
+                <Route path="/shop/:id" element={<Shop_Details />} />
               </Route>
             </Routes>
           </Grid>

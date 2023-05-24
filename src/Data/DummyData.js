@@ -63,3 +63,7 @@ export const HomeCardData = [
         Icon: AttachMoneyIcon
     },
 ]
+
+export const ShopData = [
+    
+]
