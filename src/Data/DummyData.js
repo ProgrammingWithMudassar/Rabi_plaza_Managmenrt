@@ -1,12 +1,8 @@
 import GroupsIcon from '@mui/icons-material/Groups';
-import { faHouse } from '@fortawesome/free-solid-svg-icons';
-import { faShop } from '@fortawesome/free-solid-svg-icons';
-import { faChartSimple } from '@fortawesome/free-solid-svg-icons';
-
+import { faHouse ,faShop, faChartSimple, faCalculator} from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
-import HomeIcon from '@mui/icons-material/Home';
 
 
 
@@ -33,7 +29,7 @@ export const SlideBarData =[
         key:4,
         route:"Expence_calculate",
         text:"Expence Calculate",
-        Icon :faHouse
+        Icon :faCalculator
     },
     {
         key:5,
