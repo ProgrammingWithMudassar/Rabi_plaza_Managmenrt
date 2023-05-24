@@ -1,5 +1,5 @@
 import GroupsIcon from '@mui/icons-material/Groups';
-import { faHouse ,faShop, faChartSimple, faCalculator} from '@fortawesome/free-solid-svg-icons';
+import { faHouse ,faShop, faChartSimple, faCalculator, faFile } from '@fortawesome/free-solid-svg-icons';
 import { faArrowRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
@@ -32,11 +32,17 @@ export const SlideBarData =[
         Icon :faCalculator
     },
     {
+        key:4,
+        route:"report",
+        text:"Report",
+        Icon :faFile
+    },
+    {
         key:5,
-        route:"",
+        route:"logout",
         text:"LogOut",
         Icon :faArrowRightFromBracket
-    },
+    }
 ]
 
 export const HomeCardData = [
