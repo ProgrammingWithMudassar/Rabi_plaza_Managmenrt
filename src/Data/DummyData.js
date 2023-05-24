@@ -31,8 +31,8 @@ export const SlideBarData =[
     },
     {
         key:4,
-        route:"",
-        text:"first",
+        route:"Expence_calculate",
+        text:"Expence Calculate",
         Icon :faHouse
     },
     {
