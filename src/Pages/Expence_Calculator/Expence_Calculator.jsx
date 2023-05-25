@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Typography ,Box} from '@mui/material';
+import { Button, Typography, Box, Grid } from '@mui/material';
 
 const ExpenseCalculator = () => {
     const [inputFields, setInputFields] = useState([{ firstName: '', secondName: '' }]);
@@ -56,6 +56,19 @@ const ExpenseCalculator = () => {
 
     return (
         <div>
+            <Grid container spacing={2}>
+                <Grid item xs={6}></Grid>
+                <Grid item xs={5}>
+                    <Box mt={2} display='flex' width="40%" justifyContent="space-between">
+                        <Typography variant="body1" color="initial">This Month Expence</Typography>
+                        <Typography variant="body1" color="initial" fontWeight={600}>60,000</Typography>
+                    </Box>
+                    <Box mt={2} display='flex' width="40%" justifyContent="space-between">
+                        <Typography variant="body1" color="initial">This Month Income</Typography>
+                        <Typography variant="body1" color="initial" fontWeight={600}>60,000</Typography>
+                    </Box>
+                </Grid>
+            </Grid>
             <Typography variant="h6" color="initial" my={2}>
                 Expense Calculator
             </Typography>
@@ -66,9 +79,6 @@ const ExpenseCalculator = () => {
                 </Button>
                 <br />
 
-                <Box mt={2}>
-                    <Typography variant="body1" color="initial">This Month Income</Typography>
-                </Box>
                 <Button type="submit" sx={{
                     width: '200px', mt: 4,
                     backgroundColor: '#096AFF',
