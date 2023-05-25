@@ -65,14 +65,13 @@ export const HomeCardData = [
 ]
 
 export const  rows = [
-    { id: 1, Shop_No: 1, rental: 'Snow', S_honor: 'Jon', size: 35, floor: 2, S_date: "12/3/2023", r_rent: 2500 },
-    { id: 2, Shop_No: 2, rental: 'Lannister', S_honor: 'Cersei', size: 42, floor: 2, S_date: "12/3/2023", r_rent: 0 },
-    { id: 3, Shop_No: 3, rental: 'Lannister', S_honor: 'Jaime', size: 45, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
-    { id: 4, Shop_No: 4, rental: 'Stark', S_honor: 'Arya', size: 16, floor: 2, S_date: "12/3/2023", r_rent: 3000 },
-    { id: 5, Shop_No: 5, rental: 'Targaryen', S_honor: 'Daenerys', size: 34, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
-    { id: 6, Shop_No: 6, rental: 'Melisandre', S_honor: null, size: 15, floor: 20, S_date: "12/3/2023", r_rent: 2000 },
-    { id: 7, Shop_No: 7, rental: 'Clifford', S_honor: 'Ferrara', size: 44, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
-    { id: 8, Shop_No: 8, rental: 'Frances', S_honor: 'Rossini', size: 36, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
-    { id: 9, Shop_No: 9, rental: 'Roxie', S_honor: 'Harvey', size: 65, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
+    { id: 1, Shop_No: 1, rental: 'Snow',      email:"abcd123@gmail.com",m_num:300,S_honor: 'Jon', size: 35, floor: 2, S_date: "12/3/2023", r_rent: 2500 },
+    { id: 2, Shop_No: 2, rental: 'Lannister', email:"abcd123@gmail.com",m_num:300,S_honor: 'Cersei', size: 42, floor: 2, S_date: "12/3/2023", r_rent: 0 },
+    { id: 3, Shop_No: 3, rental: 'Lannister', email:"abcd123@gmail.com",m_num:300,S_honor: 'Jaime', size: 45, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
+    { id: 4, Shop_No: 4, rental: 'Stark',     email:"abcd123@gmail.com",m_num:310,S_honor: 'Arya', size: 16, floor: 2, S_date: "12/3/2023", r_rent: 0 },
+    { id: 5, Shop_No: 5, rental: 'Targaryen', email:"abcd123@gmail.com",m_num:312,S_honor: 'Daenerys', size: 34, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
+    { id: 6, Shop_No: 6, rental: 'Melisandre',email:"abcd123@gmail.com",m_num:345,S_honor: null, size: 15, floor: 20, S_date: "12/3/2023", r_rent: 0 },
+    { id: 7, Shop_No: 7, rental: 'Clifford',  email:"abcd123@gmail.com",m_num:306,S_honor: 'Ferrara', size: 44, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
+    { id: 8, Shop_No: 8, rental: 'Frances',   email:"abcd123@gmail.com",m_num:300,S_honor: 'Rossini', size: 36, floor: 2, S_date: "12/3/2023", r_rent: 2000 },
   ];
   

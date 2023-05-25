@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ShopForm = () => {
 
+  const options = [1, 2, 3, 4, 5];
   const goBack = () => {
     window.history.go(-1);
   };
@@ -18,7 +19,11 @@ const ShopForm = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <label for="Shop__number" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-          <input  type="text" id="Shop__number" placeholder='#1234' className='form_input' /><br />
+          <input type="text" id="Shop__number" placeholder='#1234' className='form_input' /><br />
+          <Box mt={1}>
+            <label for="email" style={{ fontWeight: "600" }}>Honor Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+            <input type="email" id="email" placeholder='Email' className='form_input' /><br />
+          </Box>
           <Box mt={1}>
             <label for="Shop__honor" style={{ fontWeight: "600" }}>Shop Honor <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
             <input type="text" id="Shop__honor" placeholder='Honor Name' className='form_input' /><br />
@@ -28,16 +33,28 @@ const ShopForm = () => {
             <input type="date" id="starting__date" placeholder='Honor Name' className='form_input' /><br />
           </Box>
         </Grid>
+
+
+
         <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
           <label for="shop__size" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
           <input type="text" id="shop__size" placeholder='50x123' className='form_input' /><br />
+          <Box mt={1}>
+            <label for="mobile__number" style={{ fontWeight: "600" }}> Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+            <input type="text" id="mobile__number" placeholder='03000000000' className='form_input' /><br />
+          </Box>
           <Box mt={1}>
             <label for="shop__rental" style={{ fontWeight: "600" }}>Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
             <input type="text" id="shop__rental" placeholder='Rental Name' className='form_input' /><br />
           </Box>
           <Box mt={1}>
             <label for="floor" style={{ fontWeight: "600" }}>Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-            <input type="text" id="floor" placeholder='Rental Name' className='form_input' /><br />
+            <input type="text" id="floor" placeholder='Floor Number' className='form_input' list="options" /><br />
+            <datalist id="options" style={{ width: "100%" }}>
+              {options.map((option, index) => (
+                <option key={index} value={option} />
+              ))}
+            </datalist>
           </Box>
         </Grid>
       </Grid>

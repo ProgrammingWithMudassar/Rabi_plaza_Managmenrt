@@ -1,5 +1,6 @@
 import React from 'react'
 import { Box, Card, CardContent, CardActions, Button } from '@mui/material'
+import {Link} from 'react-router-dom'
 
 const LogOut = () => {
   return (
@@ -17,7 +18,9 @@ const LogOut = () => {
                 backgroundColor: '#FF0000',
               },
             }} >Confirm</Button>
-            <Button sx={{ ml: 1 }}>Cancel</Button>
+            <Link to="/">
+              <Button sx={{ ml: 1 }}>Cancel</Button>
+            </Link>
           </Box>
         </CardActions>
       </Card>
