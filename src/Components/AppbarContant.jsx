@@ -12,8 +12,8 @@ const AppbarContant = () => {
           alignItems: "center",
           width: "99%",
           backgroundColor: "#FF8E53",
-          my: 1, px:2,py:1,
-          borderRadius:"10px"
+          my: 1, px: 2, py: 1,
+          borderRadius: "10px"
         }}
       >
         <Typography
@@ -23,9 +23,11 @@ const AppbarContant = () => {
           {" "}
           Rabi Managment system{" "}
         </Typography>
+        <Link to="/logout">
           <Button sx={{ fontSize: { xs: "0.9rem", md: "1.2rem" } }}>
             Log Out
           </Button>
+        </Link>
       </Box>
     </>
   );

@@ -15,12 +15,3 @@
     scroll-behavior: smooth;
     overflow: hidden !important;
   }
-
-  Button {
-    background-color: blue;
-    transition: background-color 0.5s ease;
-  }
-
-  Button:hover {
-    background-color: red;
-  }

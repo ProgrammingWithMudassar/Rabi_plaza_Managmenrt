@@ -8,7 +8,7 @@ const Home = () => {
 
   }
   return (
-    <Box sx={{ pr: 1, width: '100%',overflow:'hidden' }}>
+    <Box sx={{ pr: 1, width: '100%',overflow:'hidden' }} >
       <HomeCard />
     </Box>
   )

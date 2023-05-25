@@ -18,7 +18,7 @@ const ShopForm = () => {
       <Grid container spacing={2}>
         <Grid item xs={6}>
           <label for="Shop__number" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-          <input type="text" id="Shop__number" placeholder='#1234' className='form_input' /><br />
+          <input  type="text" id="Shop__number" placeholder='#1234' className='form_input' /><br />
           <Box mt={1}>
             <label for="Shop__honor" style={{ fontWeight: "600" }}>Shop Honor <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
             <input type="text" id="Shop__honor" placeholder='Honor Name' className='form_input' /><br />
@@ -39,20 +39,6 @@ const ShopForm = () => {
             <label for="floor" style={{ fontWeight: "600" }}>Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
             <input type="text" id="floor" placeholder='Rental Name' className='form_input' /><br />
           </Box>
-          {/* <Box mt={1} display='flex'>
-            <Card variant="outlined" sx={{ width: '50%' }}>
-              <CardContent>
-                <Typography variant="h6" color="initial" textAlign='center'>Remaing Rent</Typography>
-                <Typography variant="h6" color="initial" textAlign='center'>0</Typography>
-              </CardContent>
-            </Card>
-            <Card variant="outlined" sx={{ width: '50%' }}>
-              <CardContent>
-                <Typography variant="h6" color="initial" textAlign='center'>Remaing Rent</Typography>
-                <Typography variant="h6" color="initial" textAlign='center'>20,000</Typography>
-              </CardContent>
-            </Card>
-          </Box> */}
         </Grid>
       </Grid>
       <Box mt={2} pr={2}>

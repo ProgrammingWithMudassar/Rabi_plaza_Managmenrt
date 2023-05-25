@@ -8,7 +8,7 @@ import {
   Expence_calculate,
   Report,
   Logout,
-  Shop_Details
+  Shop_Details,Edit_Shop
 } from './Pages/index'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './Utils/PrivateRoutes'
@@ -36,6 +36,7 @@ const App = () => {
                 <Route exact path='/logOut' element={<Logout />} />
 
                 <Route path="/shop/:id" element={<Shop_Details />} />
+                <Route path="/shop_edit/:id" element={<Edit_Shop />} />
               </Route>
             </Routes>
           </Grid>
