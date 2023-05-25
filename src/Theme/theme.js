@@ -35,7 +35,7 @@ const theme = createTheme({
           color: '#fff',
           height: 30,
           padding: '10px',
-          boxShadow: '0 3px 5px 2px rgba(255, 105, 135, .3)',
+          boxShadow: '0 3px 5px 2px rgba(41, 41, 41, .3)',
           textTransform: 'none',
           '&:hover': {
             background: '#000000', // Change the background color to black on hover
