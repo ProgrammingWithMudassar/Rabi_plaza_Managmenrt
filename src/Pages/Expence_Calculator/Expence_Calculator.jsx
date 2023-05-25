@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Button, Typography, Box, Grid, Card, CardContent, CardActions, Divider } from '@mui/material';
 
 const ExpenseCalculator = () => {
-    const [inputFields, setInputFields] = useState([{ firstName: '', secondName: '' }]);
+    const [inputFields, setInputFields] = useState([{ firstName: '', secondName: 0 }]);
 
     const handleChange = (index, fieldName, event) => {
         const values = [...inputFields];
@@ -12,7 +12,7 @@ const ExpenseCalculator = () => {
 
     const handleAddFields = () => {
         const values = [...inputFields];
-        values.push({ firstName: '', secondName: '' });
+        values.push({ firstName: '', secondName: 0 });
         setInputFields(values);
     };
 
@@ -20,6 +20,14 @@ const ExpenseCalculator = () => {
         const values = [...inputFields];
         values.splice(index, 1);
         setInputFields(values);
+    };
+
+    const calculateTotalRevenue = () => {
+        let totalRevenue = 0;
+        inputFields.forEach((field) => {
+            totalRevenue += parseFloat(field.secondName);
+        });
+        return totalRevenue.toFixed(2);
     };
 
     const handleSubmit = (event) => {
@@ -67,18 +75,16 @@ const ExpenseCalculator = () => {
                             Add Field
                         </Button>
                         <br />
-
-
                     </form>
                 </Grid>
                 <Grid item xs={5}>
                     <Card variant="outlined">
                         <CardContent>
                             <Box mt={2} display='flex' justifyContent="space-between">
-                                <Typography variant="h6" fontWeight={600} color="initial">Expence</Typography>
+                                <Typography variant="h6" fontWeight={600} color="initial">Expense</Typography>
                                 <Typography variant="body1" color="initial" fontWeight={600}>60,000</Typography>
                             </Box>
-                            <Box mt={2} display='flex' justifyContent="space-between">
+                            <Box my={2} display='flex' justifyContent="space-between">
                                 <Typography variant="h6" fontWeight={600} color="initial">Income</Typography>
                                 <Typography variant="body1" color="initial" fontWeight={600}>60,000</Typography>
                             </Box>
@@ -86,6 +92,12 @@ const ExpenseCalculator = () => {
                               variant="fullWidth"
                               orientation="horizontal"
                             />
+                            <Box mt={2} display='flex' justifyContent="space-between">
+                                <Typography variant="h6" fontWeight={600} color="initial">Total Revenue</Typography>
+                                <Typography variant="body1" color="initial" fontWeight={600}>
+                                    {calculateTotalRevenue()}
+                                </Typography>
+                            </Box>
                         </CardContent>
                         <CardActions>
                             <Button type="submit" sx={{
@@ -103,8 +115,6 @@ const ExpenseCalculator = () => {
                     </Card>
                 </Grid>
             </Grid>
-
-
         </div>
     );
 };
