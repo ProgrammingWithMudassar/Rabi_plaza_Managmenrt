@@ -1,6 +1,6 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { Button, Box, Typography,Grid, Card, ListItem, List  } from '@mui/material'
+import { Button, Box, Typography, Grid, Card, ListItem, List, Divider, CardContent, CardActions } from '@mui/material'
 import { rows } from '../../Data/DummyData.js';
 import { faBackward } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,6 +22,7 @@ const Shop_Details = () => {
   }
 
 
+
   return (
     <Box>
       {shop && (
@@ -31,39 +32,42 @@ const Shop_Details = () => {
             <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
           </Box>
 
-          <Card >
-            <List>
-              <Grid container spacing={0}>
-                <Grid xs={3} md={3}>
-                  <ListItem><Typography variant="body1" fontWeight={600}>Age :</Typography></ListItem>
-                  <ListItem><Typography variant="body1" fontWeight={600}>Email:</Typography></ListItem>
-                  <ListItem><Typography variant="body1" fontWeight={600}>Number:</Typography></ListItem>
-                  <ListItem><Typography variant="body1" fontWeight={600}>Degree:</Typography></ListItem>
-                  <ListItem><Typography variant="body1" fontWeight={600}>Freelance:</Typography></ListItem>
-                </Grid>
-                <Grid xs={9} md={9}>
-                  <ListItem><Typography variant="body1">22</Typography></ListItem>
-                  <ListItem><Typography variant="body1">mudassar0920@gmail.com</Typography></ListItem>
-                  <ListItem><Typography variant="body1">+923104602885</Typography></ListItem>
-                  <ListItem><Typography variant="body1">BS Software Engineering</Typography></ListItem>
-                  <ListItem><Typography variant="body1">Availabel</Typography></ListItem>
-                  <ListItem>
-                    <Button sx={{ fontSize: '12px' }}>Download CV</Button>
-                  </ListItem>
-                </Grid>
-              </Grid>
-            </List>
-          </Card>
-          {/* <p>Shop Number: {shop.Shop_No}</p>
-          <p>Rental: {shop.rental}</p>
-          <p>Shop Honor: {shop.S_honor}</p>
-          <p>Shop Size: {shop.size}</p>
-          <p>Floor: {shop.floor}</p>
-          <p>Starting Date: {shop.S_date}</p>
-          <p>Remaining Rent: {shop.r_rent}</p> */}
+          <Grid container spacing={2}>
+            <Grid item xs={8}>
+              <Card sx={{ minHeight: '200px' }} >
+                <List>
+                  <Grid container spacing={0}>
+                    <Grid xs={5} md={5}>
+                      <ListItem><Typography variant="body1" fontWeight={600}>Shop Number</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1" fontWeight={600}>Shop Size</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1" fontWeight={600}>Shop Floor</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1" fontWeight={600}>Starting Date</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                    </Grid>
+                    <Grid xs={7} md={7}>
+                      <ListItem><Typography variant="body1"> {shop.Shop_No}</Typography></ListItem>  <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1">{shop.size}</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1">{shop.floor}</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem><Typography variant="body1">{shop.S_date}</Typography></ListItem> <Divider variant="fullWidth" orientation="horizontal" />
+                    </Grid>
+                  </Grid>
+                </List>
+              </Card>
+            </Grid>
+            <Grid item xs={4}>
+              <Card sx={{ minHeight: '200px', position: 'relative' }}  >
+                <CardContent>
+                  <Box display="flex" justifyContent="space-between">
+                    <Typography variant="body1" color="initial">  Remaining Rent </Typography>
+                    <Typography variant="body1" color="initial">  {shop.r_rent} </Typography>
+                  </Box>
+                </CardContent>
+              </Card>
+            </Grid>
+          </Grid>
         </Box>
-      )}
-    </Box>
+      )
+      }
+    </Box >
   );
 }
 

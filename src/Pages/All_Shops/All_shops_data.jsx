@@ -31,9 +31,11 @@ const All_shops_data = () => {
     <Box>
       <Box display='flex' alignItems='center' justifyContent='space-between' pr={3}>
         <Typography variant="h5" color="initial" my={2}>All Shop's Data</Typography>
+        <Link to='/ShopForm'>
         <Button>
           Add New <AddIcon />
         </Button>
+        </Link>
       </Box>
       <div style={{ height: 400, width: '100%' }}>
         <DataGrid

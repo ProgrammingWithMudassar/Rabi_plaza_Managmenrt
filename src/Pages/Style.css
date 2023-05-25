@@ -6,6 +6,7 @@
     font-size: 18px;
     border: 1px solid rgb(185, 185, 185);
 }
+
 .form_input {
     width: 100%;
     padding-left: 10px;
@@ -13,4 +14,13 @@
     border-radius: 5px;
     font-size: 1rem;
     border: 1px solid rgb(185, 185, 185);
+}
+
+.rent__Input {
+    border: 1px solid black;
+    padding: 3px;
+    border-radius: 3px;
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
 }

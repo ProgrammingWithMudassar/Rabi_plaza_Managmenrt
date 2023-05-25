@@ -1,11 +1,19 @@
 import React from 'react'
 import { Box, Typography, Grid, Card, CardContent, CardActions, Button } from '@mui/material'
-
+import { faBackward } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const ShopForm = () => {
+
+  const goBack = () => {
+    window.history.go(-1);
+  };
   return (
     <Box>
-      <Typography variant="h5" color="initial" my={2}>Add New Shop</Typography>
+      <Box display='flex' justifyContent='space-between' alignItems="center" py={2} mr={2}>
+        <Typography variant="h5" color="initial" my={2} fontWeight={600}>Add New Shop</Typography>
+        <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
+      </Box>
 
       <Grid container spacing={2}>
         <Grid item xs={6}>
@@ -48,7 +56,7 @@ const ShopForm = () => {
         </Grid>
       </Grid>
       <Box mt={2} pr={2}>
-        <Button sx={{width:"100%"}}> Add New</Button>
+        <Button sx={{ width: "100%", height: '35px' }}> Add New</Button>
       </Box>
     </Box>
   )
