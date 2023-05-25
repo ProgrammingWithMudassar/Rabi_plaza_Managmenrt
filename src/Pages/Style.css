@@ -16,6 +16,14 @@
     border: 1px solid rgb(185, 185, 185);
 }
 
+.e_input {
+    padding-left: 10px;
+    height: 40px;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 1px solid rgb(185, 185, 185);
+}
+
 .rent__Input {
     border: 1px solid black;
     padding: 3px;
