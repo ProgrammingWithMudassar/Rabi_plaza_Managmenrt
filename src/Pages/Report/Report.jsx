@@ -1,41 +1,76 @@
 import * as React from 'react';
-import { TabContext, TabList, TabPanel } from '@mui/lab';
-import { Tab, Box, Typography, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Button } from '@mui/material';
-import { rows } from '../../Data/DummyData'
+import {
+  TabContext,
+  TabList,
+  TabPanel,
+} from '@mui/lab';
+import {
+  Tab,
+  Box,
+  Typography,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+  Button,
+} from '@mui/material';
+import { rows } from '../../Data/DummyData';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 
-
 const LabTabs = () => {
   const [value, setValue] = React.useState('1');
+  const [currentPage, setCurrentPage] = React.useState(1);
   const componentRef = useRef();
 
-  const filteredRows = rows.filter((row) => row.r_rent !== 0);
+  const recordsPerPage = 10;
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
+  const handlePreviousPage = () => {
+    setCurrentPage(currentPage - 1);
+  };
+
+  const handleNextPage = () => {
+    setCurrentPage(currentPage + 1);
+  };
+
+  // Filter rows based on r_rent value and calculate total pages
+  const filteredRows = rows.filter((row) => row.r_rent !== 0);
+  const totalPages = Math.ceil(filteredRows.length / recordsPerPage);
+
+  const start = (currentPage - 1) * recordsPerPage;
+  const end = start + recordsPerPage;
+  const paginatedRows = filteredRows.slice(start, end);
+
   return (
-    <Box >
-      <Typography variant="h6" color="initial" my={2}>Report</Typography>
+    <Box>
+      <Typography variant="h6" color="initial" mt={1}>
+        Report
+      </Typography>
       <Box sx={{ width: '100%', typography: 'body1' }}>
         <TabContext value={value}>
           <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList onChange={handleChange} aria-label="lab API tabs example">
+            <TabList
+              onChange={handleChange}
+              aria-label="lab API tabs example"
+            >
               <Tab label="All" value="1" />
               <Tab label="Pending Rent" value="2" />
             </TabList>
           </Box>
 
-
           <TabPanel value="1">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 2 }}>
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 1 }}>
               <ReactToPrint
                 trigger={() => <Button>Print</Button>}
                 content={() => componentRef.current}
               />
-              {/* <Button >Print</Button> */}
             </Box>
             <TableContainer component={Paper} ref={componentRef}>
               <Table>
@@ -51,7 +86,7 @@ const LabTabs = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {rows.map((row) => (
+                  {paginatedRows.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell>{row.Shop_No}</TableCell>
                       <TableCell>{row.rental}</TableCell>
@@ -65,16 +100,34 @@ const LabTabs = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-
-
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                pt: 2,
+              }}
+            >
+              <Button
+                disabled={currentPage === 1}
+                onClick={handlePreviousPage}
+              >
+                Previous Page
+              </Button>
+              <Button
+                disabled={currentPage === totalPages}
+                onClick={handleNextPage}
+              >
+                Next Page
+              </Button>
+            </Box>
           </TabPanel>
+
           <TabPanel value="2">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 2 }}>
-            <ReactToPrint
+            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 1 }}>
+              <ReactToPrint
                 trigger={() => <Button>Print</Button>}
                 content={() => componentRef.current}
               />
-              {/* <Button >Print</Button> */}
             </Box>
             <TableContainer component={Paper} ref={componentRef}>
               <Table>
@@ -90,7 +143,7 @@ const LabTabs = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {filteredRows.map((row) => (
+                  {paginatedRows.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell>{row.Shop_No}</TableCell>
                       <TableCell>{row.rental}</TableCell>
@@ -104,14 +157,31 @@ const LabTabs = () => {
                 </TableBody>
               </Table>
             </TableContainer>
-
+            <Box
+              sx={{
+                display: 'flex',
+                justifyContent: 'flex-end',
+                pt: 2,
+              }}
+            >
+              <Button
+                disabled={currentPage === 1}
+                onClick={handlePreviousPage}
+              >
+                Previous Page
+              </Button>
+              <Button
+                disabled={currentPage === totalPages}
+                onClick={handleNextPage}
+              >
+                Next Page
+              </Button>
+            </Box>
           </TabPanel>
         </TabContext>
       </Box>
     </Box>
   );
-}
+};
 
-export default LabTabs
-
-
+export default LabTabs;
