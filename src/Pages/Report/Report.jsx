@@ -105,7 +105,6 @@ const LabTabs = () => {
               </Table>
             </TableContainer>
 
-
           </TabPanel>
         </TabContext>
       </Box>
@@ -114,3 +113,5 @@ const LabTabs = () => {
 }
 
 export default LabTabs
+
+
