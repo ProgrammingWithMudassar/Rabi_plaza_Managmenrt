@@ -2,8 +2,9 @@ import React from 'react'
 import { useParams } from 'react-router-dom';
 import { Button, Box, Typography, Grid, } from '@mui/material'
 import { rows } from '../../Data/DummyData.js';
-import { faBackward } from '@fortawesome/free-solid-svg-icons';
+import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 const Edit_Shop = () => {
@@ -29,7 +30,10 @@ const Edit_Shop = () => {
         <Box mr={2} >
           <Box display='flex' justifyContent='space-between' py={2}>
             <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.rental}</span></h2>
-            <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
+            <Box>
+              <Button onClick={goBack} sx={{mr:2}}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>
+              <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
+            </Box>
           </Box>
           <Box mt={4}>
             <Grid container spacing={2}>
@@ -52,7 +56,7 @@ const Edit_Shop = () => {
                 </Box>
                 <Box mt={1}>
                   <label for="remaing__rent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.r_rent} type="number" id="remaing__rent" placeholder='Remaining Rent' className='form_input' disabled/><br />
+                  <input defaultValue={shop.r_rent} type="number" id="remaing__rent" placeholder='Remaining Rent' className='form_input' disabled /><br />
                 </Box>
               </Grid>
 
