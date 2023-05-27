@@ -128,22 +128,36 @@ const Edit_Shop = () => {
             <Box mt={2} pr={2}>
               <Button
                 sx={{
-                  width: "8%", height: '35px',
+                  width: "24.3%", height: '35px',
                   backgroundColor: '#096AFF',
                   boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
                   ':hover': {
                     backgroundColor: '#096AFF',
                     border: "1px solid #096AFF"
                   },
-                }}> Update </Button>
+                }}> Update Data</Button>
             </Box>
           </Box>
         </Box>
       )
       }
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }} >
-        <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label>
-        <input type="text" id="rent__paid" className='Rent_input' />
+        <Box width='50%'>
+          <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
+          <input type="date" id="rent__paid__date" className='Rent_input' /><br />
+          <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label><br />
+          <input type="number" id="rent__paid" className='Rent_input' placeholder='0000' /><br />
+          <Button
+            sx={{
+              width: "50%", height: '35px',mt:2,
+              backgroundColor: '#096AFF',
+              boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
+              ':hover': {
+                backgroundColor: '#096AFF',
+                border: "1px solid #096AFF"
+              },
+            }}>Update Bill</Button>
+        </Box>
       </Box>
 
     </Box >
