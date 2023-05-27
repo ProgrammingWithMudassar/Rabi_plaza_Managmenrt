@@ -13,7 +13,6 @@ const ShopForm = () => {
     <Box>
       <Box display='flex' justifyContent='space-between' alignItems="center" py={2} mr={2}>
         <Typography variant="h5" color="initial" my={2} fontWeight={600}>Add New Shop</Typography>
-        <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
       </Box>
 
       <Grid container spacing={2}>

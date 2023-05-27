@@ -1,17 +1,19 @@
 import React from 'react'
 import { useParams } from 'react-router-dom';
-import { Button, Box, Typography, Grid, } from '@mui/material'
+import { Button, Box, Typography, Grid, Divider, } from '@mui/material'
 import { rows } from '../../Data/DummyData.js';
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom'
-
+import ReactToPrint from 'react-to-print';
+import { useRef } from 'react';
 
 
 const Edit_Shop = () => {
 
   const { id } = useParams();
   const shop = rows.find((row) => row.id === Number(id));
+  const componentRef = useRef();
 
   const goBack = () => {
     window.history.go(-1);
@@ -32,9 +34,10 @@ const Edit_Shop = () => {
           <Box display='flex' justifyContent='space-between' py={2}>
             <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.rental}</span></h2>
             <Box>
-              <Link to='/Generate_Bill'>
-                <Button sx={{ mr: 2 }}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>
-              </Link>
+              <ReactToPrint
+                trigger={() => <Button sx={{ mr: 2 }}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>}
+                content={() => componentRef.current}
+              />
               <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
             </Box>
           </Box>
@@ -42,20 +45,20 @@ const Edit_Shop = () => {
             <Grid container spacing={2}>
 
 
-              <Grid item xs={6}>
+              <Grid item xs={3}>
                 <label for="Shop__number" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                 <input defaultValue={shop.Shop_No} type="number" id="Shop__number" placeholder='#1234' className='form_input' /><br />
                 <Box mt={1}>
-                  <label for="email" style={{ fontWeight: "600" }}>Honor Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <label for="email" style={{ fontWeight: "600" }}>Owner Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                   <input defaultValue={shop.email} type="email" id="email" placeholder='Email' className='form_input' /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="Shop__honor" style={{ fontWeight: "600" }}>Shop Honor <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.S_honor} type="text" id="Shop__honor" placeholder='Honor Name' className='form_input' /><br />
+                  <label for="Shop__Owner" style={{ fontWeight: "600" }}>Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.S_Owner} type="text" id="Shop__Owner" placeholder='Owner Name' className='form_input' /><br />
                 </Box>
                 <Box mt={1}>
                   <label for="starting__date" style={{ fontWeight: "600" }}>Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.S_date} type="date" id="starting__date" placeholder='Honor Name' className='form_input' /><br />
+                  <input defaultValue={shop.S_date} type="date" id="starting__date" placeholder='Owner Name' className='form_input' /><br />
                 </Box>
                 <Box mt={1}>
                   <label for="remaing__rent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
@@ -64,7 +67,7 @@ const Edit_Shop = () => {
               </Grid>
 
 
-              <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
+              <Grid item xs={3} sx={{ pr: { xs: 0, md: 2 } }}>
                 <label for="shop__size" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                 <input defaultValue={shop.size} type="text" id="shop__size" placeholder='50x123' className='form_input' /><br />
                 <Box mt={1}>
@@ -80,13 +83,52 @@ const Edit_Shop = () => {
                   <input defaultValue={shop.floor} type="text" id="floor" placeholder='Rental Name' className='form_input' /><br />
                 </Box>
               </Grid>
+
+              <Grid item xs={6} ref={componentRef} p={2}>
+                <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">Invoice Bill</Typography>
+                <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                  <Box width="60%">
+                    <Typography variant="body1" color="initial" fontWeight={600} >Shop No</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >Shop Rental</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >Floor No</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
+                  </Box>
+                  <Box width="20%">
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.Shop_No}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.rental}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.floor}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
+                  </Box>
+                </Box>
+                <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                  <Box width="60%">
+                    <Typography variant="body1" color="initial" fontWeight={600} >Paid Amount</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >Remaining Rent</Typography>
+                  </Box>
+                  <Box width="20%">
+                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.Shop_No}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.rental}</Typography>
+                  </Box>
+                </Box>
+                <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                  <Box width="60%">
+                    <Typography variant="body1" color="initial" fontWeight={600} >Total Remaining Rent</Typography>
+                  </Box>
+                  <Box width="20%">
+                    <Typography variant="body1" color="initial" fontWeight={800} >{shop.Shop_No}</Typography>
+                  </Box>
+                </Box>
+              </Grid>
             </Grid>
 
 
             <Box mt={2} pr={2}>
               <Button
                 sx={{
-                  width: "100%", height: '35px',
+                  width: "8%", height: '35px',
                   backgroundColor: '#096AFF',
                   boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
                   ':hover': {
