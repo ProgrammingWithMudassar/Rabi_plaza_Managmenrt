@@ -87,7 +87,7 @@ const Edit_Shop = () => {
               <Grid item xs={6} ref={componentRef} p={2}>
                 <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">Invoice Bill</Typography>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box width="60%">
                     <Typography variant="body1" color="initial" fontWeight={600} >Shop No</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >Shop Rental</Typography>
@@ -102,18 +102,18 @@ const Edit_Shop = () => {
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box width="60%">
                     <Typography variant="body1" color="initial" fontWeight={600} >Paid Amount</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >Remaining Rent</Typography>
                   </Box>
                   <Box width="20%">
                     <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.Shop_No}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.rental}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.r_rent}</Typography>
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-                <Box sx={{ display:'flex', justifyContent:'space-between'}}>
+                <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                   <Box width="60%">
                     <Typography variant="body1" color="initial" fontWeight={600} >Total Remaining Rent</Typography>
                   </Box>
@@ -141,6 +141,11 @@ const Edit_Shop = () => {
         </Box>
       )
       }
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }} >
+        <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label>
+        <input type="text" id="rent__paid" className='Rent_input' />
+      </Box>
+
     </Box >
   );
 }
