@@ -4,6 +4,7 @@ import { Button, Box, Typography, Grid, } from '@mui/material'
 import { rows } from '../../Data/DummyData.js';
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Link } from 'react-router-dom'
 
 
 
@@ -31,7 +32,9 @@ const Edit_Shop = () => {
           <Box display='flex' justifyContent='space-between' py={2}>
             <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.rental}</span></h2>
             <Box>
-              <Button onClick={goBack} sx={{mr:2}}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>
+              <Link to='/Generate_Bill'>
+                <Button sx={{ mr: 2 }}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>
+              </Link>
               <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
             </Box>
           </Box>

@@ -7,7 +7,7 @@ import {
   ShopForm,
   Expence_calculate,
   Report,
-  Logout,
+  Logout,Generate_Bill,
   Shop_Details,Edit_Shop
 } from './Pages/index'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
@@ -34,9 +34,12 @@ const App = () => {
                 <Route exact path='/Expence_calculate' element={<Expence_calculate />} />
                 <Route exact path='/report' element={<Report />} />
                 <Route exact path='/logOut' element={<Logout />} />
+                <Route exact path='/Generate_Bill' element={<Generate_Bill />} />
+
 
                 <Route path="/shop/:id" element={<Shop_Details />} />
                 <Route path="/shop_edit/:id" element={<Edit_Shop />} />
+
               </Route>
             </Routes>
           </Grid>
