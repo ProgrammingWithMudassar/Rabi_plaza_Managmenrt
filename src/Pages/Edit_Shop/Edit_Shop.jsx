@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Button, Box, Typography, Grid, Divider, } from '@mui/material'
 import { rows } from '../../Data/DummyData.js';
@@ -14,6 +14,8 @@ const Edit_Shop = () => {
   const { id } = useParams();
   const shop = rows.find((row) => row.id === Number(id));
   const componentRef = useRef();
+  const [paidAmount, setPaidAmount] = useState(0);
+  const [rentPaidDate, setRentPaidDate] = useState('');
 
   const goBack = () => {
     window.history.go(-1);
@@ -25,6 +27,20 @@ const Edit_Shop = () => {
     </div>;
   }
 
+  const handlePaidAmountChange = (event) => {
+    setPaidAmount(parseInt(event.target.value));
+  };
+
+  const handleRentPaidDateChange = (event) => {
+    setRentPaidDate(event.target.value);
+  }
+
+  const handleUpdateBill = () => {
+    const remainingRent = shop.r_rent - paidAmount;
+    // Perform any other necessary logic with the updated values
+    console.log('Updated Paid Amount:', paidAmount);
+    console.log('Updated Remaining Rent:', remainingRent);
+  };
 
 
   return (
@@ -94,11 +110,11 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={600} >Floor No</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
                   </Box>
-                  <Box width="20%">
+                  <Box width="30%">
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.Shop_No}</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.rental}</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.floor}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{rentPaidDate}</Typography>
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
@@ -107,8 +123,8 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={600} >Paid Amount</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >Remaining Rent</Typography>
                   </Box>
-                  <Box width="20%">
-                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.Shop_No}</Typography>
+                  <Box width="30%">
+                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{paidAmount}</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.r_rent}</Typography>
                   </Box>
                 </Box>
@@ -117,8 +133,8 @@ const Edit_Shop = () => {
                   <Box width="60%">
                     <Typography variant="body1" color="initial" fontWeight={600} >Total Remaining Rent</Typography>
                   </Box>
-                  <Box width="20%">
-                    <Typography variant="body1" color="initial" fontWeight={800} >{shop.Shop_No}</Typography>
+                  <Box width="30%">
+                    <Typography variant="body1" color="initial" fontWeight={800} >{shop.r_rent - paidAmount}</Typography>
                   </Box>
                 </Box>
               </Grid>
@@ -144,12 +160,13 @@ const Edit_Shop = () => {
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }} >
         <Box width='50%'>
           <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
-          <input type="date" id="rent__paid__date" className='Rent_input' /><br />
+          <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange}/><br />
           <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label><br />
-          <input type="number" id="rent__paid" className='Rent_input' placeholder='0000' /><br />
+          <input type="number" id="rent__paid" className='Rent_input' placeholder='0000' onChange={handlePaidAmountChange} /><br />
           <Button
+            onClick={handleUpdateBill}
             sx={{
-              width: "50%", height: '35px',mt:2,
+              width: "50%", height: '35px', mt: 2,
               backgroundColor: '#096AFF',
               boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
               ':hover': {

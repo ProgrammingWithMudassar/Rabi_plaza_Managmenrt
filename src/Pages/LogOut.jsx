@@ -5,7 +5,7 @@ import {Link} from 'react-router-dom'
 const LogOut = () => {
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: "90vh" }}>
-      <Card sx={{ width: "40%" }}>
+      <Card sx={{ width: "30%" }}>
         <CardContent>
           Are you sure to Logout?
         </CardContent>

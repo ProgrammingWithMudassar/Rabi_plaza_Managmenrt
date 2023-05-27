@@ -48,6 +48,14 @@ const LabTabs = () => {
   const end = start + recordsPerPage;
   const paginatedRows = filteredRows.slice(start, end);
 
+  //Rows pagiantion 
+  const totalRowPages = Math.ceil(rows.length / recordsPerPage);
+
+  const Row_start = (currentPage - 1) * recordsPerPage;
+  const Row_end = Row_start + recordsPerPage;
+  const Rowsaginated = rows.slice(Row_start, Row_end);
+
+
   return (
     <Box>
       <Typography variant="h6" color="initial" mt={1}>
@@ -86,7 +94,7 @@ const LabTabs = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {paginatedRows.map((row) => (
+                  {Rowsaginated.map((row) => (
                     <TableRow key={row.id}>
                       <TableCell>{row.Shop_No}</TableCell>
                       <TableCell>{row.rental}</TableCell>
@@ -110,14 +118,15 @@ const LabTabs = () => {
               <Button
                 disabled={currentPage === 1}
                 onClick={handlePreviousPage}
+                sx={{ mr: 2, }}
               >
-                Previous Page
+                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Previous Page</Typography>
               </Button>
               <Button
                 disabled={currentPage === totalPages}
                 onClick={handleNextPage}
               >
-                Next Page
+                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Next Page</Typography>
               </Button>
             </Box>
           </TabPanel>
@@ -167,14 +176,15 @@ const LabTabs = () => {
               <Button
                 disabled={currentPage === 1}
                 onClick={handlePreviousPage}
+                sx={{ mr: 2 }}
               >
-                Previous Page
+                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Previous Page</Typography>
               </Button>
               <Button
                 disabled={currentPage === totalPages}
                 onClick={handleNextPage}
               >
-                Next Page
+                  <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Next Page</Typography>
               </Button>
             </Box>
           </TabPanel>
