@@ -42,6 +42,7 @@ const All_shops_data = () => {
   if (data && data.shops) {
     const rows = data.shops.map((shop, index) => ({
       id: index + 1,
+      shopId:shop._id,
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
       S_honor: shop.shopOwner,
@@ -65,7 +66,7 @@ const All_shops_data = () => {
         headerName: 'Details',
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop/${params.id}`}>
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop/${params.row.shopId}`}>
             More
           </Button>
         ),

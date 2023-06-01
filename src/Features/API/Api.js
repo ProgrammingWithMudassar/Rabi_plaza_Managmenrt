@@ -10,6 +10,12 @@ export const api = createApi({
                 method: 'GET',
             }),
         }),
+        getShopById: builder.query({
+            query: (shopId) => ({
+                url: `/All_Shops/${shopId}`,
+                method: 'GET',
+            }),
+        }),
         addShop: builder.mutation({
             query: (newShopData) => ({
                 url: '/Add_Shop',
@@ -35,6 +41,7 @@ export const api = createApi({
 
 export const {
     useGetShopsQuery,
+    useGetShopByIdQuery,
     useAddShopMutation,
     useDeleteShopMutation
 } = api;

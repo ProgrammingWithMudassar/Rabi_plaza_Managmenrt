@@ -12,7 +12,8 @@ const ShopForm = () => {
     shopSize: '',
     mobileNumber: '',
     shopRental: '',
-    floor: '',
+    floorNo: '',
+    ShopRent:''
   });
 
   const options = [1, 2, 3, 4, 5];
@@ -31,12 +32,12 @@ const ShopForm = () => {
   const handleInputData = async (e) => {
     let {
       shopNumber, OwnerEmail, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floor
+      shopSize, mobileNumber, shopRental, floorNo, ShopRent
     } = formData;
     e.preventDefault();
     if (
       shopNumber, OwnerEmail, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floor
+      shopSize, mobileNumber, shopRental, floorNo,ShopRent
     ) {
       try {
         const response = await addShop(formData);
@@ -116,6 +117,18 @@ const ShopForm = () => {
                 onChange={handleChange}
               />
             </Box>
+            <Box mt={1}>
+              <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
+                Rent of Shop <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+              </label>
+              <input
+                type="number"
+                id="ShopRent"
+                className="form_input"
+                value={formData.ShopRent}
+                onChange={handleChange}
+              />
+            </Box>
           </Grid>
 
           <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
@@ -157,16 +170,16 @@ const ShopForm = () => {
               />
             </Box>
             <Box mt={1}>
-              <label htmlFor="floor" style={{ fontWeight: '600' }}>
-                Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+              <label htmlFor="floorNo" style={{ fontWeight: '600' }}>
+                floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="text"
-                id="floor"
-                placeholder="Floor Number"
+                id="floorNo"
+                placeholder="floor Number"
                 className="form_input"
                 list="options"
-                value={formData.floor}
+                value={formData.floorNo}
                 onChange={handleChange}
               />
               <datalist id="options" style={{ width: '100%' }}>
