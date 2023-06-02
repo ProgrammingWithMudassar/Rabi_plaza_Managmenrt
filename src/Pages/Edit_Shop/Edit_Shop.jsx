@@ -6,9 +6,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
 import { useGetShopByIdQuery, useUpdateShopMutation } from '../../Features/API/Api';
+import { ToastContainer, toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Edit_Shop = () => {
+
+
+
   const { id } = useParams();
+  const navigate = useNavigate();
+  const [isPageRefreshed, setIsPageRefreshed] = useState(true);
+
+  useEffect(() => {
+    if (!isPageRefreshed) {
+      setIsPageRefreshed(false);
+      window.location.reload();
+    }
+  }, [isPageRefreshed]);
+
+
   const { data: shop, isLoading, isError, refetch } = useGetShopByIdQuery(id);
   const [updateShop, { isLoading: isUpdating }] = useUpdateShopMutation();
   const componentRef = useRef();
@@ -24,7 +40,7 @@ const Edit_Shop = () => {
     shopRental: '',
     floorNo: '',
   };
-  const [formData, setFormData] = useState({
+  let [formData, setFormData] = useState({
     shop: initialShop,
   });
 
@@ -79,7 +95,10 @@ const Edit_Shop = () => {
   };
 
   const handleUpdateData = () => {
-    const { shopNumber, ownerEmail, shopOwner, registrationDate, shopSize, mobileNumber, shopRental, floorNo } = formData.shop;
+    const {
+      shopNumber, ownerEmail, shopOwner, registrationDate,
+      shopSize, mobileNumber, shopRental, floorNo
+    } = formData.shop;
     const updatedShopData = {
       shopNumber,
       ownerEmail,
@@ -91,9 +110,9 @@ const Edit_Shop = () => {
       floorNo,
     };
 
-    updateShop({ shopId: id, updatedShopData })
-      .unwrap()
+    updateShop({ shopId: id, updatedShopData }).unwrap()
       .then((response) => {
+        toast.success(response.data.message);
         console.log('Shop data updated successfully:', response);
       })
       .catch((error) => {
@@ -250,8 +269,8 @@ const Edit_Shop = () => {
               },
             }}>Update Bill</Button>
         </Box>
+        <ToastContainer />
       </Box>
-
     </Box >
   );
 }

@@ -48,8 +48,8 @@ const All_shops_data = () => {
       S_honor: shop.shopOwner,
       size: shop.shopSize,
       floor: shop.floorNo,
+      r_rent:shop.ShopRent,
       S_date: shop.registrationDate,
-      r_rent: '', // Add your logic to calculate the remaining rent
     }));
 
 
