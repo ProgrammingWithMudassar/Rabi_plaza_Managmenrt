@@ -15,12 +15,12 @@ const Edit_Shop = () => {
 
   const { id } = useParams();
   const navigate = useNavigate();
-  const [isPageRefreshed, setIsPageRefreshed] = useState(true);
+  let [isPageRefreshed, setIsPageRefreshed] = useState(false);
 
   useEffect(() => {
-    if (!isPageRefreshed) {
+    if (isPageRefreshed === true) {
       setIsPageRefreshed(false);
-      window.location.reload();
+      // window.location.reload();
     }
   }, [isPageRefreshed]);
 
@@ -39,6 +39,7 @@ const Edit_Shop = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
+    ShopRent: ''
   };
   let [formData, setFormData] = useState({
     shop: initialShop,
@@ -60,6 +61,7 @@ const Edit_Shop = () => {
           mobileNumber: shop.shop.mobileNumber,
           shopRental: shop.shop.shopRental,
           floorNo: shop.shop.floorNo,
+          ShopRent: shop.shop.ShopRent,
         },
       });
     }
@@ -97,7 +99,7 @@ const Edit_Shop = () => {
   const handleUpdateData = () => {
     const {
       shopNumber, ownerEmail, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floorNo
+      shopSize, mobileNumber, shopRental, floorNo, ShopRent
     } = formData.shop;
     const updatedShopData = {
       shopNumber,
@@ -107,17 +109,12 @@ const Edit_Shop = () => {
       shopSize,
       mobileNumber,
       shopRental,
-      floorNo,
+      floorNo, ShopRent
     };
-
-    updateShop({ shopId: id, updatedShopData }).unwrap()
-      .then((response) => {
-        toast.success(response.data.message);
-        console.log('Shop data updated successfully:', response);
-      })
-      .catch((error) => {
-        console.error('Error occurred while updating shop data:', error);
-      });
+    const res = updateShop({ shopId: id, updatedShopData })
+    if (res) {
+      toast.success('Data updated successfully!');
+    }
   };
 
   if (isLoading) {
@@ -171,8 +168,8 @@ const Edit_Shop = () => {
                   <input defaultValue={shop.shop.registrationDate} type="date" id="registrationDate" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="shopRental" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.shopRental} type="number" id="shopRental" placeholder='Remaining Rent' className='form_input' disabled /><br />
+                  <label for="ShopRent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.ShopRent} type="number" id="ShopRent" placeholder='Remaining Rent' className='form_input' disabled /><br />
                 </Box>
               </Grid>
 

@@ -6,7 +6,7 @@ import { ToastContainer, toast } from 'react-toastify';
 const ShopForm = () => {
   const [formData, setFormData] = useState({
     shopNumber: '',
-    OwnerEmail: '',
+    ownerEmail: '',
     shopOwner: '',
     registrationDate: '',
     shopSize: '',
@@ -31,12 +31,12 @@ const ShopForm = () => {
 
   const handleInputData = async (e) => {
     let {
-      shopNumber, OwnerEmail, shopOwner, registrationDate,
+      shopNumber, ownerEmail, shopOwner, registrationDate,
       shopSize, mobileNumber, shopRental, floorNo, ShopRent
     } = formData;
     e.preventDefault();
     if (
-      shopNumber, OwnerEmail, shopOwner, registrationDate,
+      shopNumber, ownerEmail, shopOwner, registrationDate,
       shopSize, mobileNumber, shopRental, floorNo,ShopRent
     ) {
       try {
@@ -85,10 +85,10 @@ const ShopForm = () => {
               </label>
               <input
                 type="email"
-                id="OwnerEmail"
+                id="ownerEmail"
                 placeholder="Email"
                 className="form_input"
-                value={formData.OwnerEmail}
+                value={formData.ownerEmail}
                 onChange={handleChange}
               />
             </Box>
