@@ -189,7 +189,7 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopNumber}</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopRental}</Typography>
                     <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.floorNo}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.rentPaidDate}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{rentPaidDate}</Typography>
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
