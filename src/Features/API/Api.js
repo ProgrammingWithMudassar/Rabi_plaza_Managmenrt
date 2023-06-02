@@ -43,5 +43,6 @@ export const {
     useGetShopsQuery,
     useGetShopByIdQuery,
     useAddShopMutation,
-    useDeleteShopMutation
+    useDeleteShopMutation,
+    useUpdateShopMutation,
 } = api;

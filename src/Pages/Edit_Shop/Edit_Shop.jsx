@@ -1,31 +1,67 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
-import { Button, Box, Typography, Grid, Divider, } from '@mui/material'
-import { rows } from '../../Data/DummyData.js';
+import { Button, Box, Typography, Grid, Divider } from '@mui/material';
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
-import { useRef } from 'react';
-
+import { useGetShopByIdQuery, useUpdateShopMutation } from '../../Features/API/Api';
 
 const Edit_Shop = () => {
-
   const { id } = useParams();
-  const shop = rows.find((row) => row.id === Number(id));
+  const { data: shop, isLoading, isError, refetch } = useGetShopByIdQuery(id);
+  const [updateShop, { isLoading: isUpdating }] = useUpdateShopMutation();
   const componentRef = useRef();
   const [paidAmount, setPaidAmount] = useState(0);
   const [rentPaidDate, setRentPaidDate] = useState('');
+  const initialShop = {
+    shopNumber: '',
+    ownerEmail: '',
+    shopOwner: '',
+    registrationDate: '',
+    shopSize: '',
+    mobileNumber: '',
+    shopRental: '',
+    floorNo: '',
+  };
+  const [formData, setFormData] = useState({
+    shop: initialShop,
+  });
+
+  useEffect(() => {
+    refetch(); // Call the API when the component mounts
+  }, [refetch]);
+
+  useEffect(() => {
+    if (shop) {
+      setFormData({
+        shop: {
+          shopNumber: shop.shop.shopNumber,
+          ownerEmail: shop.shop.ownerEmail,
+          shopOwner: shop.shop.shopOwner,
+          registrationDate: shop.shop.registrationDate,
+          shopSize: shop.shop.shopSize,
+          mobileNumber: shop.shop.mobileNumber,
+          shopRental: shop.shop.shopRental,
+          floorNo: shop.shop.floorNo,
+        },
+      });
+    }
+  }, [shop]);
+
+  const handleInputChange = (e) => {
+    setFormData({
+      ...formData,
+      shop: {
+        ...formData.shop,
+        [e.target.id]: e.target.value,
+      },
+    });
+  };
 
   const goBack = () => {
     window.history.go(-1);
   };
-
-  if (!shop) {
-    return <div>
-      <Typography variant="h5" color="initial" textAlign='center'>Shop not found</Typography>
-    </div>;
-  }
 
   const handlePaidAmountChange = (event) => {
     setPaidAmount(parseInt(event.target.value));
@@ -33,7 +69,7 @@ const Edit_Shop = () => {
 
   const handleRentPaidDateChange = (event) => {
     setRentPaidDate(event.target.value);
-  }
+  };
 
   const handleUpdateBill = () => {
     const remainingRent = shop.r_rent - paidAmount;
@@ -42,13 +78,54 @@ const Edit_Shop = () => {
     console.log('Updated Remaining Rent:', remainingRent);
   };
 
+  const handleUpdateData = () => {
+    const { shopNumber, ownerEmail, shopOwner, registrationDate, shopSize, mobileNumber, shopRental, floorNo } = formData.shop;
+    const updatedShopData = {
+      shopNumber,
+      ownerEmail,
+      shopOwner,
+      registrationDate,
+      shopSize,
+      mobileNumber,
+      shopRental,
+      floorNo,
+    };
+
+    updateShop({ shopId: id, updatedShopData })
+      .unwrap()
+      .then((response) => {
+        console.log('Shop data updated successfully:', response);
+      })
+      .catch((error) => {
+        console.error('Error occurred while updating shop data:', error);
+      });
+  };
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <div>Error occurred while fetching shop data</div>;
+  }
+
+  if (!shop) {
+    return (
+      <div>
+        <Typography variant="h5" color="initial" textAlign="center">
+          Shop not found
+        </Typography>
+      </div>
+    );
+  }
+
 
   return (
     <Box>
       {shop && (
         <Box mr={2} >
           <Box display='flex' justifyContent='space-between' py={2}>
-            <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.rental}</span></h2>
+            <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span></h2>
             <Box>
               <ReactToPrint
                 trigger={() => <Button sx={{ mr: 2 }}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>}
@@ -59,44 +136,42 @@ const Edit_Shop = () => {
           </Box>
           <Box mt={4}>
             <Grid container spacing={2}>
-
-
               <Grid item xs={3}>
-                <label for="Shop__number" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                <input defaultValue={shop.Shop_No} type="number" id="Shop__number" placeholder='#1234' className='form_input' /><br />
+                <label for="shopNumber" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                <input defaultValue={shop.shop.shopNumber} type="text" id="shopNumber" placeholder='#1234' className='form_input' onChange={handleInputChange} /><br />
                 <Box mt={1}>
-                  <label for="email" style={{ fontWeight: "600" }}>Owner Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.email} type="email" id="email" placeholder='Email' className='form_input' /><br />
+                  <label for="ownerEmail" style={{ fontWeight: "600" }}>Owner Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.ownerEmail} type="email" id="ownerEmail" placeholder='Email' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="Shop__Owner" style={{ fontWeight: "600" }}>Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.S_Owner} type="text" id="Shop__Owner" placeholder='Owner Name' className='form_input' /><br />
+                  <label for="shopOwner" style={{ fontWeight: "600" }}>Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.shopOwner} type="text" id="shopOwner" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="starting__date" style={{ fontWeight: "600" }}>Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.S_date} type="date" id="starting__date" placeholder='Owner Name' className='form_input' /><br />
+                  <label for="registrationDate" style={{ fontWeight: "600" }}>Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.registrationDate} type="date" id="registrationDate" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="remaing__rent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.r_rent} type="number" id="remaing__rent" placeholder='Remaining Rent' className='form_input' disabled /><br />
+                  <label for="shopRental" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.shopRental} type="number" id="shopRental" placeholder='Remaining Rent' className='form_input' disabled /><br />
                 </Box>
               </Grid>
 
 
               <Grid item xs={3} sx={{ pr: { xs: 0, md: 2 } }}>
-                <label for="shop__size" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                <input defaultValue={shop.size} type="text" id="shop__size" placeholder='50x123' className='form_input' /><br />
+                <label for="shopSize" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                <input defaultValue={shop.shop.shopSize} type="text" id="shopSize" placeholder='50x123' className='form_input' onChange={handleInputChange} /><br />
                 <Box mt={1}>
-                  <label for="mobile__number" style={{ fontWeight: "600" }}> Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input type="number" defaultValue={shop.m_num} id="mobile__number" placeholder='03000000000' className='form_input' /><br />
+                  <label for="mobileNumber" style={{ fontWeight: "600" }}> Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input type="number" defaultValue={shop.shop.mobileNumber} id="mobileNumber" placeholder='03000000000' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="shop__rental" style={{ fontWeight: "600" }}>Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.rental} type="text" id="shop__rental" placeholder='Rental Name' className='form_input' /><br />
+                  <label for="shopRental" style={{ fontWeight: "600" }}>Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.shopRental} type="text" id="shopRental" placeholder='Rental Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
                 <Box mt={1}>
-                  <label for="floor" style={{ fontWeight: "600" }}>Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.floor} type="text" id="floor" placeholder='Rental Name' className='form_input' /><br />
+                  <label for="floorNo" style={{ fontWeight: "600" }}>Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
+                  <input defaultValue={shop.shop.floorNo} type="text" id="floorNo" placeholder='Rental Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
               </Grid>
 
@@ -111,10 +186,10 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
                   </Box>
                   <Box width="30%">
-                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.Shop_No}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.rental}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.floor}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} >{rentPaidDate}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopNumber}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopRental}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.floorNo}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.rentPaidDate}</Typography>
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
@@ -140,7 +215,6 @@ const Edit_Shop = () => {
               </Grid>
             </Grid>
 
-
             <Box mt={2} pr={2}>
               <Button
                 sx={{
@@ -151,7 +225,8 @@ const Edit_Shop = () => {
                     backgroundColor: '#096AFF',
                     border: "1px solid #096AFF"
                   },
-                }}> Update Data</Button>
+                }}
+                onClick={handleUpdateData}> Update Data</Button>
             </Box>
           </Box>
         </Box>
@@ -160,7 +235,7 @@ const Edit_Shop = () => {
       <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }} >
         <Box width='50%'>
           <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
-          <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange}/><br />
+          <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange} /><br />
           <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label><br />
           <input type="number" id="rent__paid" className='Rent_input' placeholder='0000' onChange={handlePaidAmountChange} /><br />
           <Button

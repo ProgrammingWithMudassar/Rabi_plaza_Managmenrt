@@ -76,7 +76,7 @@ const All_shops_data = () => {
         headerName: 'Edit',
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_edit/${params.id}`}
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_edit/${params.row.shopId}`}
             sx={{
               backgroundColor: '#096AFF',
               boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
