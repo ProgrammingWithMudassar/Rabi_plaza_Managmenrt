@@ -39,7 +39,7 @@ const Edit_Shop = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
-    ShopRent: ''
+    ShopRent: '',
   };
   let [formData, setFormData] = useState({
     shop: initialShop,
@@ -216,7 +216,7 @@ const Edit_Shop = () => {
                   </Box>
                   <Box width="30%">
                     <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{paidAmount}</Typography>
-                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.r_rent}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.shop.ShopRent}</Typography>
                   </Box>
                 </Box>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
@@ -225,7 +225,7 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={600} >Total Remaining Rent</Typography>
                   </Box>
                   <Box width="30%">
-                    <Typography variant="body1" color="initial" fontWeight={800} >{shop.r_rent - paidAmount}</Typography>
+                    <Typography variant="body1" color="initial" fontWeight={800} >{shop.shop.ShopRent - paidAmount}</Typography>
                   </Box>
                 </Box>
               </Grid>

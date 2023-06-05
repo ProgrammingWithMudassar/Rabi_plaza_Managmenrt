@@ -2,11 +2,12 @@ import React, { useState,useEffect } from 'react';
 import { Box, Typography, Grid, Button } from '@mui/material';
 import { useAddShopMutation } from '../../Features/API/Api.js';
 import { ToastContainer, toast } from 'react-toastify';
+import {  useNavigate } from 'react-router-dom';
 
 const ShopForm = () => {
   const [formData, setFormData] = useState({
     shopNumber: '',
-    ownerEmail: '',
+    rentalEmail: '',
     shopOwner: '',
     registrationDate: '',
     shopSize: '',
@@ -15,6 +16,8 @@ const ShopForm = () => {
     floorNo: '',
     ShopRent:''
   });
+
+  const navigate = useNavigate();
 
   const options = [1, 2, 3, 4, 5];
   const [addShop, { data, isLoading, isError }] = useAddShopMutation();
@@ -42,6 +45,7 @@ const ShopForm = () => {
       try {
         const response = await addShop(formData);
         toast.success(response.data.message);
+        navigate('/All_Shop_data');
       } catch (error) {
         if (error.status === 409) {
           toast.error(error.data.message);
@@ -74,18 +78,18 @@ const ShopForm = () => {
             <input
               type="text"
               id="shopNumber"
-              placeholder="#1234"
+              placeholder="S001"
               className="form_input"
               value={formData.shopNumber}
               onChange={handleChange}
             />
             <Box mt={1}>
               <label htmlFor="email" style={{ fontWeight: '600' }}>
-                Owner Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                Rental Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="email"
-                id="ownerEmail"
+                id="rentalEmail"
                 placeholder="Email"
                 className="form_input"
                 value={formData.ownerEmail}
