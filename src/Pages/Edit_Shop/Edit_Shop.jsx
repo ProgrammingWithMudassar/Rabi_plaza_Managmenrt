@@ -113,7 +113,7 @@ const Edit_Shop = () => {
     };
     const res = updateShop({ shopId: id, updatedShopData })
     if (res) {
-      toast.success('Data updated successfully!');
+      window.location.reload();
     }
   };
 

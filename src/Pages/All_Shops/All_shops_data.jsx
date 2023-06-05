@@ -42,13 +42,13 @@ const All_shops_data = () => {
   if (data && data.shops) {
     const rows = data.shops.map((shop, index) => ({
       id: index + 1,
-      shopId:shop._id,
+      shopId: shop._id,
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
       S_honor: shop.shopOwner,
       size: shop.shopSize,
       floor: shop.floorNo,
-      r_rent:shop.ShopRent,
+      r_rent: shop.ShopRent,
       S_date: shop.registrationDate,
     }));
 
