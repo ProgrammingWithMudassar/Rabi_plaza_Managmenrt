@@ -113,6 +113,7 @@ const Edit_Shop = () => {
     };
     const res = updateShop({ shopId: id, updatedShopData })
     if (res) {
+      console.log(res);
       window.location.reload();
     }
   };
@@ -248,7 +249,7 @@ const Edit_Shop = () => {
         </Box>
       )
       }
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 }} >
+      <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2 ,mb:4}} >
         <Box width='50%'>
           <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
           <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange} /><br />
