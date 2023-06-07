@@ -12,7 +12,12 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
-
+import AddBusinessIcon from '@mui/icons-material/AddBusiness';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import GroupsIcon from '@mui/icons-material/Groups';
+import {
+    useGetShopsQuery,
+} from '../../Features/API/Api.js'
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -31,29 +36,61 @@ const rows = [
 
 
 const HomeCard = () => {
+
+    const { data, error, isLoading, refetch } = useGetShopsQuery();
+
+  
+
+
     return (
         <Box >
             <Typography variant="body1" color="initial" my={1}>Wellcome Administator!</Typography>
             <Grid container spacing={2} >
-                {
+                {/* {
                     HomeCardData.map((data, key) => {
-                        return (
-                            <Grid item xs={4} display='flex' >
-                                <Card variant="outlined" className='card'>
-                                    <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                                        <Box className="Card__Icon">
-                                            <data.Icon style={{ fontSize: "35px" }} />
-                                        </Box>
-                                        <Typography variant="h5" color="initial">{data.count}</Typography>
-                                    </CardContent>
-                                    <CardContent sx={{ textAlign: 'right', mt: -4 }}>
-                                        <Typography variant="h6" color="initial" fontWeight={800}>{data.text}</Typography>
-                                    </CardContent>
-                                </Card>
-                            </Grid>
-                        )
+                        return ( */}
+                <Grid item xs={4} display='flex' >
+                    <Card variant="outlined" className='card'>
+                        <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Box className="Card__Icon">
+                                <AddBusinessIcon style={{ fontSize: "35px" }} />
+                            </Box>
+                            <Typography variant="h5" color="initial">1000</Typography>
+                        </CardContent>
+                        <CardContent sx={{ textAlign: 'right', mt: -4 }}>
+                            <Typography variant="h6" color="initial" fontWeight={800}>Total Shop's</Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={4} display='flex' >
+                    <Card variant="outlined" className='card'>
+                        <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Box className="Card__Icon">
+                                <GroupsIcon style={{ fontSize: "35px" }} />
+                            </Box>
+                            <Typography variant="h5" color="initial">1000</Typography>
+                        </CardContent>
+                        <CardContent sx={{ textAlign: 'right', mt: -4 }}>
+                            <Typography variant="h6" color="initial" fontWeight={800}>Register Shop's</Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                <Grid item xs={4} display='flex' >
+                    <Card variant="outlined" className='card'>
+                        <CardContent sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                            <Box className="Card__Icon">
+                                <AttachMoneyIcon style={{ fontSize: "35px" }} />
+                            </Box>
+                            <Typography variant="h5" color="initial">Rs./ 1000   </Typography>
+                        </CardContent>
+                        <CardContent sx={{ textAlign: 'right', mt: -4 }}>
+                            <Typography variant="h6" color="initial" fontWeight={800}>Monthly Income</Typography>
+                        </CardContent>
+                    </Card>
+                </Grid>
+                {/* )
                     })
-                }
+                } */}
                 <Grid xs={6} mt={2} pl={2} >
                     <TableContainer component={Paper} sx={{ boxShadow: "0 1px 5px 1.5px rgba(128, 128, 128, 0.3)" }}>
                         <Typography variant="h6" fontWeight={700} textAlign='center' color="initial" p={1}>Latest Register Shop</Typography>
