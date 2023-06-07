@@ -135,8 +135,6 @@ const Edit_Shop = () => {
       </div>
     );
   }
-
-
   return (
     <Box>
       {shop && (
