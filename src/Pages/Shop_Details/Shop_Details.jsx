@@ -56,7 +56,7 @@ const Shop_Details = () => {
         <Box mr={2}>
           <Box display="flex" justifyContent="space-between" py={2}>
             <h2>
-              Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.rental}</span>
+              Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span>
             </h2>
             <Button onClick={goBack}>
               <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}>Go Back</span>
@@ -83,16 +83,33 @@ const Shop_Details = () => {
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
                         <Typography variant="body1" fontWeight={600}>
+                          Mobile Number
+                        </Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
+                        <Typography variant="body1" fontWeight={600}>
+                        Shop Owner
+                        </Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
+                        <Typography variant="body1" fontWeight={600}>
+                          Register Date
+                        </Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
+                        <Typography variant="body1" fontWeight={600}>
                           Shop Floor
                         </Typography>
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
                         <Typography variant="body1" fontWeight={600}>
-                          Starting Date
+                          Remaining Rent
                         </Typography>
                       </ListItem>
-                      <Divider variant="fullWidth" orientation="horizontal" />
                     </Grid>
                     <Grid xs={7} md={7}>
                       <ListItem>
@@ -104,13 +121,25 @@ const Shop_Details = () => {
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
+                        <Typography variant="body1">{shop.shop.mobileNumber}</Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
+                        <Typography variant="body1">{shop.shop.shopOwner}</Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+
+                      <ListItem>
+                        <Typography variant="body1"> {shop.shop.registrationDate}</Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
                         <Typography variant="body1">{shop.shop.floorNo}</Typography>
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
-                        <Typography variant="body1">{shop.shop.registrationDate}</Typography>
+                        <Typography variant="body1">{shop.shop.ShopRent}</Typography>
                       </ListItem>
-                      <Divider variant="fullWidth" orientation="horizontal" />
                     </Grid>
                   </Grid>
                 </List>
