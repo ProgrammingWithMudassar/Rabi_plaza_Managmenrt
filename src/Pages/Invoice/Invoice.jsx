@@ -139,13 +139,13 @@ const Invoice = () => {
           <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
             <Grid item xs={6} spacing={4} >
               <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Shop No#</Typography>
+                <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>With in date</Typography>
                 <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>S001</span></Typography>
               </Box>
             </Grid>
             <Grid item xs={6} spacing={4} >
               <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Rental Name</Typography>
+                <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>After due date</Typography>
                 <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}> Name</span></Typography>
               </Box>
             </Grid>
