@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const ShopForm = () => {
   const [formData, setFormData] = useState({
     shopNumber: '',
-    rentalEmail: '',
     shopOwner: '',
     registrationDate: '',
     shopSize: '',
@@ -34,12 +33,12 @@ const ShopForm = () => {
 
   const handleInputData = async (e) => {
     let {
-      shopNumber, rentalEmail, shopOwner, registrationDate,
+      shopNumber,  shopOwner, registrationDate,
       shopSize, mobileNumber, shopRental, floorNo, ShopRent
     } = formData;
     e.preventDefault();
     if (
-      shopNumber, rentalEmail, shopOwner, registrationDate,
+      shopNumber,  shopOwner, registrationDate,
       shopSize, mobileNumber, shopRental, floorNo, ShopRent
     ) {
       try {
@@ -83,19 +82,6 @@ const ShopForm = () => {
               value={formData.shopNumber}
               onChange={handleChange}
             />
-            <Box mt={1}>
-              <label htmlFor="email" style={{ fontWeight: '600' }}>
-                Rental Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
-              </label>
-              <input
-                type="email"
-                id="rentalEmail"
-                placeholder="Email"
-                className="form_input"
-                value={formData.rentalEmail}
-                onChange={handleChange}
-              />
-            </Box>
             <Box mt={1}>
               <label htmlFor="shopOwner" style={{ fontWeight: '600' }}>
                 Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
