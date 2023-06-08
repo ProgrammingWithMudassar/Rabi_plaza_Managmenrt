@@ -98,7 +98,7 @@ const Invoice = () => {
 
           <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
             <Grid item xs={4} spacing={4} >
-              <Box sx={{ border: '1px solid black', display: 'flex', }}>
+              <Box sx={{ display: 'flex', }}>
               </Box>
             </Grid>
             <Grid item xs={8} spacing={4} >
@@ -147,6 +147,31 @@ const Invoice = () => {
               <Box sx={{ border: '1px solid black', display: 'flex', }}>
                 <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>After due date</Typography>
                 <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}> Name</span></Typography>
+              </Box>
+            </Grid>
+          </Box>
+
+          <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
+            <Grid item xs={6} spacing={4} >
+              <Box sx={{ border: '1px solid black', display: 'flex', }}>
+              </Box>
+            </Grid>
+            <Grid item xs={6} spacing={4} >
+              <Box sx={{ border: '1px solid black', display: 'flex', }}>
+                <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Area Assign</Typography>
+                <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>Mr. Name</span></Typography>
+              </Box>
+            </Grid>
+          </Box>
+
+          <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
+            <Grid item xs={12} spacing={4} >
+              <Box sx={{ display: 'flex', }}>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo. Illo officia corrupti dolorum quasi ducimus consequuntur accusamus odit tenetur!
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo. Illo officia corrupti dolorum quasi ducimus consequuntur accusamus odit tenetur!
+              </Box>
+              <Box sx={{ borderTop: '2px dotted black',my:2 }}>
+                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo.
               </Box>
             </Grid>
           </Box>
