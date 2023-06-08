@@ -139,16 +139,16 @@ const Edit_Shop = () => {
           <Box display='flex' justifyContent='space-between' py={2}>
             <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span></h2>
             <Box>
-              <ReactToPrint
+              {/* <ReactToPrint
                 trigger={() => <Button sx={{ mr: 2 }}>  <FontAwesomeIcon icon={faFileInvoice} /> <span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>}
                 content={() => componentRef.current}
-              />
+              /> */}
               <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
             </Box>
           </Box>
           <Box mt={4}>
             <Grid container spacing={2}>
-              <Grid item xs={3}>
+              <Grid item xs={6}>
                 <label for="shopNumber" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                 <input defaultValue={shop.shop.shopNumber} type="text" id="shopNumber" placeholder='#1234' className='form_input' onChange={handleInputChange} /><br />
                 <Box mt={1}>
@@ -166,7 +166,7 @@ const Edit_Shop = () => {
               </Grid>
 
 
-              <Grid item xs={3} sx={{ pr: { xs: 0, md: 2 } }}>
+              <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
                 <label for="shopSize" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                 <input defaultValue={shop.shop.shopSize} type="text" id="shopSize" placeholder='50x123' className='form_input' onChange={handleInputChange} /><br />
                 <Box mt={1}>
@@ -183,7 +183,7 @@ const Edit_Shop = () => {
                 </Box>
               </Grid>
 
-              <Grid item xs={6} ref={componentRef} p={2}>
+              {/* <Grid item xs={6} ref={componentRef} p={2}>
                 <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">Invoice Bill</Typography>
                 <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
                 <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -220,13 +220,13 @@ const Edit_Shop = () => {
                     <Typography variant="body1" color="initial" fontWeight={800} >{shop.shop.ShopRent - paidAmount}</Typography>
                   </Box>
                 </Box>
-              </Grid>
+              </Grid> */}
             </Grid>
 
             <Box mt={2} pr={2}>
               <Button
                 sx={{
-                  width: "24.3%", height: '35px',
+                  width: "100%", height: '35px',
                   backgroundColor: '#096AFF',
                   boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
                   ':hover': {
@@ -240,7 +240,7 @@ const Edit_Shop = () => {
         </Box>
       )
       }
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2, mb: 4 }} >
+      {/* <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2, mb: 4 }} >
         <Box width='50%'>
           <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
           <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange} /><br />
@@ -259,7 +259,7 @@ const Edit_Shop = () => {
             }}>Update Bill</Button>
         </Box>
         <ToastContainer />
-      </Box>
+      </Box> */}
     </Box >
   );
 }

@@ -107,13 +107,13 @@ const Invoice = () => {
               <Grid item xs={6} spacing={4} >
                 <Box sx={{ border: '1px solid black', display: 'flex', }}>
                   <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Shop No#</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>S001</span></Typography>
+                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>{shop.shop.shopNumber}</span></Typography>
                 </Box>
               </Grid>
               <Grid item xs={6} spacing={4} >
                 <Box sx={{ border: '1px solid black', display: 'flex', }}>
                   <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Rental Name</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}> Name</span></Typography>
+                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>{shop.shop.shopRental}</span></Typography>
                 </Box>
               </Grid>
             </Box>
@@ -162,13 +162,13 @@ const Invoice = () => {
               <Grid item xs={6} spacing={4} >
                 <Box sx={{ border: '1px solid black', display: 'flex', }}>
                   <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>With in date</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>S001</span></Typography>
+                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>{shop.shop.ShopRent}</span></Typography>
                 </Box>
               </Grid>
               <Grid item xs={6} spacing={4} >
                 <Box sx={{ border: '1px solid black', display: 'flex', }}>
                   <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>After due date</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}> Name</span></Typography>
+                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>{parseInt(shop.shop.ShopRent) + 100}</span></Typography>
                 </Box>
               </Grid>
             </Box>
