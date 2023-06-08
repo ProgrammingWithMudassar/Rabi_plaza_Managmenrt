@@ -15,9 +15,9 @@ import Paper from '@mui/material/Paper';
 import AddBusinessIcon from '@mui/icons-material/AddBusiness';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import GroupsIcon from '@mui/icons-material/Groups';
-import {
-    useGetShopsQuery,
-} from '../../Features/API/Api.js'
+// import {
+//     useGetShopsQuery,
+// } from '../../Features/API/Api.js'
 
 
 function createData(name, calories, fat, carbs, protein) {
@@ -37,7 +37,7 @@ const rows = [
 
 const HomeCard = () => {
 
-    const { data, error, isLoading, refetch } = useGetShopsQuery();
+    // const { data, error, isLoading, refetch } = useGetShopsQuery();
 
   
 
