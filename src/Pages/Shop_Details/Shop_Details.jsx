@@ -89,12 +89,6 @@ const Shop_Details = () => {
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
                         <Typography variant="body1" fontWeight={600}>
-                          Rental Email
-                        </Typography>
-                      </ListItem>
-                      <Divider variant="fullWidth" orientation="horizontal" />
-                      <ListItem>
-                        <Typography variant="body1" fontWeight={600}>
                         Shop Owner
                         </Typography>
                       </ListItem>
@@ -128,10 +122,6 @@ const Shop_Details = () => {
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
                         <Typography variant="body1">{shop.shop.mobileNumber}</Typography>
-                      </ListItem>
-                      <Divider variant="fullWidth" orientation="horizontal" />
-                      <ListItem>
-                        <Typography variant="body1">{shop.shop.ownerEmail}</Typography>
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>

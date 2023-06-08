@@ -155,10 +155,6 @@ const Edit_Shop = () => {
                 <label for="shopNumber" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                 <input defaultValue={shop.shop.shopNumber} type="text" id="shopNumber" placeholder='#1234' className='form_input' onChange={handleInputChange} /><br />
                 <Box mt={1}>
-                  <label for="ownerEmail" style={{ fontWeight: "600" }}>Owner Email <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.ownerEmail} type="email" id="ownerEmail" placeholder='Email' className='form_input' onChange={handleInputChange} /><br />
-                </Box>
-                <Box mt={1}>
                   <label for="shopOwner" style={{ fontWeight: "600" }}>Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
                   <input defaultValue={shop.shop.shopOwner} type="text" id="shopOwner" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
                 </Box>
