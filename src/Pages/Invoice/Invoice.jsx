@@ -153,7 +153,7 @@ const Invoice = () => {
 
           <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
             <Grid item xs={6} spacing={4} >
-              <Box sx={{ border: '1px solid black', display: 'flex', }}>
+              <Box sx={{  display: 'flex', }}>
               </Box>
             </Grid>
             <Grid item xs={6} spacing={4} >
