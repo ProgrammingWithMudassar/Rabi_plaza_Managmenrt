@@ -16,20 +16,21 @@ const All_shops_data = () => {
 
 
   useEffect(() => {
-    refetch(); // Call the API when the component mounts
+    refetch();
   }, [refetch]);
 
-  //delete API
   const handleDeleteShop = async (shopNumber) => {
     try {
       await deleteShop(shopNumber);
-      refetch(); // Refetch the data after deletion
-      // Handle any other logic or UI updates after successful deletion
+      refetch();
     } catch (error) {
       console.error(error);
-      // Handle error cases
     }
   };
+
+  const HandeleInvoice = async (shopNumber) => {
+
+  }
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -68,6 +69,25 @@ const All_shops_data = () => {
         renderCell: (params) => (
           <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop/${params.row.shopId}`}>
             More
+          </Button>
+        ),
+      },
+      {
+        field: 'invoice',
+        headerName: 'Invoice',
+        width: 100,
+        renderCell: (params) => (
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_Invoice/${params.row.shopId}`}
+            sx={{
+              backgroundColor: '#00C123',
+              boxShadow: '0 3px 5px 2px rgba(57, 250, 92, .3)',
+              ':hover': {
+                backgroundColor: '#00C123',
+                border: "1px solid #00C123"
+              },
+            }}
+          >
+            Invoice
           </Button>
         ),
       },

@@ -6,7 +6,7 @@ import {
   All_shops_data,
   ShopForm,
   Expence_calculate,
-  Report,
+  Report,Invoice,
   Logout,Generate_Bill,
   Shop_Details,Edit_Shop
 } from './Pages/index'
@@ -39,6 +39,7 @@ const App = () => {
 
                 <Route path="/shop/:id" element={<Shop_Details />} />
                 <Route path="/shop_edit/:id" element={<Edit_Shop />} />
+                <Route path="/shop_Invoice/:id" element={<Invoice />} />
 
               </Route>
             </Routes>
