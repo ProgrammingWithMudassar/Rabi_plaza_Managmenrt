@@ -1,8 +1,8 @@
-import React, { useState,useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, Button } from '@mui/material';
 import { useAddShopMutation } from '../../Features/API/Api.js';
 import { ToastContainer, toast } from 'react-toastify';
-import {  useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const ShopForm = () => {
   const [formData, setFormData] = useState({
@@ -14,7 +14,7 @@ const ShopForm = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
-    ShopRent:''
+    ShopRent: ''
   });
 
   const navigate = useNavigate();
@@ -27,20 +27,20 @@ const ShopForm = () => {
     const { id, value } = e.target;
     setFormData((prevFormData) => ({
       ...prevFormData,
-      [id]: value,
+      [id]: value.trim(), // Trim the input value
     }));
   };
 
 
   const handleInputData = async (e) => {
     let {
-      shopNumber, ownerEmail, shopOwner, registrationDate,
+      shopNumber, rentalEmail, shopOwner, registrationDate,
       shopSize, mobileNumber, shopRental, floorNo, ShopRent
     } = formData;
     e.preventDefault();
     if (
-      shopNumber, ownerEmail, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floorNo,ShopRent
+      shopNumber, rentalEmail, shopOwner, registrationDate,
+      shopSize, mobileNumber, shopRental, floorNo, ShopRent
     ) {
       try {
         const response = await addShop(formData);
@@ -92,7 +92,7 @@ const ShopForm = () => {
                 id="rentalEmail"
                 placeholder="Email"
                 className="form_input"
-                value={formData.ownerEmail}
+                value={formData.rentalEmail}
                 onChange={handleChange}
               />
             </Box>
