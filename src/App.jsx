@@ -6,7 +6,7 @@ import {
   All_shops_data,
   ShopForm, Login,
   Expence_calculate,
-  Report, Invoice,
+  Report, Invoice,Update_Rent,
   Logout, Generate_Bill,
   Shop_Details, Edit_Shop
 } from './Pages/index'
@@ -42,9 +42,10 @@ const App = () => {
                 <Route exact path='/Generate_Bill' element={<Generate_Bill />} />
 
 
+                <Route path="/update_rent/:id" element={<Update_Rent />} />
                 <Route path="/shop/:id" element={<Shop_Details />} />
-                <Route path="/shop_edit/:id" element={<Edit_Shop />} />
                 <Route path="/shop_Invoice/:id" element={<Invoice />} />
+                <Route path="/shop_edit/:id" element={<Edit_Shop />} />
               </Route>
             </Routes>
           </Grid>

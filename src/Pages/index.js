@@ -9,6 +9,8 @@ export { default as Shop_Details } from './Shop_Details/Shop_Details';
 export { default as Edit_Shop } from './Edit_Shop/Edit_Shop.jsx';
 export { default as Generate_Bill } from './Edit_Shop/Generate_Bill';
 export { default as Invoice } from './Invoice/Invoice';
+export { default as Update_Rent } from './Update_Rent/Update_Rent.jsx';
+
 
 
 
