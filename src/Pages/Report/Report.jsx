@@ -1,25 +1,15 @@
 import * as React from 'react';
+import {TabContext,TabList,TabPanel} from '@mui/lab';
 import {
-  TabContext,
-  TabList,
-  TabPanel,
-} from '@mui/lab';
-import {
-  Tab,
-  Box,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Paper,
-  Button,
+  Tab,Box,Typography,Table,TableBody,
+  TableCell,TableContainer,TableHead,TableRow,Paper,Button,
 } from '@mui/material';
 import { rows } from '../../Data/DummyData';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
+import { useGetShopsQuery } from '../../Features/API/Api'
+
+
 
 const LabTabs = () => {
   const [value, setValue] = React.useState('1');
