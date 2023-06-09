@@ -1,187 +1,86 @@
-import * as React from 'react';
-import {TabContext,TabList,TabPanel} from '@mui/lab';
-import {
-  Tab,Box,Typography,Table,TableBody,
-  TableCell,TableContainer,TableHead,TableRow,Paper,Button,
-} from '@mui/material';
-import { rows } from '../../Data/DummyData';
+import React, { useRef } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
+import { Box, Typography, Button } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { Link } from 'react-router-dom';
+import {  useGetShopsQuery } from '../../Features/API/Api.js'
 import ReactToPrint from 'react-to-print';
-import { useRef } from 'react';
-import { useGetShopsQuery } from '../../Features/API/Api'
+import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
-const LabTabs = () => {
-  const [value, setValue] = React.useState('1');
-  const [currentPage, setCurrentPage] = React.useState(1);
+
+const Report = () => {
+  const { data, error, isLoading, refetch } = useGetShopsQuery();
   const componentRef = useRef();
 
-  const recordsPerPage = 10;
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
-  };
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
-  const handlePreviousPage = () => {
-    setCurrentPage(currentPage - 1);
-  };
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
-  const handleNextPage = () => {
-    setCurrentPage(currentPage + 1);
-  };
-
-  // Filter rows based on r_rent value and calculate total pages
-  const filteredRows = rows.filter((row) => row.r_rent !== 0);
-  const totalPages = Math.ceil(filteredRows.length / recordsPerPage);
-
-  const start = (currentPage - 1) * recordsPerPage;
-  const end = start + recordsPerPage;
-  const paginatedRows = filteredRows.slice(start, end);
-
-  //Rows pagiantion 
-  const totalRowPages = Math.ceil(rows.length / recordsPerPage);
-
-  const Row_start = (currentPage - 1) * recordsPerPage;
-  const Row_end = Row_start + recordsPerPage;
-  const Rowsaginated = rows.slice(Row_start, Row_end);
+  if (data && data.shops) {
+    const rows = data.shops.map((shop, index) => ({
+      id: index + 1,
+      shopId: shop._id,
+      Shop_No: shop.shopNumber,
+      rental: shop.shopRental,
+      S_honor: shop.shopOwner,
+      size: shop.shopSize,
+      floor: shop.floorNo,
+      r_rent: shop.ShopRent,
+      S_date: shop.registrationDate,
+    }));
 
 
-  return (
-    <Box>
-      <Typography variant="h6" color="initial" mt={1}>
-        Report
-      </Typography>
-      <Box sx={{ width: '100%', typography: 'body1' }}>
-        <TabContext value={value}>
-          <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
-            <TabList
-              onChange={handleChange}
-              aria-label="lab API tabs example"
-            >
-              <Tab label="All" value="1" />
-              <Tab label="Pending Rent" value="2" />
-            </TabList>
+    const columns = [
+      { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
+      { field: 'rental', headerName: 'Rental', width: 230 },
+      { field: 'S_honor', headerName: 'Shop Honor', width: 200 },
+      { field: 'size', headerName: 'Shop Size', width: 150 },
+      { field: 'floor', headerName: 'Floor', width: 50 },
+      { field: 'S_date', headerName: 'Starting Date', width: 130 },
+      { field: 'r_rent', headerName: 'Remaing Rent', width: 130 },
+    ];
+
+
+    return (
+      <Box>
+        <Box mr={2}>
+          <Box display='flex' justifyContent='space-between' py={2}>
+            <Typography variant="body1" color="initial"></Typography>
+            <Box>
+              <ReactToPrint
+                trigger={() => <Button sx={{ mr: 2 }}><FontAwesomeIcon icon={faFileInvoice} /><span style={{ marginLeft: "7px" }}> Generate Report </span></Button>}
+                content={() => componentRef.current}
+              />
+            </Box>
           </Box>
+        </Box>
 
-          <TabPanel value="1">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 1 }}>
-              <ReactToPrint
-                trigger={() => <Button>Print</Button>}
-                content={() => componentRef.current}
-              />
-            </Box>
-            <TableContainer component={Paper} ref={componentRef}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Shop No</TableCell>
-                    <TableCell>Rental</TableCell>
-                    <TableCell>S. Honor</TableCell>
-                    <TableCell>Size</TableCell>
-                    <TableCell>Floor</TableCell>
-                    <TableCell>S. Date</TableCell>
-                    <TableCell>R. Rent</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {Rowsaginated.map((row) => (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.Shop_No}</TableCell>
-                      <TableCell>{row.rental}</TableCell>
-                      <TableCell>{row.S_honor}</TableCell>
-                      <TableCell>{row.size}</TableCell>
-                      <TableCell>{row.floor}</TableCell>
-                      <TableCell>{row.S_date}</TableCell>
-                      <TableCell>{row.r_rent}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                pt: 2,
-              }}
-            >
-              <Button
-                disabled={currentPage === 1}
-                onClick={handlePreviousPage}
-                sx={{ mr: 2, }}
-              >
-                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Previous Page</Typography>
-              </Button>
-              <Button
-                disabled={currentPage === totalPages}
-                onClick={handleNextPage}
-              >
-                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Next Page</Typography>
-              </Button>
-            </Box>
-          </TabPanel>
+        <div style={{ height: 630, width: '100%' }}  ref={componentRef}>
+          <DataGrid
+            rows={rows}
+            columns={columns}
+            initialState={{
+              pagination: {
+                paginationModel: { page: 0, pageSize: 10 },
+              },
+            }}
+            pageSizeOptions={[10, 15, 20]}
+          // checkboxSelection
+          />
 
-          <TabPanel value="2">
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pb: 1 }}>
-              <ReactToPrint
-                trigger={() => <Button>Print</Button>}
-                content={() => componentRef.current}
-              />
-            </Box>
-            <TableContainer component={Paper} ref={componentRef}>
-              <Table>
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Shop No</TableCell>
-                    <TableCell>Rental</TableCell>
-                    <TableCell>S. Honor</TableCell>
-                    <TableCell>Size</TableCell>
-                    <TableCell>Floor</TableCell>
-                    <TableCell>S. Date</TableCell>
-                    <TableCell>R. Rent</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {paginatedRows.map((row) => (
-                    <TableRow key={row.id}>
-                      <TableCell>{row.Shop_No}</TableCell>
-                      <TableCell>{row.rental}</TableCell>
-                      <TableCell>{row.S_honor}</TableCell>
-                      <TableCell>{row.size}</TableCell>
-                      <TableCell>{row.floor}</TableCell>
-                      <TableCell>{row.S_date}</TableCell>
-                      <TableCell>{row.r_rent}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
-            <Box
-              sx={{
-                display: 'flex',
-                justifyContent: 'flex-end',
-                pt: 2,
-              }}
-            >
-              <Button
-                disabled={currentPage === 1}
-                onClick={handlePreviousPage}
-                sx={{ mr: 2 }}
-              >
-                <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Previous Page</Typography>
-              </Button>
-              <Button
-                disabled={currentPage === totalPages}
-                onClick={handleNextPage}
-              >
-                  <Typography variant="body1" color="initial" sx={{ color: '#fff' }}>Next Page</Typography>
-              </Button>
-            </Box>
-          </TabPanel>
-        </TabContext>
+        </div>
       </Box>
-    </Box>
-  );
-};
+    )
+  }
+  return null;
+}
 
-export default LabTabs;
+export default Report
