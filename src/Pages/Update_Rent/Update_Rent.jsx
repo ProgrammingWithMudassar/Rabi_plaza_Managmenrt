@@ -54,7 +54,7 @@ const Update_Rent = () => {
         <Box mr={2}>
           <Box display="flex" justifyContent="space-between" py={2}>
             <h2>
-              Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span>
+              Shop No:<span style={{ color: "#FF8E53" }}> {shop.shop.shopNumber}</span>
             </h2>
             <Button onClick={goBack}>
               <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}>Go Back</span>
@@ -64,6 +64,37 @@ const Update_Rent = () => {
       )
       }
 
+      <Grid container spacing={4} pr={2}>
+        <Grid item xs={8} className='Right'>
+
+        </Grid>
+        <Grid item xs={4} >
+          <Card sx={{ minHeight: '200px', position: 'relative' }}>
+            <CardContent>
+              <Box display="flex" justifyContent="space-between">
+                <Typography variant="h5" color="initial" fontWeight={600}>
+                  Remaining Rent
+                </Typography>
+                <Typography variant="h5" color="initial" fontWeight={600}>
+                  {shop.shop.ShopRent}
+                </Typography>
+              </Box>
+              <Box mt={2} sx={{ maxHeight: "500px", minHeight: "200px", overflow: "scroll" }}>
+                <Typography variant="h6">Rent History:</Typography>
+                {[...shop.shop.rent]
+                  .sort((a, b) => new Date(b.rent_paid_date) - new Date(a.rent_paid_date))
+                  .map((rent, index) => (
+                    <Box key={index}>
+                      <Typography variant="body1">
+                        Date: {new Date(rent.rent_paid_date).toLocaleDateString()} Paid Rent: {rent.rent_paid_amount}
+                      </Typography>
+                    </Box>
+                  ))}
+              </Box>
+            </CardContent>
+          </Card>
+        </Grid>
+      </Grid>
 
     </div>
   )
