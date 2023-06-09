@@ -46,3 +46,10 @@ input::-webkit-inner-spin-button {
     font-size: 1rem;
     border: 1px solid rgb(185, 185, 185);
 }
+
+.RevenewClass{
+    background-image: url('../Assets/png/T_Logo.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    
+}

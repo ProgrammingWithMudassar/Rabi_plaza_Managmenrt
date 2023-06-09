@@ -36,6 +36,14 @@ export const api = createApi({
                 body: updatedShopData,
             }),
         }),
+        // Authentication 
+        login: builder.mutation({
+            query: (AutData) => ({
+                url: '/login',
+                method: 'POST',
+                body: AutData,
+            }),
+        }),
     }),
 });
 
@@ -45,4 +53,5 @@ export const {
     useAddShopMutation,
     useDeleteShopMutation,
     useUpdateShopMutation,
+    useLoginMutation
 } = api;

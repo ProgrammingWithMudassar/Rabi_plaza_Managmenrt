@@ -1,8 +1,17 @@
 import React from 'react'
 import { Box, Card, CardContent, CardActions, Button } from '@mui/material'
-import {Link} from 'react-router-dom'
+import {Link,useNavigate} from 'react-router-dom'
+
 
 const LogOut = () => {
+  const navigate = useNavigate();
+  
+  const handleConfirm = () => {
+    localStorage.clear(); // Clear localStorage
+  };
+
+
+
   return (
     <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', height: "90vh" }}>
       <Card sx={{ width: "30%" }}>
@@ -17,7 +26,10 @@ const LogOut = () => {
               ':hover': {
                 backgroundColor: '#FF0000',
               },
-            }} >Confirm</Button>
+            }} 
+            onClick={handleConfirm}>
+              <a href="/" style={{color:'#000'}}>Confirm</a>
+            </Button>
             <Link to="/">
               <Button sx={{ ml: 1 }}>Cancel</Button>
             </Link>

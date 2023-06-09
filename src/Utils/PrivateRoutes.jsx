@@ -1,12 +1,23 @@
+import { useState } from 'react'
 import { Navigate, Outlet } from 'react-router-dom'
 
 const PrivateRoutes = () => {
-    //Before creating Resume you should login in applicaiton( Authentice user can edit template ).
+    const [token, setToken] = useState(false)
     let auth = { 'token': true }
+
+
+    const varify_user = () => {
+        const data = localStorage.getItem('token');
+        if (data) {
+            return true
+        }
+        return false
+    }
+
     return (
-        auth.token ?
+        varify_user() ?
             <Outlet /> : <Navigate to='/login' />
-           
+
     )
 }
 
