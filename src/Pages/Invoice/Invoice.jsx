@@ -61,13 +61,13 @@ const Invoice = () => {
       </Box>
 
       {shop && (
-        <Box ref={componentRef}>
+        <Box ref={componentRef} className="BackgroundImg">
           <Box sx={{ p: 2, border: '1px solid black', m: 1 }}>
             {/* header  */}
             <Grid container spacing={2}>
               {/* header left  */}
               <Grid item xs={3} sx={{ borderBottom: '1px solid black', height: '10rem' }}>
-                <img src={logo} alt="" />
+                <img src={logo} alt="" style={{opacity:'0.6'}}/>
               </Grid>
               {/* header right  */}
               <Grid item xs={9} sx={{ borderLeft: '1px solid black', borderBottom: '1px solid black', height: '10rem' }}>

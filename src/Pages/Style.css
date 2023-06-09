@@ -46,10 +46,39 @@ input::-webkit-inner-spin-button {
     font-size: 1rem;
     border: 1px solid rgb(185, 185, 185);
 }
-
 .RevenewClass{
+    min-height: 100px;
+    position: relative;
+}
+.RevenewClass::before{
+    content: '';
     background-image: url('../Assets/png/T_Logo.png');
     background-repeat: no-repeat;
-    background-size: contain;
-    
+    background-size: 150px; 
+    background-position: center; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.25;
+}
+
+
+.BackgroundImg{
+    min-height: 100px;
+    position: relative;
+}
+.BackgroundImg::before{
+    content: '';
+    background-image: url('../Assets/png/T_Logo.png');
+    background-repeat: no-repeat;
+    background-size: 500px; 
+    background-position: center; 
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    opacity: 0.15;
 }

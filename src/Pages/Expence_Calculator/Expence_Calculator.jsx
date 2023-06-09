@@ -96,9 +96,9 @@ const ExpenseCalculator = () => {
                     </form>
                 </Grid>
                 <Grid item xs={5} >
-                    <Card variant="outlined" className='RevenewClass'>
+                    <Card variant="outlined" >
                         <CardContent>
-                            <Box sx={{p:"20px"}} ref={componentRef}>
+                            <Box sx={{p:"20px"}} ref={componentRef} className='RevenewClass'>
                                 <Typography variant="h5" color="initial" textAlign='center' fontWeight={600}> Revenew in {monthName}</Typography>
                                 <Box mt={2} display="flex" justifyContent="space-between">
                                     <Typography variant="h6" fontWeight={600} color="initial">
