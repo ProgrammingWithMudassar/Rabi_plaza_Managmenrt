@@ -118,6 +118,7 @@ const Invoice = () => {
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.floorNo} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopRental} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopOwner} </Typography>
                   </Box>
                 </Box>
               </Box>
