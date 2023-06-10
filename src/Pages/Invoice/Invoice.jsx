@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import ReactToPrint from 'react-to-print';
-import { Button, Box, Typography, Grid, Stack } from '@mui/material';
+import { Button, Box, Typography, Grid, Stack, Divider } from '@mui/material';
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../Assets/png/T_Logo.png'
@@ -62,7 +62,7 @@ const Invoice = () => {
 
       {shop && (
         <Box ref={componentRef} className="BackgroundImg">
-          <Box sx={{ p: 1, border: '1px solid black', m: 1 }}>
+          <Box sx={{ p: 1, m: 1 }}>
             {/* header  */}
             <Grid container spacing={2}>
 
@@ -162,21 +162,30 @@ const Invoice = () => {
             </Box>
 
 
-            <Stack direction="row">
+            <Stack direction="row" gap={4}>
               <Box width='50%'>
-                <Typography variant="body1" color="initial">ad</Typography>
+                <Typography variant="h6" color="#733dd9">Terms and Condition</Typography>
+                <Box sx={{pl:4}}>
+                <ul style={{listStyleType: "decimal"}}>
+                  <li>If payment is not received within the specified 10-day period, a late payment fee of 100 will be applied.</li>
+                  <li>The cash payment should be collected by customer.</li>
+                </ul>
+                </Box>
               </Box>
               <Box width='50%' sx={{ backgroundColor: 'rgba(164, 189, 255, 0.3)', px: 4, py: 2, borderRadius: '10px' }}>
                 <Typography variant="h6" color="#733dd9" fontWeight={600}>Rent</Typography>
                 <Box display='flex' >
-
-                  <Box width='50%'>
-                    <Typography variant="body1" color="initial">Remaining Rent</Typography>
-                    <Typography variant="body1" color="initial">This month Rent</Typography>
+                  <Box width='60%'>
+                    <Typography variant="body1" color="initial" mt={1}>Remaining Charges</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>Month Charges</Typography>
+                    <Divider variant="fullWidth" orientation="horizontal" />
+                    <Typography variant="h5" color="initial">Total</Typography>
                   </Box>
                   <Box>
-                    <Typography variant="body1" color="initial">adfa</Typography>
-                    <Typography variant="body1" color="initial">{shop.shop.Rent}</Typography>
+                    <Typography variant="body1" color="initial" mt={1}>adfa</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Divider variant="fullWidth" orientation="horizontal" />
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{shop.shop.ShopRent}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -184,31 +193,16 @@ const Invoice = () => {
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
               <Grid item xs={6} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>With in date</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>{shop.shop.ShopRent}</span></Typography>
-                </Box>
+                
               </Grid>
               <Grid item xs={6} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>After due date</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>{parseInt(shop.shop.ShopRent) + 100}</span></Typography>
+                <Box sx={{ display: 'flex', }}>
+                  <Typography variant="body1" color="initial" sx={{ width: "60%", py: 1.2, pl: 1 }}>After due date</Typography>
+                  <Typography variant="body1" color="initial" sx={{  py: 1.2 }}><span style={{ marginLeft: '5px' }}>{parseInt(shop.shop.ShopRent) + 100}</span></Typography>
                 </Box>
               </Grid>
             </Box>
 
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={6} spacing={4} >
-                <Box sx={{ display: 'flex', }}>
-                </Box>
-              </Grid>
-              <Grid item xs={6} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Area Assign</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>Mr. Name</span></Typography>
-                </Box>
-              </Grid>
-            </Box>
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
               <Grid item xs={12} spacing={4} >
