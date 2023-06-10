@@ -155,8 +155,8 @@ const Shop_Details = () => {
                       {shop.shop.ShopRent}
                     </Typography>
                   </Box>
-                  <Box mt={2} sx={{ maxHeight: "400px", minHeight: "200px", overflow: "scroll" }}>
-                    <Typography variant="h6">Rent History:</Typography>
+                  <Box mt={2} sx={{ maxHeight: "300px", minHeight: "200px", overflow: "scroll" }}>
+                    <Typography variant="h6">Charge's History:</Typography>
                     {[...shop.shop.rent]
                       .sort((a, b) => new Date(b.rent_paid_date) - new Date(a.rent_paid_date))
                       .map((rent, index) => (

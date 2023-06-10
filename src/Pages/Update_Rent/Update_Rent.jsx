@@ -221,8 +221,6 @@ const Update_Rent = () => {
           </Grid>
         </Grid>
 
-
-
         <Grid item xs={4} >
           <Card sx={{ minHeight: '200px', position: 'relative' }}>
             <CardContent>
@@ -234,7 +232,7 @@ const Update_Rent = () => {
                   {shop.shop.ShopRent}
                 </Typography>
               </Box>
-              <Box mt={2} sx={{ maxHeight: "500px", minHeight: "200px", overflow: "scroll" }}>
+              <Box mt={2} sx={{ maxHeight: "400px", minHeight: "200px", overflow: "scroll" }}>
                 <Typography variant="h6">Rent History:</Typography>
                 {[...shop.shop.rent]
                   .sort((a, b) => new Date(b.rent_paid_date) - new Date(a.rent_paid_date))
