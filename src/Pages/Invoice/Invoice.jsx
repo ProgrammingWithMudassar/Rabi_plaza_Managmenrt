@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import ReactToPrint from 'react-to-print';
-import { Button, Box, Typography, Grid, Divider } from '@mui/material';
+import { Button, Box, Typography, Grid, Stack } from '@mui/material';
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import logo from '../../Assets/png/T_Logo.png'
@@ -48,7 +48,7 @@ const Invoice = () => {
   return (
     <>
       <Box mr={2}>
-        <Box display='flex' justifyContent='space-between' py={2}>
+        <Box display='flex' justifyContent='space-between' py={1}>
           <h2>Shop Rental:<span style={{ color: "#FF8E53" }}>sfdgs</span></h2>
           <Box>
             <ReactToPrint
@@ -62,101 +62,114 @@ const Invoice = () => {
 
       {shop && (
         <Box ref={componentRef} className="BackgroundImg">
-          <Box sx={{ p: 2, border: '1px solid black', m: 1 }}>
+          <Box sx={{ p: 1, border: '1px solid black', m: 1 }}>
             {/* header  */}
             <Grid container spacing={2}>
-              {/* header left  */}
-              <Grid item xs={3} sx={{ borderBottom: '1px solid black', height: '10rem' }}>
-                <img src={logo} alt="" style={{opacity:'0.6'}}/>
-              </Grid>
-              {/* header right  */}
-              <Grid item xs={9} sx={{ borderLeft: '1px solid black', borderBottom: '1px solid black', height: '10rem' }}>
-                <Typography variant="h5" color="initial" textAlign='center' fontWeight={600} sx={{ width: '100%' }}>Rabi plaza Center</Typography>
-                <Divider variant="fullWidth" orientation="horizontal" />
-                <Box sx={{ mt: 1 }}>
-                  <Typography variant="body1" color="#606060" textAlign='center' sx={{ mb: 1, wordSpacing: '7px' }}>Rabi plaza Center,Street No# 2, Sadar, <br />Rawalpindi</Typography>
-                  <Divider variant="fullWidth" orientation="horizontal" />
+
+              <Grid item xs={9} sx={{ height: '10rem' }}>
+                <Typography variant="h4" fontWeight={600} sx={{ width: '100%', color: '#733dd9' }}>Invoice</Typography>
+                <Box display="flex">
+                  <Box sx={{ display: 'inline-block', width: '130px' }}>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Invoice# </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Invoice Date </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Due Date</Typography>
+                  </Box>
+                  <Box className="right_text">
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>#001 </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}> {new Date().toLocaleDateString('en-US', options)} </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
+                  </Box>
                 </Box>
-                <Typography variant="h4" color="#606060" textAlign='center' fontWeight={600} sx={{ mb: 1, wordSpacing: '7px', opacity: '0.8' }}>Monthly Maintenance Bill</Typography>
+              </Grid>
+
+              <Grid item xs={3} sx={{ height: '10rem' }}>
+                <img src={logo} alt="" style={{ opacity: '0.6' }} />
               </Grid>
             </Grid>
 
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={4} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Serial No#</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>01110000</span></Typography>
+
+            <Stack direction='row' gap={4}>
+              <Box sx={{ width: '48%', backgroundColor: 'rgba(164, 189, 255, 0.3)', px: 4, py: 2, borderRadius: '10px' }}>
+                <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed by</Typography>
+                <Box display='flex'>
+                  <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Invoice# </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Invoice Date </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Due Date</Typography>
+                  </Box>
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>#001 </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}> {new Date().toLocaleDateString('en-US', options)} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
+                  </Box>
                 </Box>
-              </Grid>
-              <Grid item xs={4} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Issue Date:</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}> {new Date().toLocaleDateString('en-US', options)}</span></Typography>
+              </Box>
+
+              <Box sx={{ width: '48%', backgroundColor: 'rgba(164, 189, 255, 0.3)', px: 4, py: 2, borderRadius: '10px' }}>
+                <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed to</Typography>
+                <Box display='flex'>
+                  <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No# </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  </Box>
+                  <Box sx={{ mt: 2 }}>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopNumber} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.floorNo} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopRental} </Typography>
+                  </Box>
                 </Box>
-              </Grid>
-              <Grid item xs={4} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Due Date:</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>{dueDate.toLocaleDateString('en-US', options)}</span></Typography>
-                </Box>
-              </Grid>
-            </Box>
+              </Box>
+            </Stack>
 
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={6} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Shop No#</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}> <span style={{ marginLeft: '5px' }}>{shop.shop.shopNumber}</span></Typography>
-                </Box>
-              </Grid>
-              <Grid item xs={6} spacing={4} >
-                <Box sx={{ border: '1px solid black', display: 'flex', }}>
-                  <Typography variant="body1" color="initial" sx={{ width: "49%", py: 1.2, pl: 1 }}>Rental Name</Typography>
-                  <Typography variant="body1" color="initial" sx={{ borderLeft: '1px solid black', py: 1.2 }}><span style={{ marginLeft: '5px' }}>{shop.shop.shopRental}</span></Typography>
-                </Box>
-              </Grid>
-            </Box>
-
-
-
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={4} spacing={4} >
-                <Box sx={{ display: 'flex', }}>
-                </Box>
-              </Grid>
-              <Grid item xs={8} spacing={4} >
-                <Box sx={{ display: 'flex', }}>
-                  <table style={{ borderCollapse: "collapse", width: '100%' }}>
-                    <tr>
-                      <td style={{ border: " 1px solid black" }}>  <Typography variant="body1" color="initial" fontWeight={600}>SR</Typography></td>
-                      <td style={{ border: " 1px solid black", width: "60%" }}><Typography variant="body1" color="initial" fontWeight={600}>Description</Typography></td>
-                      <td style={{ border: " 1px solid black" }}><Typography variant="body1" color="initial" fontWeight={600}>Amount</Typography></td>
+              <Grid item xs={12} spacing={4} >
+                <Box sx={{ display: 'flex', borderRadius: "10px", overflow: 'hidden' }}>
+                  <table style={{ borderCollapse: "collapse", width: '100%', borderRadius: '10px' }}>
+                    <tr style={{ backgroundColor: '#733dd9', height: "40px", }}>
+                      <td style={{ width: "60%" }}> <Typography variant="body1" color="#FFF" fontWeight={600} ml={2}>SR</Typography></td>
+                      <td><Typography variant="body1" color="#FFF" >Description</Typography></td>
                     </tr>
                     <tr>
-                      <td style={{ border: " 1px solid black" }}>1</td>
-                      <td style={{ border: " 1px solid black" }}>Generator</td>
-                      <td style={{ border: " 1px solid black" }}>200</td>
+                      <td><Typography variant="body1" color="initial" ml={2}>1</Typography></td>
+                      <td>security</td>
                     </tr>
                     <tr>
-                      <td style={{ border: " 1px solid black" }}>2</td>
-                      <td style={{ border: " 1px solid black" }}>Water Bill</td>
-                      <td style={{ border: " 1px solid black" }}>100</td>
+                      <td><Typography variant="body1" color="initial" ml={2}>2</Typography></td>
+                      <td>cleaning</td>
                     </tr>
                     <tr>
-                      <td style={{ border: " 1px solid black" }}>3</td>
-                      <td style={{ border: " 1px solid black" }}>security</td>
-                      <td style={{ border: " 1px solid black" }}>100</td>
+                      <td><Typography variant="body1" color="initial" ml={2}>3</Typography></td>
+                      <td>security camera's</td>
                     </tr>
                     <tr>
-                      <td style={{ border: " 1px solid black" }}>4</td>
-                      <td style={{ border: " 1px solid black" }}>Clean</td>
-                      <td style={{ border: " 1px solid black" }}>100</td>
+                      <td><Typography variant="body1" color="initial" ml={2}>4</Typography></td>
+                      <td>water</td>
+                    </tr>
+                    <tr>
+                      <td><Typography variant="body1" color="initial" ml={2}>5</Typography></td>
+                      <td>generator</td>
+                    </tr>
+                    <tr>
+                      <td><Typography variant="body1" color="initial" ml={2}>6</Typography></td>
+                      <td>street light</td>
                     </tr>
                   </table>
                 </Box>
               </Grid>
             </Box>
+
+
+            <Stack direction="row">
+              <Box width='50%'>
+                <Typography variant="body1" color="initial">ad</Typography>
+              </Box>
+              <Box width='50%'>
+                
+              </Box>
+            </Stack>
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
               <Grid item xs={6} spacing={4} >
