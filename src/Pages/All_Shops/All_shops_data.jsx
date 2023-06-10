@@ -151,7 +151,7 @@ const All_shops_data = () => {
             </Button>
           </Link>
         </Box>
-        <div style={{ height: 630, width: '100%' }}>
+        <div style={{ height: 430, width: '100%' }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -160,7 +160,7 @@ const All_shops_data = () => {
                 paginationModel: { page: 0, pageSize: 10 },
               },
             }}
-            pageSizeOptions={[10, 15, 20]}
+            pageSizeOptions={[5, 10, 15]}
           // checkboxSelection
           />
 
