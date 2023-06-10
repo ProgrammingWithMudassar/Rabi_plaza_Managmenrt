@@ -166,8 +166,19 @@ const Invoice = () => {
               <Box width='50%'>
                 <Typography variant="body1" color="initial">ad</Typography>
               </Box>
-              <Box width='50%'>
-                
+              <Box width='50%' sx={{ backgroundColor: 'rgba(164, 189, 255, 0.3)', px: 4, py: 2, borderRadius: '10px' }}>
+                <Typography variant="h6" color="#733dd9" fontWeight={600}>Rent</Typography>
+                <Box display='flex' >
+
+                  <Box width='50%'>
+                    <Typography variant="body1" color="initial">Remaining Rent</Typography>
+                    <Typography variant="body1" color="initial">This month Rent</Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="body1" color="initial">adfa</Typography>
+                    <Typography variant="body1" color="initial">{shop.shop.Rent}</Typography>
+                  </Box>
+                </Box>
               </Box>
             </Stack>
 
