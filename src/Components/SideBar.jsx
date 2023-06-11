@@ -10,7 +10,7 @@ const SideBar = () => {
   return (
     <Box sx={{ p: 1, height: "100vh", width: '100%' }}>
       <Box className="sidebar">
-        <Typography variant='h6' textAlign='center' fontWeight={700} color="#FF8E53" >Rabi Rent System</Typography>
+        <Typography variant='h6' textAlign='center' fontWeight={700} color="#FF8E53" >Rabi Maintenance System</Typography>
         <Box mt={3}>
           <ul className='sidebar__list'>
             {
