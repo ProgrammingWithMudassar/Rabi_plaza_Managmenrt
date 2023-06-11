@@ -166,18 +166,18 @@ const Invoice = () => {
             <Stack direction="row" gap={4}>
               <Box width='50%'>
                 <Typography variant="h6" color="#733dd9">Terms and Condition</Typography>
-                <Box sx={{pl:4}}>
-                <ul style={{listStyleType: "decimal"}}>
-                  <li>If payment is not received within the specified 10-day period, a late payment fee of 100 will be applied.</li>
-                  <li>The cash payment should be collected by customer.</li>
-                </ul>
+                <Box sx={{ pl: 4 }}>
+                  <ul style={{ listStyleType: "decimal" }}>
+                    <li>If payment is not received within the specified 10-day period, a late payment fee of 100 will be applied.</li>
+                    <li>The cash payment should be collected by customer.</li>
+                  </ul>
                 </Box>
               </Box>
               <Box width='50%' sx={{ backgroundColor: 'rgba(164, 189, 255, 0.3)', px: 4, py: 2, borderRadius: '10px' }}>
                 <Typography variant="h6" color="#733dd9" fontWeight={600}>Rent</Typography>
                 <Box display='flex' >
                   <Box width='60%'>
-                    <Typography variant="body1" color="initial" mt={1}>Remaining Charges</Typography>
+                    <Typography variant="body1" color="initial" mt={1}>Arrears</Typography>
                     <Typography variant="body1" color="initial" mb={1}>Month Charges</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
                     <Typography variant="h5" color="initial">Total</Typography>
@@ -194,12 +194,12 @@ const Invoice = () => {
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
               <Grid item xs={6} spacing={4} >
-                
+
               </Grid>
               <Grid item xs={6} spacing={4} >
                 <Box sx={{ display: 'flex', }}>
                   <Typography variant="body1" color="initial" sx={{ width: "60%", py: 1.2, pl: 1 }}>After due date</Typography>
-                  <Typography variant="body1" color="initial" sx={{  py: 1.2 }}><span style={{ marginLeft: '5px' }}>{parseInt(shop.shop.ShopRent) + 100}</span></Typography>
+                  <Typography variant="body1" color="initial" sx={{ py: 1.2 }}><span style={{ marginLeft: '5px' }}>{parseInt(shop.shop.ShopRent) + 100}</span></Typography>
                 </Box>
               </Grid>
             </Box>
@@ -207,12 +207,13 @@ const Invoice = () => {
 
             <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
               <Grid item xs={12} spacing={4} >
-                <Box sx={{ display: 'flex', }}>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo. Illo officia corrupti dolorum quasi ducimus consequuntur accusamus odit tenetur!
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo. Illo officia corrupti dolorum quasi ducimus consequuntur accusamus odit tenetur!
+                <Box >
+                  <Typography variant="body1" color="initial" textAlign='right'>
+                    تمام معزز صاحبان کو مطلع کیا جاتا ہے کہمینٹیننس بل کو ہیڈ آفس رابی پلازہ میں مقررہ تاریخ سے قبل ادا کرنا ضروری ہے۔ بصورت دیگر بل تاخیر سے جمع کروانے پر جرمانہ عائد کیا جائے گا، لہذا کسی بھی قسم کی پر یشانی سے بچنے کیلئے اپنے واجبات وقت پر ادا کریں۔
+                  </Typography>
                 </Box>
                 <Box sx={{ borderTop: '2px dotted black', my: 2 }}>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Beatae quibusdam, alias neque sed doloribus magnam voluptates a numquam consectetur nemo.
+                  This is computer generated bill and does not require any signature. Any discrepancy is subject to adjustment.
                 </Box>
               </Grid>
             </Box>
