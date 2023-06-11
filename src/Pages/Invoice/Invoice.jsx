@@ -93,16 +93,16 @@ const Invoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Detail</Typography>
                 <Box display="flex">
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Invoice# </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Billing Month</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Issued Date </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Due Date</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Invoice# </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Billing Month</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Issued Date </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Due Date</Typography>
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>#001 </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{previousMonthFormatted}</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>#001 </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{previousMonthFormatted}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -117,10 +117,10 @@ const Invoice = () => {
                     <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopOwner} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopRental} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>{shop.shop.shopNumber} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                   </Box>
                 </Box>
               </Box>
@@ -212,38 +212,38 @@ const Invoice = () => {
 
                 <Box sx={{ width: '35%', display: 'flex' }}>
                   <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Owner</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Rental </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Shop No# </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Owner</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop No# </Typography>
                   </Box>
                   <Box>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber}</Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ width: '35%', display: 'flex' }}>
                   <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Floor</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Issued Date </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Due Date</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Issued Date </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Due Date</Typography>
                   </Box>
                   <Box>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
                   </Box>
                 </Box>
 
                 <Box sx={{ width: '35%', display: 'flex' }}>
                   <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Arrears </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Total</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Arrears </Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Total</Typography>
                   </Box>
                   <Box>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shop_remaining_rent}</Typography>
+                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
                 <Box>
