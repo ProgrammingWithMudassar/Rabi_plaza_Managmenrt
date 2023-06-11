@@ -239,7 +239,7 @@ const Update_Rent = () => {
                 </Box>
                 <Box width="30%">
                   <input type="number" onChange={handlePaidAmountChange} value={paidAmount} className='input' />
-                  <Typography variant="body1" color="initial" fontWeight={600} fontSize={20} ml={1.1}>
+                  <Typography variant="body1" color="initial" fontWeight={600} fontSize={20} ml={1}>
                     {Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}
                   </Typography>
                 </Box>
