@@ -41,7 +41,6 @@ const All_shops_data = () => {
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
       S_honor: shop.shopOwner,
-      floor: shop.floorNo,
       r_rent: Number(shop.ShopRent) + Number(shop.shop_remaining_rent),
     }));
 
@@ -49,13 +48,12 @@ const All_shops_data = () => {
     const columns = [
       { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
       { field: 'rental', headerName: 'Rental', width: 230 },
-      { field: 'S_honor', headerName: 'Shop Honor', width: 130 },
-      { field: 'floor', headerName: 'Floor', width: 50 },
+      { field: 'S_honor', headerName: 'Shop Honor', width: 230 },
       { field: 'r_rent', headerName: 'Remaing Rent', width: 130 },
       {
         field: 'rent',
-        headerName: 'Rent',
-        width: 100,
+        headerName: 'Update Rent',
+        width: 110,
         renderCell: (params) => (
           <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_rent/${params.row.shopId}`}
             sx={{
@@ -151,16 +149,16 @@ const All_shops_data = () => {
             </Button>
           </Link>
         </Box>
-        <div style={{ height: 430, width: '100%' }}>
+        <div style={{ height: 500, width: '100%' }}>
           <DataGrid
             rows={rows}
             columns={columns}
             initialState={{
               pagination: {
-                paginationModel: { page: 0, pageSize: 10 },
+                paginationModel: { page: 0, pageSize: 7 },
               },
             }}
-            pageSizeOptions={[5, 10, 15]}
+            pageSizeOptions={[7, 14, 21]}
           // checkboxSelection
           />
 
