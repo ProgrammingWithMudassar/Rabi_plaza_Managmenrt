@@ -271,7 +271,7 @@ const Update_Rent = () => {
                 <Typography variant="body1" color="initial">
                   Remaining Rent
                 </Typography>
-                <Typography variant="body1" color="initial">
+                <Typography variant="body1" color="initial" >
                   {Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}
                 </Typography>
               </Box>
