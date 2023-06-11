@@ -137,7 +137,7 @@ const Shop_Details = () => {
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
-                        <Typography variant="body1">{shop.shop.ShopRent}</Typography>
+                        <Typography variant="body1">{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                       </ListItem>
                     </Grid>
                   </Grid>

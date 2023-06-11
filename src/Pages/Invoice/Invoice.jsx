@@ -16,23 +16,20 @@ const Invoice = () => {
   };
   const componentRef = useRef();
 
+
   const today = new Date();
-  today.setMonth(today.getMonth() - 1);
-  const day = today.getDate();
-  const month = today.toLocaleString('default', { month: 'long' });
-  const year = today.getFullYear();
+  let previousMonthIndex  = today.getMonth() - 1;
+  const previousMonthDate = new Date(today.getFullYear(), previousMonthIndex, today.getDate());
 
-  const formattedDate = `${month} ${day}, ${year}`;
-
-
-  const todays = new Date();
-  const previousMonth = todays.getMonth() - 1;
-  const dueDate = new Date(todays.getFullYear(), previousMonth, 10);
+  
+  const dueDate = new Date(today.getFullYear(), today.getMonth(), 10);
   const maxDaysInMonth = new Date(dueDate.getFullYear(), dueDate.getMonth() + 1, 0).getDate();
   if (dueDate.getDate() > maxDaysInMonth) {
     dueDate.setDate(maxDaysInMonth);
   }
   const options = { year: 'numeric', month: 'short', day: 'numeric' };
+  const option = { year: 'numeric', month: 'long' };
+  const previousMonthFormatted = previousMonthDate.toLocaleDateString('en-US', option);
 
 
 
@@ -80,9 +77,10 @@ const Invoice = () => {
               </Grid>
               <Grid item xs={9} sx={{ height: '10rem' }}>
 
-                <Box mt={4}>
-                  <Typography textAlign='center' variant="h3" color="initial" ml={-20}>Rabi Sadar Plaza</Typography>
-                  <Typography textAlign='center' variant="body1" color="#606060" ml={-20}>Adam G Road Saddar Rawalpindi</Typography>
+                <Box >
+                  <Typography textAlign='center' variant="h3" color="initial" ml={-20}>Rabi Sadar</Typography>
+                  <Typography textAlign='center' variant="body1" color="#606060" ml={-20}>Adam Jee Road Saddar, Rawalpindi</Typography>
+                  <Typography textAlign='center' variant="h4" color="#606060" ml={-20}>Maintenance Bill</Typography>
                 </Box>
               </Grid>
 
@@ -96,19 +94,21 @@ const Invoice = () => {
                 <Box display="flex">
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Invoice# </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Billing Month</Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Issued Date </Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Due Date</Typography>
                   </Box>
                   <Box sx={{ mt: 2 }}>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>#001 </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{formattedDate}</Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{previousMonthFormatted}</Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
                   </Box>
                 </Box>
               </Box>
 
               <Box sx={{ width: '48%', backgroundColor: 'rgba(164, 189, 255, 0.2)', px: 4, py: 2, borderRadius: '10px' }}>
-                <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed to</Typography>
+                <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
@@ -166,12 +166,12 @@ const Invoice = () => {
 
 
             <Stack direction="row" gap={4}>
-              <Box width='50%' mt={7} display='flex' >
+              <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
               </Box>
               <Box width='50%' sx={{ backgroundColor: 'rgba(164, 189, 255, 0.2)', px: 4, py: 2, borderRadius: '10px' }}>
-                <Typography variant="h6" color="#733dd9" fontWeight={600}>maintenance Charges</Typography>
+                <Typography variant="h6" color="#733dd9" fontWeight={600}>Maintenance Charges</Typography>
                 <Box display='flex' >
                   <Box width='60%'>
                     <Typography variant="body1" color="initial" mt={1}>Arrears</Typography>
@@ -207,18 +207,31 @@ const Invoice = () => {
 
             {/* Owner Bill  */}
             <Box sx={{ borderTop: '2px dotted black', width: '100%' }}>
-              <Typography textAlign='center' variant="h5" color="initial" ml={-20}>Rabi Sadar Plaza</Typography>
+              <Typography textAlign='center' variant="h5" color="initial">Rabi Sadar <span style={{ fontSize: "15px" }}>(office use only)</span></Typography>
               <Box sx={{ px: 4, py: 0.2, borderRadius: '10px', gap: 2 }} display="flex">
 
-                <Box sx={{ width: '40%', display: 'flex' }}>
+                <Box sx={{ width: '35%', display: 'flex' }}>
                   <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Invoice# </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Owner</Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Rental </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Shop No# </Typography>
+                  </Box>
+                  <Box>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber}</Typography>
+                  </Box>
+                </Box>
+
+                <Box sx={{ width: '35%', display: 'flex' }}>
+                  <Box sx={{ display: 'inline-block', width: '130px' }}>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Floor</Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Issued Date </Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1 }}>Due Date</Typography>
                   </Box>
                   <Box>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>#001 </Typography>
-                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{formattedDate}</Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
+                    <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
                     <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
                   </Box>
                 </Box>
@@ -233,12 +246,7 @@ const Invoice = () => {
                     <Typography variant="body1" color="#606060" sx={{ mb: 1, fontWeight: 600 }}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
-                <Box  mt={2} display='flex' >
-                  <Typography variant="h6" color="initial">Signature: </Typography>
-                  <Box sx={{ borderTop: "2px solid black", width: "100px", mt: 4 }}> </Box>
-                </Box>
                 <Box>
-
                 </Box>
               </Box>
             </Box>
