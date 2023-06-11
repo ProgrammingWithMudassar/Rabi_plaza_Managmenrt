@@ -41,7 +41,7 @@ const All_shops_data = () => {
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
       S_honor: shop.shopOwner,
-      r_rent: Number(shop.ShopRent) + Number(shop.shop_remaining_rent),
+      r_rent: shop.Monthly_rent,
     }));
 
 
@@ -49,7 +49,7 @@ const All_shops_data = () => {
       { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
       { field: 'rental', headerName: 'Rental', width: 230 },
       { field: 'S_honor', headerName: 'Shop Honor', width: 230 },
-      { field: 'r_rent', headerName: 'Remaing Rent', width: 130 },
+      { field: 'r_rent', headerName: 'Monthly Rent', width: 130 },
       {
         field: 'rent',
         headerName: 'Update Rent',

@@ -10,9 +10,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Edit_Shop = () => {
-
-
-
   const { id } = useParams();
   const navigate = useNavigate();
   let [isPageRefreshed, setIsPageRefreshed] = useState(false);
@@ -38,7 +35,7 @@ const Edit_Shop = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
-    ShopRent: '',
+    Monthly_rent: '',
   };
   let [formData, setFormData] = useState({
     shop: initialShop,
@@ -59,7 +56,7 @@ const Edit_Shop = () => {
           mobileNumber: shop.shop.mobileNumber,
           shopRental: shop.shop.shopRental,
           floorNo: shop.shop.floorNo,
-          ShopRent: shop.shop.ShopRent,
+          Monthly_rent: shop.shop.Monthly_rent,
         },
       });
     }
@@ -96,8 +93,14 @@ const Edit_Shop = () => {
 
   const handleUpdateData = () => {
     const {
-      shopNumber, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floorNo, ShopRent
+      shopNumber,
+      shopOwner,
+      registrationDate,
+      shopSize,
+      mobileNumber,
+      shopRental,
+      floorNo,
+      Monthly_rent,
     } = formData.shop;
     const updatedShopData = {
       shopNumber,
@@ -106,9 +109,10 @@ const Edit_Shop = () => {
       shopSize,
       mobileNumber,
       shopRental,
-      floorNo, ShopRent
+      floorNo,
+      Monthly_rent,
     };
-    const res = updateShop({ shopId: id, updatedShopData })
+    const res = updateShop({ shopId: id, updatedShopData });
     if (res) {
       console.log(res);
       window.location.reload();
@@ -132,74 +136,150 @@ const Edit_Shop = () => {
       </div>
     );
   }
+
   return (
     <Box>
       {shop && (
-        <Box mr={2} >
-          <Box display='flex' justifyContent='space-between' py={2}>
-            <h2>Shop Rental:<span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span></h2>
+        <Box mr={2}>
+          <Box display="flex" justifyContent="space-between" py={2}>
+            <h2>
+              Shop Rental:
+              <span style={{ color: '#FF8E53' }}> {shop.shop.shopRental}</span>
+            </h2>
             <Box>
-              <Button onClick={goBack}>  <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}> Go Back</span></Button>
+              <Button onClick={goBack}>
+                <FontAwesomeIcon icon={faBackward} />
+                <span style={{ marginLeft: '7px' }}> Go Back</span>
+              </Button>
             </Box>
           </Box>
           <Box mt={4}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <label for="shopNumber" style={{ fontWeight: "600", }}>Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                <input defaultValue={shop.shop.shopNumber} type="text" id="shopNumber" placeholder='#1234' className='form_input' onChange={handleInputChange} /><br />
+                <label htmlFor="shopNumber" style={{ fontWeight: '600' }}>
+                  Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                </label>
+                <input
+                  defaultValue={shop.shop.shopNumber}
+                  type="text"
+                  id="shopNumber"
+                  placeholder="#1234"
+                  className="form_input"
+                  onChange={handleInputChange}
+                />
+                <br />
                 <Box mt={1}>
-                  <label for="shopOwner" style={{ fontWeight: "600" }}>Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.shopOwner} type="text" id="shopOwner" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
+                  <label htmlFor="shopOwner" style={{ fontWeight: '600' }}>
+                    Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.shopOwner}
+                    type="text"
+                    id="shopOwner"
+                    placeholder="Owner Name"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
                 <Box mt={1}>
-                  <label for="registrationDate" style={{ fontWeight: "600" }}>Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.registrationDate} type="date" id="registrationDate" placeholder='Owner Name' className='form_input' onChange={handleInputChange} /><br />
+                  <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
+                    Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.registrationDate}
+                    type="date"
+                    id="registrationDate"
+                    placeholder="Owner Name"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
                 <Box mt={1}>
-                  <label for="ShopRent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.Monthly_rent} type="number" id="ShopRent" placeholder='Remaining Rent' className='form_input'  onChange={handleInputChange}/><br />
+                  <label htmlFor="Monthly_rent" style={{ fontWeight: '600' }}>
+                    Monthly_rent{' '}
+                    <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.Monthly_rent}
+                    type="number"
+                    id="Monthly_rent"
+                    placeholder="Remaining Rent"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
               </Grid>
-
 
               <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
-                <label for="shopSize" style={{ fontWeight: "600", }}>Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                <input defaultValue={shop.shop.shopSize} type="text" id="shopSize" placeholder='50x123' className='form_input' onChange={handleInputChange} /><br />
+                <label htmlFor="shopSize" style={{ fontWeight: '600' }}>
+                  Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                </label>
+                <input
+                  defaultValue={shop.shop.shopSize}
+                  type="text"
+                  id="shopSize"
+                  placeholder="Shop Size"
+                  className="form_input"
+                  onChange={handleInputChange}
+                />
+                <br />
                 <Box mt={1}>
-                  <label for="mobileNumber" style={{ fontWeight: "600" }}> Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input type="number" defaultValue={shop.shop.mobileNumber} id="mobileNumber" placeholder='03000000000' className='form_input' onChange={handleInputChange} /><br />
+                  <label htmlFor="mobileNumber" style={{ fontWeight: '600' }}>
+                    Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.mobileNumber}
+                    type="text"
+                    id="mobileNumber"
+                    placeholder="Mobile Number"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
                 <Box mt={1}>
-                  <label for="shopRental" style={{ fontWeight: "600" }}>Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.shopRental} type="text" id="shopRental" placeholder='Rental Name' className='form_input' onChange={handleInputChange} /><br />
+                  <label htmlFor="shopRental" style={{ fontWeight: '600' }}>
+                    Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.shopRental}
+                    type="text"
+                    id="shopRental"
+                    placeholder="Shop Rental"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
                 <Box mt={1}>
-                  <label for="floorNo" style={{ fontWeight: "600" }}>Floor No.<span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.floorNo} type="text" id="floorNo" placeholder='Rental Name' className='form_input' onChange={handleInputChange} /><br />
+                  <label htmlFor="floorNo" style={{ fontWeight: '600' }}>
+                    Floor No <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.floorNo}
+                    type="number"
+                    id="floorNo"
+                    placeholder="Floor Number"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
                 </Box>
               </Grid>
-
             </Grid>
-
-            <Box mt={2} pr={2}>
-              <Button
-                sx={{
-                  width: "100%", height: '35px',
-                  backgroundColor: '#096AFF',
-                  boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
-                  ':hover': {
-                    backgroundColor: '#096AFF',
-                    border: "1px solid #096AFF"
-                  },
-                }}
-                onClick={handleUpdateData}> Update Data</Button>
+            <Box display="flex" justifyContent="center" mt={2}>
+              <Button variant="contained" onClick={handleUpdateData}>
+                Save Changes
+              </Button>
             </Box>
           </Box>
         </Box>
-      )
-      }
-    </Box >
+      )}
+    </Box>
   );
-}
+};
 
-export default Edit_Shop
+export default Edit_Shop;
