@@ -200,7 +200,7 @@ const Update_Rent = () => {
           )}
           <Grid mt={4}>
             <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2, mb: 4 }} >
-              <Box sx={{display:'flex', width:"100%"}} >
+              <Box sx={{ width:"100%"}} >
                 <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
                 <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange} /><br />
                 <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label><br />
