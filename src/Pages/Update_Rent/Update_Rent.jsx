@@ -233,12 +233,12 @@ const Update_Rent = () => {
                   <Typography variant="body1" color="initial" fontWeight={600}>
                     Paid Amount
                   </Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600}>
+                  <Typography variant="body1" color="initial" fontWeight={600} mt={1.5}>
                     Remaining Rent
                   </Typography>
                 </Box>
                 <Box width="30%">
-                  <input type="number" onChange={handlePaidAmountChange} value={paidAmount} />
+                  <input type="number" onChange={handlePaidAmountChange} value={paidAmount} className='input'/>
                   <Typography variant="body1" color="initial" fontWeight={600}>
                   {Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}
                   </Typography>
@@ -247,12 +247,12 @@ const Update_Rent = () => {
               <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box width="60%">
-                  <Typography variant="body1" color="initial" fontWeight={600}>
+                  <Typography variant="body1" color="initial" fontWeight={600} mt={1.4}>
                     Rent Paid Date
                   </Typography>
                 </Box>
                 <Box width="30%">
-                  <input type="date" onChange={handleRentPaidDateChange} value={rentPaidDate} />
+                  <input type="date" onChange={handleRentPaidDateChange} value={rentPaidDate} className='input' />
                 </Box>
               </Box>
               <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
@@ -293,6 +293,7 @@ const Update_Rent = () => {
                       id="shopOwner"
                       onChange={handleInputChange}
                       value={formData.shop.shopOwner}
+                      disabled
                     />
                   </div>
                   <div>

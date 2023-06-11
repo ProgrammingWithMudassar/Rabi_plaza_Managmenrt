@@ -157,7 +157,7 @@ const Edit_Shop = () => {
                 </Box>
                 <Box mt={1}>
                   <label for="ShopRent" style={{ fontWeight: "600" }}> Remaining Rent <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span></label>
-                  <input defaultValue={shop.shop.ShopRent} type="number" id="ShopRent" placeholder='Remaining Rent' className='form_input'  onChange={handleInputChange}/><br />
+                  <input defaultValue={shop.shop.Monthly_rent} type="number" id="ShopRent" placeholder='Remaining Rent' className='form_input'  onChange={handleInputChange}/><br />
                 </Box>
               </Grid>
 

@@ -89,7 +89,7 @@ const Shop_Details = () => {
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
                         <Typography variant="body1" fontWeight={600}>
-                        Shop Owner
+                          Shop Owner
                         </Typography>
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
@@ -102,6 +102,12 @@ const Shop_Details = () => {
                       <ListItem>
                         <Typography variant="body1" fontWeight={600}>
                           Shop Floor
+                        </Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
+                        <Typography variant="body1" fontWeight={600}>
+                          Monthly Rent
                         </Typography>
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
@@ -137,6 +143,10 @@ const Shop_Details = () => {
                       </ListItem>
                       <Divider variant="fullWidth" orientation="horizontal" />
                       <ListItem>
+                        <Typography variant="body1">{shop.shop.Monthly_rent}</Typography>
+                      </ListItem>
+                      <Divider variant="fullWidth" orientation="horizontal" />
+                      <ListItem>
                         <Typography variant="body1">{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                       </ListItem>
                     </Grid>
@@ -152,7 +162,7 @@ const Shop_Details = () => {
                       Remaining Rent
                     </Typography>
                     <Typography variant="body1" color="initial">
-                      {shop.shop.ShopRent}
+                      {Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}
                     </Typography>
                   </Box>
                   <Box mt={2} sx={{ maxHeight: "300px", minHeight: "200px", overflow: "scroll" }}>
