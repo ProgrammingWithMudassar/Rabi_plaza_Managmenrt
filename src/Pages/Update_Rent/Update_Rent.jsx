@@ -4,12 +4,11 @@ import { Button, Box, Typography, Grid, Divider, Card, CardContent, CardActions 
 import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import ReactToPrint from 'react-to-print';
-import { useGetShopByIdQuery, useUpdateShopMutation } from '../../Features/API/Api';
+import { useGetShopByIdQuery, useUpdateShopMutation, useUpdateRentMutation } from '../../Features/API/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 const Update_Rent = () => {
-
   const { id } = useParams();
   const navigate = useNavigate();
   let [isPageRefreshed, setIsPageRefreshed] = useState(false);
@@ -23,7 +22,8 @@ const Update_Rent = () => {
 
 
   const { data: shop, isLoading, isError, refetch } = useGetShopByIdQuery(id);
-  const [updateShop, { isLoading: isUpdating }] = useUpdateShopMutation();
+  const [updateShop, { isLoading: isUpdatingShop }] = useUpdateShopMutation();
+  const [updateRent, { isLoading: isUpdatingRent }] = useUpdateRentMutation();
   const componentRef = useRef();
   const [paidAmount, setPaidAmount] = useState(0);
   const [rentPaidDate, setRentPaidDate] = useState('');
@@ -91,10 +91,16 @@ const Update_Rent = () => {
     console.log('Updated Remaining Rent:', remainingRent);
   };
 
-  const handleUpdateData = () => {
+  const handleUpdateData = async () => {
     const {
-      shopNumber, shopOwner, registrationDate,
-      shopSize, mobileNumber, shopRental, floorNo, ShopRent
+      shopNumber,
+      shopOwner,
+      registrationDate,
+      shopSize,
+      mobileNumber,
+      shopRental,
+      floorNo,
+      ShopRent,
     } = formData.shop;
     const updatedShopData = {
       shopNumber,
@@ -103,9 +109,19 @@ const Update_Rent = () => {
       shopSize,
       mobileNumber,
       shopRental,
-      floorNo, ShopRent
+      floorNo,
+      ShopRent,
     };
-    const res = updateShop({ shopId: id, updatedShopData })
+
+    const res = await updateShop({ shopId: id, updatedShopData });
+    if (res) {
+      console.log(res);
+      window.location.reload();
+    }
+  };
+
+  const handleUpdateRent = async () => {
+    const res = await updateRent({ shopId: id, date: rentPaidDate, paidRent: paidAmount });
     if (res) {
       console.log(res);
       window.location.reload();
@@ -141,117 +157,208 @@ const Update_Rent = () => {
       </div>
     );
   }
+
   return (
     <div>
       {shop && (
         <Box mr={2}>
           <Box display="flex" justifyContent="space-between" py={2}>
             <h2>
-              Shop No:<span style={{ color: "#FF8E53" }}> {shop.shop.shopNumber}</span>
+              Shop No:<span style={{ color: '#FF8E53' }}> {shop.shop.shopNumber}</span>
             </h2>
             <Button onClick={goBack}>
-              <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: "7px" }}>Go Back</span>
+              <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: '7px' }}>Go Back</span>
             </Button>
           </Box>
         </Box>
-      )
-      }
+      )}
       <Grid container spacing={4} pr={2}>
-        <Grid item xs={8} className='Right'>
+        <Grid item xs={8} className="Right">
           {shop && (
             <Box>
-              <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">Invoice Bill</Typography>
+              <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">
+                Invoice Bill
+              </Typography>
               <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box width="60%">
-                  <Typography variant="body1" color="initial" fontWeight={600} >Shop No</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >Shop Rental</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >Floor No</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >Rent Paid Date</Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Shop No
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Shop Rental
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Floor No
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Rent Paid Date
+                  </Typography>
                 </Box>
                 <Box width="30%">
-                  <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopNumber}</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.shopRental}</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >{shop.shop.floorNo}</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >{rentPaidDate}</Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    {shop.shop.shopNumber}
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    {shop.shop.shopRental}
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    {shop.shop.floorNo}
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    {rentPaidDate}
+                  </Typography>
                 </Box>
               </Box>
               <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box width="60%">
-                  <Typography variant="body1" color="initial" fontWeight={600} >Paid Amount</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} >Remaining Rent</Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Paid Amount
+                  </Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Remaining Rent
+                  </Typography>
                 </Box>
                 <Box width="30%">
-                  <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{paidAmount}</Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} textAlign='left'>{shop.shop.ShopRent}</Typography>
+                  <input type="number" onChange={handlePaidAmountChange} value={paidAmount} />
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    {shop.r_rent - paidAmount}
+                  </Typography>
                 </Box>
               </Box>
               <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
               <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <Box width="60%">
-                  <Typography variant="body1" color="initial" fontWeight={600} >Total Remaining Rent</Typography>
+                  <Typography variant="body1" color="initial" fontWeight={600}>
+                    Rent Paid Date
+                  </Typography>
                 </Box>
                 <Box width="30%">
-                  <Typography variant="body1" color="initial" fontWeight={800} >{shop.shop.ShopRent - paidAmount}</Typography>
+                  <input type="date" onChange={handleRentPaidDateChange} value={rentPaidDate} />
                 </Box>
+              </Box>
+              <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                <Button variant="contained" onClick={handleUpdateRent} disabled={isUpdatingRent}>
+                  Update Rent
+                </Button>
               </Box>
             </Box>
           )}
-          <Grid mt={4}>
-            <Box sx={{ display: 'flex', justifyContent: 'flex-end', pr: 2, mb: 4 }} >
-              <Box sx={{ width:"100%"}} >
-                <label for="rent__paid__date" style={{ fontWeight: "600" }}> Rent Paid Date</label><br />
-                <input type="date" id="rent__paid__date" className='Rent_input' onChange={handleRentPaidDateChange} /><br />
-                <label for="rent__paid" style={{ fontWeight: "600" }}> Rent paid</label><br />
-                <input type="number" id="rent__paid" className='Rent_input' placeholder='0000' onChange={handlePaidAmountChange} /><br />
-                <Button
-                  onClick={handleUpdateBill}
-                  sx={{
-                    width: "100%", height: '35px', mt: 2,
-                    backgroundColor: '#096AFF',
-                    boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
-                    ':hover': {
-                      backgroundColor: '#096AFF',
-                      border: "1px solid #096AFF"
-                    },
-                  }}>Update Bill</Button>
-              </Box>
-            </Box>
-          </Grid>
         </Grid>
-
-        <Grid item xs={4} >
-          <Card sx={{ minHeight: '200px', position: 'relative' }}>
-            <CardContent>
-              <Box display="flex" justifyContent="space-between">
-                <Typography variant="h5" color="initial" fontWeight={600}>
-                  Remaining Rent
+        <Grid item xs={4} className="Left">
+          <div>
+            <Card>
+              <CardContent>
+                <Typography variant="h5" color="initial" fontWeight={600} textAlign="center">
+                  Update Shop
                 </Typography>
-                <Typography variant="h5" color="initial" fontWeight={600}>
-                  {shop.shop.ShopRent}
-                </Typography>
-              </Box>
-              <Box mt={2} sx={{ maxHeight: "400px", minHeight: "200px", overflow: "scroll" }}>
-                <Typography variant="h6">Rent History:</Typography>
-                {[...shop.shop.rent]
-                  .sort((a, b) => new Date(b.rent_paid_date) - new Date(a.rent_paid_date))
-                  .map((rent, index) => (
-                    <Box key={index}>
-                      <Typography variant="body1">
-                        Date: {new Date(rent.rent_paid_date).toLocaleDateString()} Paid Rent: {rent.rent_paid_amount}
-                      </Typography>
-                    </Box>
-                  ))}
-              </Box>
-            </CardContent>
-          </Card>
+                <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+                <form>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Shop Number
+                    </Typography>
+                    <input
+                      type="text"
+                      id="shopNumber"
+                      onChange={handleInputChange}
+                      value={formData.shop.shopNumber}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Shop Owner
+                    </Typography>
+                    <input
+                      type="text"
+                      id="shopOwner"
+                      onChange={handleInputChange}
+                      value={formData.shop.shopOwner}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Registration Date
+                    </Typography>
+                    <input
+                      type="date"
+                      id="registrationDate"
+                      onChange={handleInputChange}
+                      value={formData.shop.registrationDate}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Shop Size
+                    </Typography>
+                    <input
+                      type="text"
+                      id="shopSize"
+                      onChange={handleInputChange}
+                      value={formData.shop.shopSize}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Mobile Number
+                    </Typography>
+                    <input
+                      type="text"
+                      id="mobileNumber"
+                      onChange={handleInputChange}
+                      value={formData.shop.mobileNumber}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Shop Rental
+                    </Typography>
+                    <input
+                      type="text"
+                      id="shopRental"
+                      onChange={handleInputChange}
+                      value={formData.shop.shopRental}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Floor No
+                    </Typography>
+                    <input
+                      type="text"
+                      id="floorNo"
+                      onChange={handleInputChange}
+                      value={formData.shop.floorNo}
+                    />
+                  </div>
+                  <div>
+                    <Typography variant="body1" color="initial" fontWeight={600}>
+                      Shop Rent
+                    </Typography>
+                    <input
+                      type="text"
+                      id="ShopRent"
+                      onChange={handleInputChange}
+                      value={formData.shop.ShopRent}
+                    />
+                  </div>
+                  <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
+                  <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    <Button variant="contained" onClick={handleUpdateData} disabled={isUpdatingShop}>
+                      Update Shop
+                    </Button>
+                  </Box>
+                </form>
+              </CardContent>
+            </Card>
+          </div>
         </Grid>
-
-
       </Grid>
+      <ToastContainer />
     </div>
-  )
-}
+  );
+};
 
-export default Update_Rent
+export default Update_Rent;
