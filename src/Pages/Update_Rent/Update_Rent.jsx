@@ -16,7 +16,6 @@ const Update_Rent = () => {
   useEffect(() => {
     if (isPageRefreshed === true) {
       setIsPageRefreshed(false);
-      // window.location.reload();
     }
   }, [isPageRefreshed]);
 
@@ -120,13 +119,31 @@ const Update_Rent = () => {
     }
   };
 
+
+  //Rent update API
   const handleUpdateRent = async () => {
-    const res = await updateRent({ shopId: id, date: rentPaidDate, paidRent: paidAmount });
-    if (res) {
-      console.log(res);
-      window.location.reload();
+    if (paidAmount === 0) {
+      alert("Please update the rent.");
+    } else {
+      let updatedRentDate = rentPaidDate;
+
+      if (rentPaidDate === '') {
+        alert("Please select a rent paid date.");
+        return;
+      }
+
+      const res = await updateRent({ shopId: id, date: updatedRentDate, paidRent: paidAmount });
+
+      if (res) {
+        alert(res.data.message);
+        window.location.reload();
+      }
+
+      if (res.error && res.error.status === 400) {
+        alert("Price is not correct.");
+      }
     }
-  };
+  }
 
   if (isError) {
     return (
@@ -223,7 +240,7 @@ const Update_Rent = () => {
                 <Box width="30%">
                   <input type="number" onChange={handlePaidAmountChange} value={paidAmount} />
                   <Typography variant="body1" color="initial" fontWeight={600}>
-                    {shop.r_rent - paidAmount}
+                  {Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}
                   </Typography>
                 </Box>
               </Box>

@@ -42,7 +42,7 @@ const All_shops_data = () => {
       rental: shop.shopRental,
       S_honor: shop.shopOwner,
       floor: shop.floorNo,
-      r_rent: shop.ShopRent,
+      r_rent: Number(shop.ShopRent) + Number(shop.shop_remaining_rent),
     }));
 
 
