@@ -109,7 +109,7 @@ const ShopForm = () => {
             </Box>
             <Box mt={1}>
               <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
-                Rent of Shop <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                Maintenance Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="number"

@@ -33,7 +33,7 @@ const Report = () => {
       S_honor: shop.shopOwner,
       size: shop.shopSize,
       floor: shop.floorNo,
-      r_rent: shop.ShopRent,
+      r_rent: Number(shop.ShopRent) + Number(shop.shop_remaining_rent),
       S_date: shop.registrationDate,
     }));
 
