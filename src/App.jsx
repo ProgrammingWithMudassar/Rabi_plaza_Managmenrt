@@ -13,6 +13,7 @@ import {
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './Utils/PrivateRoutes'
 import './App.css'
+import AddRentShop from './Pages/Add_Rent_Shop/AddRentShop'
 
 
 const App = () => {
@@ -37,6 +38,7 @@ const App = () => {
                 <Route exact path='/All_Shop_data' element={<All_shops_data />} />
                 <Route exact path='/ShopForm' element={<ShopForm />} />
                 <Route exact path='/Expence_calculate' element={<Expence_calculate />} />
+                <Route exact path='/RentShopForm' element={<AddRentShop />} />
                 <Route exact path='/report' element={<Report />} />
                 <Route exact path='/logOut' element={<Logout />} />
                 <Route exact path='/Generate_Bill' element={<Generate_Bill />} />

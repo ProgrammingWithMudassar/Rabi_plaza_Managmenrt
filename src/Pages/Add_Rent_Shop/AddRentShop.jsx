@@ -4,7 +4,7 @@ import { useAddShopMutation } from '../../Features/API/Api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const ShopForm = () => {
+const AddRentShop = () => {
   const [formData, setFormData] = useState({
     shopNumber: '',
     shopOwner: '',
@@ -13,7 +13,7 @@ const ShopForm = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
-    ShopRent: ''
+    ShopMaintainance: ''
   });
 
   const navigate = useNavigate();
@@ -64,7 +64,7 @@ const ShopForm = () => {
     <Box>
       <Box display="flex" justifyContent="space-between" alignItems="center" py={2} mr={2}>
         <Typography variant="h5" color="initial" my={2} fontWeight={600}>
-          Add New Shop
+          Add Rent Shop
         </Typography>
       </Box>
 
@@ -171,8 +171,8 @@ const ShopForm = () => {
               />
             </Box>
             <Box mt={1}>
-              <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
-                Rent Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+              <label htmlFor="maintainanceCharges" style={{ fontWeight: '600' }}>
+                Maintainance Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="number"
@@ -197,4 +197,4 @@ const ShopForm = () => {
   );
 };
 
-export default ShopForm;
+export default AddRentShop;
