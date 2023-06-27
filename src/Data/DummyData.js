@@ -40,7 +40,7 @@ export const SlideBarData =[
     {
         key:6,
         route:"All_rent_shop",
-        text:"Add Rent Shop",
+        text:"All Rent Shop",
         Icon :faShop
     },
     {
