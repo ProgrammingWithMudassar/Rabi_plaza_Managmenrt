@@ -7,7 +7,7 @@ import { useGetShopsQuery,useDeleteShopMutation,} from '../../Features/API/Api.j
 
 
 
-const AllRentShop = () => {
+const AllRentShop  = () => {
   const { data, error, isLoading, refetch } = useGetShopsQuery();
   const [deleteShop] = useDeleteShopMutation();
 
@@ -24,6 +24,8 @@ const AllRentShop = () => {
     }
   };
 
+
+
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -38,16 +40,16 @@ const AllRentShop = () => {
       shopId: shop._id,
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
-      S_honor: shop.shopOwner,
+      S_size: shop.shopSize,
       r_rent: shop.Monthly_rent,
     }));
 
 
     const columns = [
       { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
-      { field: 'rental', headerName: 'Rental', width: 230 },
-      { field: 'S_honor', headerName: 'Shop Honor', width: 230 },
-      { field: 'r_rent', headerName: 'Monthly Rent', width: 130 },
+      { field: 'rental', headerName: 'Shop Rental', width: 200 },      
+      { field: 'r_rent', headerName: 'Shop Rent', width: 230 },
+      { field: 'S_size', headerName: 'Shop Size', width: 200 },
       {
         field: 'rent',
         headerName: 'Update Rent',
@@ -140,7 +142,7 @@ const AllRentShop = () => {
     return (
       <Box>
         <Box display='flex' alignItems='center' justifyContent='space-between' pr={3}>
-          <Typography variant="h5" color="initial" my={2}>All Shop's Data</Typography>
+          <Typography variant="h5" color="initial" my={2}>All Rented Shop's Data</Typography>
           <Link to='/ShopForm'>
             <Button>
               Add New <AddIcon />
@@ -167,4 +169,4 @@ const AllRentShop = () => {
   return null;
 }
 
-export default AllRentShop
+export default AllRentShop 

@@ -40,16 +40,16 @@ const All_shops_data = () => {
       shopId: shop._id,
       Shop_No: shop.shopNumber,
       rental: shop.shopRental,
-      S_honor: shop.shopOwner,
+      S_size: shop.shopSize,
       r_rent: shop.Monthly_rent,
     }));
 
 
     const columns = [
       { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
-      { field: 'rental', headerName: 'Rental', width: 230 },
-      { field: 'S_honor', headerName: 'Shop Honor', width: 230 },
-      { field: 'r_rent', headerName: 'Monthly Rent', width: 130 },
+      { field: 'rental', headerName: 'Shop Rental', width: 200 },      
+      { field: 'r_rent', headerName: 'Maintenance Charges', width: 230 },
+      { field: 'S_size', headerName: 'Shop Size', width: 200 },
       {
         field: 'rent',
         headerName: 'Update Rent',

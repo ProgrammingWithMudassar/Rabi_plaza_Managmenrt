@@ -14,6 +14,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import PrivateRoutes from './Utils/PrivateRoutes'
 import './App.css'
 import AddRentShop from './Pages/Add_Rent_Shop/AddRentShop'
+import AllRentShop from './Pages/All_Rent_Shop/AllRentShop'
 
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
                 <Route exact path='/ShopForm' element={<ShopForm />} />
                 <Route exact path='/Expence_calculate' element={<Expence_calculate />} />
                 <Route exact path='/RentShopForm' element={<AddRentShop />} />
+                <Route exact path='/All_rent_shop' element={<AllRentShop />} />
                 <Route exact path='/report' element={<Report />} />
                 <Route exact path='/logOut' element={<Logout />} />
                 <Route exact path='/Generate_Bill' element={<Generate_Bill />} />

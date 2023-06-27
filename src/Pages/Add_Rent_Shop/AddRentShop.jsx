@@ -13,7 +13,7 @@ const AddRentShop = () => {
     mobileNumber: '',
     shopRental: '',
     floorNo: '',
-    ShopMaintainance: ''
+    ShopMaintenance: ''
   });
 
   const navigate = useNavigate();
@@ -171,8 +171,8 @@ const AddRentShop = () => {
               />
             </Box>
             <Box mt={1}>
-              <label htmlFor="maintainanceCharges" style={{ fontWeight: '600' }}>
-                Maintainance Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+              <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
+                Rent Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="number"

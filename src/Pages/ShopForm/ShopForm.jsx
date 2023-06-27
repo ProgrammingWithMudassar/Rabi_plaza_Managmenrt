@@ -170,9 +170,10 @@ const ShopForm = () => {
                 onChange={handleChange}
               />
             </Box>
+            
             <Box mt={1}>
-              <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
-                Rent Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+              <label htmlFor="maintenanceCharges" style={{ fontWeight: '600' }}>
+              Maintenance Charge's <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
               </label>
               <input
                 type="number"
