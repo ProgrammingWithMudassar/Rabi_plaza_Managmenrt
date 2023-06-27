@@ -24,8 +24,6 @@ const AllRentShop = () => {
     }
   };
 
-
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
