@@ -3,13 +3,13 @@ import { DataGrid } from '@mui/x-data-grid';
 import { Box, Typography, Button } from '@mui/material';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
-import { useGetShopsQuery,useDeleteShopMutation,} from '../../Features/API/Api.js'
+import { useGetRentShopsQuery,useDeleteRentShopMutation,} from '../../Features/API/Api.js'
 
 
 
 const AllRentShop  = () => {
-  const { data, error, isLoading, refetch } = useGetShopsQuery();
-  const [deleteShop] = useDeleteShopMutation();
+  const { data, error, isLoading, refetch } = useGetRentShopsQuery();
+  const [deleteRentShop] = useDeleteRentShopMutation();
 
   useEffect(() => {
     refetch();
@@ -17,7 +17,7 @@ const AllRentShop  = () => {
 
   const handleDeleteShop = async (shopNumber) => {
     try {
-      await deleteShop(shopNumber);
+      await deleteRentShop(shopNumber);
       refetch();
     } catch (error) {
       console.error(error);
@@ -74,7 +74,7 @@ const AllRentShop  = () => {
         headerName: 'Invoice',
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_Invoice/${params.row.shopId}`}
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/rentshop_Invoice/${params.row.shopId}`}
             sx={{
               backgroundColor: '#00C123',
               boxShadow: '0 3px 5px 2px rgba(57, 250, 92, .3)',
@@ -93,7 +93,7 @@ const AllRentShop  = () => {
         headerName: 'Details',
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop/${params.row.shopId}`}>
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/rentshop/${params.row.shopId}`}>
             More
           </Button>
         ),
@@ -103,7 +103,7 @@ const AllRentShop  = () => {
         headerName: 'Edit',
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_edit/${params.row.shopId}`}
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/rentshop_edit/${params.row.shopId}`}
             sx={{
               backgroundColor: '#096AFF',
               boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',

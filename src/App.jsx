@@ -15,6 +15,9 @@ import PrivateRoutes from './Utils/PrivateRoutes'
 import './App.css'
 import AddRentShop from './Pages/Add_Rent_Shop/AddRentShop'
 import AllRentShop from './Pages/All_Rent_Shop/AllRentShop'
+import RentShopInvoice from './Pages/Rent_Shop_Invoice/RentShopInvoice'
+import EditRentShop from './Pages/Edit_Rent_Shop/EditRentShop'
+import RentShopDetails from './Pages/Rent_Shop_Details/RentShopDetails'
 
 
 const App = () => {
@@ -48,8 +51,11 @@ const App = () => {
 
                 <Route path="/update_rent/:id" element={<Update_Rent />} />
                 <Route path="/shop/:id" element={<Shop_Details />} />
+                <Route path="/rentshop/:id" element={<RentShopDetails />} />
                 <Route path="/shop_Invoice/:id" element={<Invoice />} />
+                <Route path="/rentshop_Invoice/:id" element={<RentShopInvoice />} />
                 <Route path="/shop_edit/:id" element={<Edit_Shop />} />
+                <Route path="/rentshop_edit/:id" element={<EditRentShop />} />
               </Route>
             </Routes>
           </Grid>

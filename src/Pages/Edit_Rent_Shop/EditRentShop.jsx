@@ -5,11 +5,11 @@ import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import ReactToPrint from 'react-to-print';
-import { useGetShopByIdQuery, useUpdateShopMutation } from '../../Features/API/Api';
+import { useGetRentShopByIdQuery, useUpdateRentShopMutation } from '../../Features/API/Api';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
-const Edit_Shop = () => {
+const EditRentShop = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   let [isPageRefreshed, setIsPageRefreshed] = useState(false);
@@ -22,8 +22,8 @@ const Edit_Shop = () => {
   }, [isPageRefreshed]);
 
 
-  const { data: shop, isLoading, isError, refetch } = useGetShopByIdQuery(id);
-  const [updateShop, { isLoading: isUpdating }] = useUpdateShopMutation();
+  const { data: shop, isLoading, isError, refetch } = useGetRentShopByIdQuery(id);
+  const [updateRentShop, { isLoading: isUpdating }] = useUpdateRentShopMutation();
   const componentRef = useRef();
   const [paidAmount, setPaidAmount] = useState(0);
   const [rentPaidDate, setRentPaidDate] = useState('');
@@ -112,7 +112,7 @@ const Edit_Shop = () => {
       floorNo,
       Monthly_rent,
     };
-    const res = updateShop({ shopId: id, updatedShopData });
+    const res = updateRentShop({ shopId: id, updatedShopData });
     if (res) {
       console.log(res);
       window.location.reload();
@@ -283,4 +283,4 @@ const Edit_Shop = () => {
   );
 };
 
-export default Edit_Shop;
+export default EditRentShop;

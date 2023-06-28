@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Grid, Button } from '@mui/material';
-import { useAddShopMutation } from '../../Features/API/Api.js';
+import { useAddRentShopMutation } from '../../Features/API/Api.js';
 import { ToastContainer, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ const AddRentShop = () => {
   const navigate = useNavigate();
 
   const options = [1, 2, 3, 4, 5];
-  const [addShop, { data, isLoading, isError }] = useAddShopMutation();
+  const [addRentShop, { data, isLoading, isError }] = useAddRentShopMutation();
 
 
   const handleChange = (e) => {
@@ -42,7 +42,7 @@ const AddRentShop = () => {
       shopSize, mobileNumber, shopRental, floorNo, ShopRent
     ) {
       try {
-        const response = await addShop(formData);
+        const response = await addRentShop(formData);
         toast.success(response.data.message);
         navigate('/All_Shop_data');
       } catch (error) {

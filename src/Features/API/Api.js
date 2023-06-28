@@ -10,9 +10,21 @@ export const api = createApi({
                 method: 'GET',
             }),
         }),
+        getRentShops: builder.query({
+            query: () => ({
+                url: '/All_Rent_Shops',
+                method: 'GET',
+            }),
+        }),
         getShopById: builder.query({
             query: (shopId) => ({
                 url: `/All_Shops/${shopId}`,
+                method: 'GET',
+            }),
+        }),
+        getRentShopById: builder.query({
+            query: (shopId) => ({
+                url: `/All_Rent_Shops/${shopId}`,
                 method: 'GET',
             }),
         }),
@@ -23,22 +35,37 @@ export const api = createApi({
                 body: newShopData,
             }),
         }),
-        addShop: builder.mutation({
-            query: (newShopData) => ({
+        addRentShop: builder.mutation({
+            query: (newRentShopData) => ({
                 url: '/Add_Rent_Shop',
                 method: 'POST',
-                body: newShopData,
+                body: newRentShopData,
             }),
         }),
+      
         deleteShop: builder.mutation({
             query: (shopId) => ({
                 url: `/Delete_Shop/${shopId}`,
                 method: 'DELETE',
             }),
         }),
+        
+        deleteRentShop: builder.mutation({
+            query: (shopId) => ({
+                url: `/Delete_Rent_Shop/${shopId}`,
+                method: 'DELETE',
+            }),
+        }),
         updateShop: builder.mutation({
             query: ({ shopId, updatedShopData }) => ({
                 url: `/Update_Shop/${shopId}`,
+                method: 'PUT',
+                body: updatedShopData,
+            }),
+        }),
+        updateRentShop: builder.mutation({
+            query: ({ shopId, updatedShopData }) => ({
+                url: `/Update_Rent_Shop/${shopId}`,
                 method: 'PUT',
                 body: updatedShopData,
             }),
@@ -63,10 +90,15 @@ export const api = createApi({
 
 export const {
     useGetShopsQuery,
+    useGetRentShopsQuery,
     useGetShopByIdQuery,
+    useGetRentShopByIdQuery,
     useAddShopMutation,
+    useAddRentShopMutation,
     useDeleteShopMutation,
+    useDeleteRentShopMutation,
     useUpdateShopMutation,
+    useUpdateRentShopMutation,
     useUpdateRentMutation,
     useLoginMutation
 } = api;
