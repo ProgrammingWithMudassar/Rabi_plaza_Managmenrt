@@ -203,58 +203,14 @@ const Invoice = () => {
               </Grid>
             </Box>
 
-            {/* Owner Bill  */}
-            <Box sx={{ borderTop: '2px dotted black', width: '100%' }}>
-              <Typography textAlign='center' variant="h5" color="initial">Rabi Sadar <span style={{ fontSize: "15px" }}>(office use only)</span></Typography>
-              <Box sx={{ px: 4, py: 0.2, borderRadius: '10px', gap: 2 }} display="flex">
-
-                <Box sx={{ width: '35%', display: 'flex' }}>
-                  <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Owner</Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop No# </Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber}</Typography>
-                  </Box>
-                </Box>
-
-                <Box sx={{ width: '35%', display: 'flex' }}>
-                  <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor</Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Issued Date </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Due Date</Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{new Date().toLocaleDateString('en-US', options)}</Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{dueDate.toLocaleDateString('en-US', options)}</Typography>
-                  </Box>
-                </Box>
-
-                <Box sx={{ width: '35%', display: 'flex' }}>
-                  <Box sx={{ display: 'inline-block', width: '130px' }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Arrears </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Total</Typography>
-                  </Box>
-                  <Box>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
-                  </Box>
-                </Box>
-                <Box>
-                </Box>
-              </Box>
-            </Box>
+           
           </Box>
         </Box>
       )}
        {shop && (
-        <>
-        <Box ref={componentRef} sx={{display:'flex', flexDirection:'row' , transform: 'rotate(90deg)' , height:'100%', }}>
-        <Box ref={componentRef} className="BackgroundImg">
+        
+        <Box  ref={componentRef} sx={{display:'flex', flexDirection:'row' , transform: 'rotate(90deg)' , height:'100%', }}>
+        <Box  className="BackgroundImg">
           <Box sx={{ p: 1, ml: 30 ,width:'90vw' }}>
             {/* header  */}
             <Grid container spacing={2}>
@@ -392,7 +348,7 @@ const Invoice = () => {
          
           </Box>
         </Box>
-        <Box ref={componentRef} className="BackgroundImg">
+        <Box  className="BackgroundImg">
           <Box sx={{ p: 1, ml: 10,width:'90vw' }}>
             {/* header  */}
             <Grid container spacing={2}>
@@ -531,7 +487,7 @@ const Invoice = () => {
           </Box>
         </Box>
         </Box>
-        </>
+        
       )}
     </>
   )

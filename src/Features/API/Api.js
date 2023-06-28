@@ -23,6 +23,13 @@ export const api = createApi({
                 body: newShopData,
             }),
         }),
+        addShop: builder.mutation({
+            query: (newShopData) => ({
+                url: '/Add_Rent_Shop',
+                method: 'POST',
+                body: newShopData,
+            }),
+        }),
         deleteShop: builder.mutation({
             query: (shopId) => ({
                 url: `/Delete_Shop/${shopId}`,

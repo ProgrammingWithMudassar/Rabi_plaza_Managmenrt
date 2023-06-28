@@ -6,7 +6,7 @@ import { useRef } from 'react';
 
 const ExpenseCalculator = () => {
     const currentDate = new Date();
-    const [inputFields, setInputFields] = useState([{ firstName: '', secondName: 0 }]);
+    const [inputFields, setInputFields] = useState([{ firstName: '', secondName: 0 ,date:''}]);
     const monthName = currentDate.toLocaleString('default', { month: 'long' });
     const [totalRevenue, setTotalRevenue] = useState(0);
     const componentRef = useRef();
@@ -70,6 +70,15 @@ const ExpenseCalculator = () => {
                     className="e_input"
                     style={{ marginLeft: '10px' }}
                 />
+              
+              <input
+                type="date"
+                id="date"
+                className="e_input"
+                value={field.date}
+                onChange={(event) => handleChange(index, 'date', event)}
+                />
+            
                 {inputFields.length > 1 && (
                     <Button type="button" style={{ marginLeft: '10px' }} onClick={() => handleRemoveFields(index)}>
                         Remove
