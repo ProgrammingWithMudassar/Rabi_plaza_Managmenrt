@@ -54,7 +54,7 @@ const ExpenseCalculator = () => {
 
     const renderInputFields = () => {
         return inputFields.map((field, index) => (
-            <div key={index} style={{ marginTop: '10px' }}>
+            <div key={index} style={{ marginTop: '10px', display:'flex' }}>
                 <input
                     type="text"
                     value={field.firstName}
@@ -104,63 +104,7 @@ const ExpenseCalculator = () => {
                         <br />
                     </form>
                 </Grid>
-                <Grid item xs={5} >
-                    <Card variant="outlined" >
-                        <CardContent>
-                            <Box sx={{p:"20px"}} ref={componentRef} className='RevenewClass'>
-                                <Typography variant="h5" color="initial" textAlign='center' fontWeight={600}> Revenew in {monthName}</Typography>
-                                <Box mt={2} display="flex" justifyContent="space-between">
-                                    <Typography variant="h6" fontWeight={600} color="initial">
-                                        Expense
-                                    </Typography>
-                                    <Typography variant="body1" color="initial" fontWeight={600}>
-                                        {calculateTotalRevenue()}
-                                    </Typography>
-                                </Box>
-                                <Box my={2} display="flex" justifyContent="space-between">
-                                    <Typography variant="h6" fontWeight={600} color="initial">
-                                        Income
-                                    </Typography>
-                                    <Typography variant="body1" color="initial" fontWeight={600}>
-                                        60,000
-                                    </Typography>
-                                </Box>
-                                <Divider variant="fullWidth" orientation="horizontal" />
-                                <Box mt={2} display="flex" justifyContent="space-between">
-                                    <Typography variant="h6" fontWeight={600} color="initial">
-                                        Total Revenue
-                                    </Typography>
-                                    <Typography variant="body1" color="initial" fontWeight={600}>
-                                        Rs./ {totalRevenue}
-                                    </Typography>
-                                </Box>
-                            </Box>
-                        </CardContent>
-                        <CardActions sx={{ display: 'flex', flexDirection: 'column' }}>
-                            <Button
-                                type="submit"
-                                onClick={handleSubmit}
-                                sx={{
-                                    width: '100%',
-                                    mt: 4,
-                                    backgroundColor: '#096AFF',
-                                    boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
-                                    ':hover': {
-                                        backgroundColor: '#096AFF',
-                                        border: '1px solid #096AFF',
-                                    },
-                                }}
-                            >
-                                Calculate Expense
-                            </Button>
-                            <ReactToPrint
-                                trigger={() => <Button sx={{ mt: 2, width: '100%' }}>Print</Button>}
-                                content={() => componentRef.current}
-                            />
-
-                        </CardActions>
-                    </Card>
-                </Grid>
+                
             </Grid>
         </div>
     );
