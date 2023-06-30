@@ -78,7 +78,14 @@ export const api = createApi({
                 body: AutData,
             }),
         }),
-        updateRent: builder.mutation({
+        updateCharges: builder.mutation({
+            query: ({ shopId, date, paidRent }) => ({
+              url: `/charges/${shopId}`,
+              method: 'PUT',
+              body: { date, paidRent },
+            }),
+          }),
+          updateRent: builder.mutation({
             query: ({ shopId, date, paidRent }) => ({
               url: `/rent/${shopId}`,
               method: 'PUT',
@@ -99,6 +106,7 @@ export const {
     useDeleteRentShopMutation,
     useUpdateShopMutation,
     useUpdateRentShopMutation,
+    useUpdateChargesMutation,
     useUpdateRentMutation,
     useLoginMutation
 } = api;

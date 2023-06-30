@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Grid } from '@mui/material'
 import { Sidebar, AppbarContant } from './Components/index'
 import {
@@ -6,7 +6,7 @@ import {
   All_shops_data,
   ShopForm, Login,
   Expence_calculate,
-  Report, Invoice,Update_Rent,
+  Report, Invoice,Update_ShopMaintenance,UpdateRentShop,
   Logout, Generate_Bill,
   Shop_Details, Edit_Shop
 } from './Pages/index'
@@ -18,9 +18,23 @@ import AllRentShop from './Pages/All_Rent_Shop/AllRentShop'
 import RentShopInvoice from './Pages/Rent_Shop_Invoice/RentShopInvoice'
 import EditRentShop from './Pages/Edit_Rent_Shop/EditRentShop'
 import RentShopDetails from './Pages/Rent_Shop_Details/RentShopDetails'
+import axios from 'axios'
+// import Update_ShopMaintenance from './Pages/Update_ShopMaintenance/Update_ShopMaintenance'
 
 
 const App = () => {
+  useEffect(()=>{
+    axios.put('http://localhost:8080/api/updateMaintenanceCharges').then((response)=>{
+
+    }).catch((err)=>{
+      console.log(err);
+    })
+    axios.put('http://localhost:8080/api/updateRent').then((response)=>{
+
+    }).catch((err)=>{
+      console.log(err);
+    })
+  })
   return (
     <div className='App'>
       <Router>
@@ -47,9 +61,8 @@ const App = () => {
                 <Route exact path='/report' element={<Report />} />
                 <Route exact path='/logOut' element={<Logout />} />
                 <Route exact path='/Generate_Bill' element={<Generate_Bill />} />
-
-
-                <Route path="/update_rent/:id" element={<Update_Rent />} />
+                <Route path="/update_shopmaintenance/:id" element={<Update_ShopMaintenance />} />
+                <Route path="/update_rentshop/:id" element={<UpdateRentShop />} />
                 <Route path="/shop/:id" element={<Shop_Details />} />
                 <Route path="/rentshop/:id" element={<RentShopDetails />} />
                 <Route path="/shop_Invoice/:id" element={<Invoice />} />

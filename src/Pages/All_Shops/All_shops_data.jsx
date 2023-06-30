@@ -51,11 +51,11 @@ const All_shops_data = () => {
       { field: 'r_rent', headerName: 'Maintenance Charges', width: 230 },
       { field: 'S_size', headerName: 'Shop Size', width: 200 },
       {
-        field: 'rent',
-        headerName: 'Update Rent',
-        width: 110,
+        field: 'rent',  
+        headerName: 'Update Charges',
+        width: 150,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_rent/${params.row.shopId}`}
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_shopmaintenance/${params.row.shopId}`}
             sx={{
               backgroundColor: '#FF870F',
               boxShadow: '0 3px 5px 2px rgba(255, 135, 15, .3)',
@@ -65,7 +65,7 @@ const All_shops_data = () => {
               },
             }}
           >
-            Rent 
+            Charges
           </Button>
         ),
       },

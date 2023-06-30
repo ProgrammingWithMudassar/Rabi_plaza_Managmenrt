@@ -55,7 +55,7 @@ const AllRentShop  = () => {
         headerName: 'Update Rent',
         width: 110,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_rent/${params.row.shopId}`}
+          <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_rentshop/${params.row.shopId}`}
             sx={{
               backgroundColor: '#FF870F',
               boxShadow: '0 3px 5px 2px rgba(255, 135, 15, .3)',
@@ -143,7 +143,7 @@ const AllRentShop  = () => {
       <Box>
         <Box display='flex' alignItems='center' justifyContent='space-between' pr={3}>
           <Typography variant="h5" color="initial" my={2}>All Rented Shop's Data</Typography>
-          <Link to='/ShopForm'>
+          <Link to='/RentShopForm'>
             <Button>
               Add New <AddIcon />
             </Button>
