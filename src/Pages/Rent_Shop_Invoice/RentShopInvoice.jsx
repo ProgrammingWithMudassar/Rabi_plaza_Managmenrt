@@ -56,7 +56,7 @@ const RentShopInvoice = () => {
     <>
       <Box mr={2}>
         <Box display='flex' justifyContent='space-between' py={1}>
-          <h2>Shop Rental:<span style={{ color: "#FF8E53" }}>sfdgs</span></h2>
+          <h2>Shop Rental:<span style={{ color: "#FF8E53" }}>{shop.shop.shopRental}</span></h2>
           <Box>
             <ReactToPrint
               trigger={() => <Button sx={{ mr: 2 }}><FontAwesomeIcon icon={faFileInvoice} /><span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>}
@@ -111,61 +111,26 @@ const RentShopInvoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
             </Stack>
 
 
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={12} spacing={4} >
-                <Box sx={{ display: 'flex', borderRadius: "10px", overflow: 'hidden' }}>
-                  <table style={{ borderCollapse: "collapse", width: '100%', borderRadius: '10px' }}>
-                    <tr style={{ backgroundColor: '#733dd9', height: "40px", }}>
-                      <td style={{ width: "60%" }}> <Typography variant="body1" color="#FFF" fontWeight={600} ml={2}>SR</Typography></td>
-                      <td><Typography variant="body1" color="#FFF" >Description</Typography></td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>1</Typography></td>
-                      <td>security</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>2</Typography></td>
-                      <td>cleaning</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>3</Typography></td>
-                      <td>security camera's</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>4</Typography></td>
-                      <td>water</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>5</Typography></td>
-                      <td>generator</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>6</Typography></td>
-                      <td>street light</td>
-                    </tr>
-                  </table>
-                </Box>
-              </Grid>
-            </Box>
+            
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -175,15 +140,15 @@ const RentShopInvoice = () => {
                 <Box display='flex' >
                   <Box width='60%'>
                     <Typography variant="body1" color="initial" mt={1}>Arrears</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>Month Charges</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>Month Rent</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
                     <Typography variant="h5" color="initial">Total</Typography>
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -211,7 +176,7 @@ const RentShopInvoice = () => {
         
         <Box  ref={componentRef} sx={{display:'flex', flexDirection:'row' , transform: 'rotate(90deg)' , height:'100%', }}>
         <Box  className="BackgroundImg">
-          <Box sx={{ p: 1, ml: 30 ,width:'90vw' }}>
+          <Box sx={{ p: 1, ml: 45 ,width:'90vw' }}>
             {/* header  */}
             <Grid container spacing={2}>
               <Grid item xs={3} sx={{ height: '10rem' }}>
@@ -253,61 +218,26 @@ const RentShopInvoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
             </Stack>
 
 
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={12} spacing={4} >
-                <Box sx={{ display: 'flex', borderRadius: "10px", overflow: 'hidden' }}>
-                  <table style={{ borderCollapse: "collapse", width: '100%', borderRadius: '10px' }}>
-                    <tr style={{ backgroundColor: '#733dd9', height: "40px", }}>
-                      <td style={{ width: "60%" }}> <Typography variant="body1" color="#FFF" fontWeight={600} ml={2}>SR</Typography></td>
-                      <td><Typography variant="body1" color="#FFF" >Description</Typography></td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>1</Typography></td>
-                      <td>security</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>2</Typography></td>
-                      <td>cleaning</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>3</Typography></td>
-                      <td>security camera's</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>4</Typography></td>
-                      <td>water</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>5</Typography></td>
-                      <td>generator</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>6</Typography></td>
-                      <td>street light</td>
-                    </tr>
-                  </table>
-                </Box>
-              </Grid>
-            </Box>
+            
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -317,15 +247,15 @@ const RentShopInvoice = () => {
                 <Box display='flex' >
                   <Box width='60%'>
                     <Typography variant="body1" color="initial" mt={1}>Arrears</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>Month Charges</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>Month Rent</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
                     <Typography variant="h5" color="initial">Total</Typography>
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -391,61 +321,26 @@ const RentShopInvoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
             </Stack>
 
 
-            <Box sx={{ my: 2, display: 'flex', gap: 6 }}>
-              <Grid item xs={12} spacing={4} >
-                <Box sx={{ display: 'flex', borderRadius: "10px", overflow: 'hidden' }}>
-                  <table style={{ borderCollapse: "collapse", width: '100%', borderRadius: '10px' }}>
-                    <tr style={{ backgroundColor: '#733dd9', height: "40px", }}>
-                      <td style={{ width: "60%" }}> <Typography variant="body1" color="#FFF" fontWeight={600} ml={2}>SR</Typography></td>
-                      <td><Typography variant="body1" color="#FFF" >Description</Typography></td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>1</Typography></td>
-                      <td>security</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>2</Typography></td>
-                      <td>cleaning</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>3</Typography></td>
-                      <td>security camera's</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>4</Typography></td>
-                      <td>water</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>5</Typography></td>
-                      <td>generator</td>
-                    </tr>
-                    <tr>
-                      <td><Typography variant="body1" color="initial" ml={2}>6</Typography></td>
-                      <td>street light</td>
-                    </tr>
-                  </table>
-                </Box>
-              </Grid>
-            </Box>
+        
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -455,15 +350,15 @@ const RentShopInvoice = () => {
                 <Box display='flex' >
                   <Box width='60%'>
                     <Typography variant="body1" color="initial" mt={1}>Arrears</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>Month Charges</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>Month Rent</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
                     <Typography variant="h5" color="initial">Total</Typography>
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>

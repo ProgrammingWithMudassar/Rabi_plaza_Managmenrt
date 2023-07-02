@@ -230,6 +230,8 @@ console.log("months array"+paidMonths);
     ];
     
     const monthsInNumbers = [ ];
+    const allMonthsPaidDate=new Date(shop.shop.zero_remaining_rent_date);
+    const zero_remaining_rent_month=allMonthsPaidDate.getMonth();
     shop.shop.rent.map((item)=>{
       const rentPaidDateString = item.rent_paid_date
   
@@ -250,8 +252,8 @@ console.log("months array"+paidMonths);
   
     })
 
-    if (shop.shop.shop_remaining_rent==0&&paidMonths.length>0){
-      for (let i = monthsInNumbers[0]; i <=  monthsInNumbers[monthsInNumbers.length - 1]; i++) {
+    if (shop.shop.shop_remaining_rent==0||paidMonths.length>0){
+      for (let i = monthsInNumbers[0]; i <=  zero_remaining_rent_month; i++) {
         // Perform your desired operations on each number (i)
         // Example: Print the square of each number
         

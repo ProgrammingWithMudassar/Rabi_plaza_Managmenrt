@@ -56,7 +56,7 @@ const Invoice = () => {
     <>
       <Box mr={2}>
         <Box display='flex' justifyContent='space-between' py={1}>
-          <h2>Shop Rental:<span style={{ color: "#FF8E53" }}>sfdgs</span></h2>
+          <h2>Shop Rental:<span style={{ color: "#FF8E53" }}>{shop.shop.shopRental}</span></h2>
           <Box>
             <ReactToPrint
               trigger={() => <Button sx={{ mr: 2 }}><FontAwesomeIcon icon={faFileInvoice} /><span style={{ marginLeft: "7px" }}> Generate Bill</span></Button>}
@@ -111,16 +111,16 @@ const Invoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
@@ -165,7 +165,7 @@ const Invoice = () => {
             </Box>
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -181,9 +181,9 @@ const Invoice = () => {
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -253,16 +253,16 @@ const Invoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
@@ -307,7 +307,7 @@ const Invoice = () => {
             </Box>
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -323,9 +323,9 @@ const Invoice = () => {
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>
@@ -391,16 +391,16 @@ const Invoice = () => {
                 <Typography variant="h6" fontWeight={600} sx={{ width: '100%', color: '#733dd9', display: 'block' }}>Billed for</Typography>
                 <Box display='flex'>
                   <Box sx={{ display: 'inline-block', width: '130px', mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Shop Owner</Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Rental Name</Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1 }}>Floor No# </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, wordSpacing: '7px' }}>Shop No#</Typography>
+                    
                   </Box>
                   <Box sx={{ mt: 2 }}>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopOwner} </Typography>
+                  <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopRental} </Typography>
                     <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.floorNo} </Typography>
-                    <Typography variant="body1" color="#000" sx={{ mb: 1, fontWeight: 600 }}>{shop.shop.shopNumber} </Typography>
+                    
                   </Box>
                 </Box>
               </Box>
@@ -445,7 +445,7 @@ const Invoice = () => {
             </Box>
 
 
-            <Stack direction="row" gap={4}>
+            <Stack direction="row" gap={4} marginTop={5}>
               <Box width='50%' mt={11} display='flex' >
                 <Typography variant="h5" color="initial">Signature: </Typography>
                 <Box sx={{ borderTop: "2px solid black", width: "200px", mt: 4 }}> </Box>
@@ -461,9 +461,9 @@ const Invoice = () => {
                   </Box>
                   <Box>
                     <Typography variant="body1" color="initial" mt={1}>{shop.shop.shop_remaining_rent}</Typography>
-                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.ShopRent}</Typography>
+                    <Typography variant="body1" color="initial" mb={1}>{shop.shop.Monthly_rent}</Typography>
                     <Divider variant="fullWidth" orientation="horizontal" />
-                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent)}</Typography>
+                    <Typography variant="h5" color="#733dd9" fontWeight={600}>{Number(shop.shop.Monthly_rent) + Number(shop.shop.shop_remaining_rent)}</Typography>
                   </Box>
                 </Box>
               </Box>

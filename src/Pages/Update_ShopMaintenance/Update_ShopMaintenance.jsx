@@ -149,18 +149,24 @@ console.log("months array"+paidMonths);
 
   //Rent update API
   const handleUpdateRent = async () => {
+   
     if (paidAmount === 0) {
-      alert("Please update the rent.");
+      alert("Please Add the charges.");
     }
-    if(paidAmount.toString()!==shop.shop.Monthly_rent&&paidAmount.toString()!==shop.shop.shop_remaining_rent){
-      alert("Please Pay A Single Month Rent Or Complete Remaining Rent");
-      return;
+    
+    
+    if(shop.shop.shop_remaining_rent==0){
+        alert("There Is No Remaining charges, Can't Update charges")
     }
     
     if (rentPaidDate === '') {
-      alert("Please select a rent paid date.");
+      alert("Please select a Charges paid date.");
       return;
     }
+    else if(paidAmount.toString()!==shop.shop.Monthly_rent&&paidAmount.toString()!==shop.shop.shop_remaining_rent){
+        alert("Please Pay A Single Month Charges Or Complete Remaining Charges");
+        return;
+      }
     
     else {
       let updatedRentDate = rentPaidDate;
@@ -224,6 +230,9 @@ console.log("months array"+paidMonths);
     ];
     
     const monthsInNumbers = [ ];
+    const zero_remaining_charges_date=shop.shop.zero_remaining_charges_date;
+    const allMonthsPaidDate=new Date(zero_remaining_charges_date);
+    const zero_remaining_charges_month=allMonthsPaidDate.getMonth();
     shop.shop.rent.map((item)=>{
       const rentPaidDateString = item.rent_paid_date
   
@@ -231,23 +240,18 @@ console.log("months array"+paidMonths);
   const month = rentPaidDate.getMonth() + 1; 
     console.log('actual output'+ ""+month);
   
-  console.log(monthsInNumbers);  
+  console.log(monthsInNumbers); 
+  console.log(zero_remaining_charges_month);  
     if (month >= 1 && month <= 12) {
       paidMonths.push(months[month - 1]);
       monthsInNumbers.push(month-1);
       
     }
-
-      
-  
- 
-  
     })
 
-    if (shop.shop.shop_remaining_rent==0&&paidMonths.length>0){
-      for (let i = monthsInNumbers[0]; i <=  monthsInNumbers[monthsInNumbers.length - 1]; i++) {
-        // Perform your desired operations on each number (i)
-        // Example: Print the square of each number
+    if (shop.shop.shop_remaining_rent==0||paidMonths.length>0){
+      for (let i = monthsInNumbers[0]; i <=  zero_remaining_charges_month; i++) {
+        
         
           paidMonths.push(months[i ]);
 

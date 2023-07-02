@@ -44,7 +44,7 @@ const AddRentShop = () => {
       try {
         const response = await addRentShop(formData);
         toast.success(response.data.message);
-        navigate('/All_Shop_data');
+        navigate('/All_rent_data');
       } catch (error) {
         if (error.status === 409) {
           toast.error(error.data.message);
