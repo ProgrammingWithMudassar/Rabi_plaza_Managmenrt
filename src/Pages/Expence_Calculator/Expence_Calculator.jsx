@@ -27,23 +27,18 @@ const ExpenseCalculator = () => {
     const [date,setDate]=useState('');
     const [description,setDescription]=useState('');
     const [filterDate,setFilterDate]=useState('');
+    const [showAllExpensesTable,setShowAllExpensesTable]=useState(true);
     useEffect(()=>{
-        const date=new Date()
-        setDateInNumbers(date.getDate())
-        setMonth(date.getMonth()+1);
-        if(date.getMonth()+1<10){
-            setMonth("0"+date.getMonth()+1)
-        }
-        if(date.getDate()<10){
-            setDateInNumbers("0"+date.getDate())
-        }
-        console.log('cd  '+`${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`)
-        setFilterDate(`${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`)
-        axios.get(`http://localhost:8080/api/getexpenses/${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`).then((response)=>{
-                response.data.map((item)=>{
-                    setExpenses(item)
-                })
-                console.log(response.data);
+     
+        
+        axios.get(`http://localhost:8080/api/getallexpenses`).then((response)=>{
+            // response.data.expenses.map((expense)=>{
+            //         setExpenses(expense)
+                    
+            // })
+            setExpenses(response.data.expenses);
+            setShowAllExpensesTable(true)
+               
         })
         .catch((err)=>{
             console.log(err)
@@ -79,12 +74,19 @@ const ExpenseCalculator = () => {
     }
     const getexpenses=(filterDate)=>{
         axios.get(`http://localhost:8080/api/getexpenses/${filterDate}`).then((response)=>{
-            if(response.data.length<=0){
-                setExpenses('')
-            }     
-        response.data.map((item)=>{
-            setExpenses(item)
-        })
+            // if(response.data.expenses[0]<=0){
+            //     setExpenses('')
+            // }     
+        
+            if (response.data.expenses.length === 0) {
+        setExpenses('');
+        setShowAllExpensesTable(false)
+
+      }
+            setExpenses(response.data.expenses[0])
+            setShowAllExpensesTable(false)
+
+        
         
         })
         .catch((err)=>{
@@ -130,7 +132,7 @@ const ExpenseCalculator = () => {
         return totalRevenue.toFixed(2);
     };
 
-
+console.log("State Expenses"+expenses)
     const renderInputFields = () => {
         return inputFields.map((field, index) => (
             <div key={index} >
@@ -174,7 +176,6 @@ const ExpenseCalculator = () => {
         ));
     };
 
-        console.log(expenses)
     return (
         <div>
 
@@ -212,11 +213,13 @@ const ExpenseCalculator = () => {
                 }}
                 />
                 
-                {!expenses.items&&<Typography>No Expenses On This Date</Typography>}
-                {expenses.items&&
+                {!expenses&&<Typography>No Expenses On This Date</Typography>}
+                {expenses&&
                 <>
+                {filterDate&&
                 <Typography>Date : {filterDate}</Typography>
-                <TableContainer component={Paper} sx={{
+                }
+                {!showAllExpensesTable&&<TableContainer component={Paper} sx={{
                 maxWidth:650,
                 mt:1
             }}>
@@ -255,7 +258,74 @@ const ExpenseCalculator = () => {
       </Table>
                 </Box>
      
-    </TableContainer>
+    </TableContainer>}
+            
+            {/* {
+                expenses.map((item)=>{
+                    console.log(item)
+                   item.items.map((item)=>{
+                    console.log(item.expenseName)
+                    return(
+                        <Typography>{item.expenseName}</Typography>
+                        
+                    )
+                   })
+                    
+                })
+            } */}
+
+{showAllExpensesTable&&
+
+    <TableContainer component={Paper} sx={{
+                maxWidth:650,
+                mt:1
+            }}>
+                <Box sx={{
+                    height:250
+                }}>
+                    {expenses.map((item)=>{
+                        return(
+                            <>                
+                            <Typography fontWeight={'bold'} sx={{backgroundColor:'#f28c51'}}>Date: {item.date}</Typography>
+                            <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                                <TableHead>
+                                <TableRow>
+                                    <TableCell align="left">Expense</TableCell>
+                                    <TableCell align="left">Description</TableCell>
+                                    <TableCell align="right">Amount</TableCell>
+                                    
+                                </TableRow>
+                                </TableHead>
+                                <TableBody>
+                                    
+                                { item.items && item.items.map((item) => (
+                        <TableRow
+                            key={item._id}
+                            sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                            <TableCell component="th" scope="row">
+                            {item.expenseName}
+                            
+                            </TableCell>
+                            <TableCell component="th" scope="row">
+                            
+                            {item.description}
+                            </TableCell>
+                            <TableCell align="right">{item.amount}</TableCell>
+                        </TableRow>
+                        ))}
+                                </TableBody>
+                            </Table>
+      </>
+
+                        )
+                    })}
+
+
+                </Box>
+                </TableContainer>
+         }
+         
                 </>
             }
         </div>
