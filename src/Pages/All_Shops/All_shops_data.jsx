@@ -42,6 +42,7 @@ const All_shops_data = () => {
       rental: shop.shopRental,
       S_size: shop.shopSize,
       r_rent: shop.Monthly_rent,
+      status: shop.shop_remaining_rent
     }));
 
 
@@ -49,7 +50,13 @@ const All_shops_data = () => {
       { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
       { field: 'rental', headerName: 'Shop Rental', width: 200 },      
       { field: 'r_rent', headerName: 'Maintenance Charges', width: 230 },
-      { field: 'S_size', headerName: 'Shop Size', width: 200 },
+      { field: 'S_size', headerName: 'Shop Size', width: 120 },
+      
+      { field: 'status', headerName: 'Status', width: 120, renderCell: (params) => (
+        params.value==0?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>
+        
+      ),
+      },
       {
         field: 'rent',  
         headerName: 'Update Charges',

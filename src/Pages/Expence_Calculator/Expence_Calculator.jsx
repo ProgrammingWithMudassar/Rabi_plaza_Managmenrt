@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Typography, Box, Grid, Card, CardContent, CardActions, Divider } from '@mui/material';
+import { Button, Typography, Box, Grid, Card, CardContent, CardActions, Divider, TextField } from '@mui/material';
 import ReactToPrint from 'react-to-print';
 import { useRef } from 'react';
 import Table from '@mui/material/Table';
@@ -25,6 +25,7 @@ const ExpenseCalculator = () => {
     const [expenseName,setExpenseName]=useState('');
     const [amount,setAmount]=useState('');
     const [date,setDate]=useState('');
+    const [description,setDescription]=useState('');
     const [filterDate,setFilterDate]=useState('');
     useEffect(()=>{
         const date=new Date()
@@ -36,7 +37,7 @@ const ExpenseCalculator = () => {
         if(date.getDate()<10){
             setDateInNumbers("0"+date.getDate())
         }
-        console.log('cd  '+date.getFullYear()+'-'+month+"-"+dateInNumbers)
+        console.log('cd  '+`${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`)
         setFilterDate(`${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`)
         axios.get(`http://localhost:8080/api/getexpenses/${date.getFullYear()}-${date.getMonth()+1<10?"0"+(date.getMonth()+1):date.getMonth()}-${date.getDate()<10?"0"+date.getDate():date.getDate()}`).then((response)=>{
                 response.data.map((item)=>{
@@ -51,10 +52,23 @@ const ExpenseCalculator = () => {
     
 
     const addExpense=(date,name,amount)=>{
+        if(expenseName==''){
+            alert('Expense Name Is Required');
+        }
+        if(amount==''){
+            alert('Amount Is Required');
+        }
+        if(date==''){
+            alert('Date Is Required');
+        }
+        if(description==''){
+            alert('Description Is Required');
+        }
         axios.post('http://localhost:8080/api/addexpense',{
-            date:date,
+            date,
             expenseName:name,
-            amount:amount
+            amount,
+            description
             
         }).then(()=>{
             console.log('Expense Added');
@@ -119,7 +133,9 @@ const ExpenseCalculator = () => {
 
     const renderInputFields = () => {
         return inputFields.map((field, index) => (
-            <div key={index} style={{display:'flex'}}>
+            <div key={index} >
+                <div style={{display:'flex'}}>
+
                 <input
                     type="text"
                     value={expenseName}
@@ -145,7 +161,10 @@ const ExpenseCalculator = () => {
                 value={date}
                 onChange={(event) => setDate(event.target.value)}
                 />
-            
+                </div>
+                
+                
+            <TextField fullWidth multiline rows={4} sx={{ml:1,mt:1}} placeholder='Description' value={description} onChange={(event) => setDescription(event.target.value)}/>
                 {inputFields.length > 1 && (
                     <Button type="button" style={{ marginLeft: '10px' }} onClick={() => handleRemoveFields(index)}>
                         Remove
@@ -166,7 +185,7 @@ const ExpenseCalculator = () => {
                 <Grid item xs={6}>
                     <form onSubmit={handleSubmit}>
                         {renderInputFields()}
-                        <Button type="button" onClick={() => {addExpense(date,expenseName,amount);
+                        <Button type="button" onClick={() => {addExpense(date,expenseName,amount,description );
                         window.location.reload(true);
                         }} sx={{ mt: 2 }}>
                             Add Field
@@ -192,6 +211,7 @@ const ExpenseCalculator = () => {
                     
                 }}
                 />
+                
                 {!expenses.items&&<Typography>No Expenses On This Date</Typography>}
                 {expenses.items&&
                 <>
@@ -200,10 +220,15 @@ const ExpenseCalculator = () => {
                 maxWidth:650,
                 mt:1
             }}>
-      <Table sx={{ maxWidth: 650 }} aria-label="simple table">
+                <Box sx={{
+                    height:250
+                }}>
+
+<Table sx={{ maxWidth: 650 }} aria-label="simple table">
         <TableHead>
           <TableRow>
             <TableCell align="left">Expense</TableCell>
+            <TableCell align="left">Description</TableCell>
             <TableCell align="right">Amount</TableCell>
             
           </TableRow>
@@ -217,12 +242,19 @@ const ExpenseCalculator = () => {
   >
     <TableCell component="th" scope="row">
       {item.expenseName}
+      
+    </TableCell>
+    <TableCell component="th" scope="row">
+      
+      {item.description}
     </TableCell>
     <TableCell align="right">{item.amount}</TableCell>
   </TableRow>
 ))}
         </TableBody>
       </Table>
+                </Box>
+     
     </TableContainer>
                 </>
             }
