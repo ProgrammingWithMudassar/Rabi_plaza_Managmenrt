@@ -1,19 +1,32 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { Button, Box, Typography, Grid, Divider, Card, CardContent, CardActions } from '@mui/material';
-import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import ReactToPrint from 'react-to-print';
-import { useGetShopByIdQuery, useUpdateShopMutation, useUpdateChargesMutation } from '../../Features/API/Api';
-import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import {
+  Button,
+  Box,
+  Typography,
+  Grid,
+  Divider,
+  Card,
+  CardContent,
+  CardActions,
+} from "@mui/material";
+import { faBackward, faFileInvoice } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ReactToPrint from "react-to-print";
+import {
+  useGetShopByIdQuery,
+  useUpdateShopMutation,
+  useUpdateChargesMutation,
+} from "../../Features/API/Api";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 const Update_ShopMaintenance = () => {
   const { id } = useParams();
@@ -26,27 +39,25 @@ const Update_ShopMaintenance = () => {
     }
   }, [isPageRefreshed]);
 
-
   const { data: shop, isLoading, isError, refetch } = useGetShopByIdQuery(id);
   const [updateShop, { isLoading: isUpdatingShop }] = useUpdateShopMutation();
-  const [updateCharges, { isLoading: isUpdatingRent }] = useUpdateChargesMutation();
+  const [updateCharges, { isLoading: isUpdatingRent }] =
+    useUpdateChargesMutation();
   const componentRef = useRef();
   const [paidAmount, setPaidAmount] = useState(0);
-  const [rentPaidDate, setRentPaidDate] = useState('');
-  
-  const paidMonths=[]
+  const [rentPaidDate, setRentPaidDate] = useState("");
 
- 
-   
+  const paidMonths = [];
+
   const initialShop = {
-    shopNumber: '',
-    shopOwner: '',
-    registrationDate: '',
-    shopSize: '',
-    mobileNumber: '',
-    shopRental: '',
-    floorNo: '',
-    ShopRent: '',
+    shopNumber: "",
+    shopOwner: "",
+    registrationDate: "",
+    shopSize: "",
+    mobileNumber: "",
+    shopRental: "",
+    floorNo: "",
+    ShopRent: "",
   };
   let [formData, setFormData] = useState({
     shop: initialShop,
@@ -56,14 +67,12 @@ const Update_ShopMaintenance = () => {
     refetch(); // Call the API when the component mounts
   }, [refetch]);
 
-  const [registrationMonth,setRegistrationMonth]=useState('')
-  const [registrationYear, setRegistrationYear] = useState('');
-  const [currentYear, setCurrentYear] = useState('');
-  
+  const [registrationMonth, setRegistrationMonth] = useState("");
+  const [registrationYear, setRegistrationYear] = useState("");
+  const [currentYear, setCurrentYear] = useState("");
+
   useEffect(() => {
     if (shop) {
-      
-
       setFormData({
         shop: {
           shopNumber: shop.shop.shopNumber,
@@ -77,11 +86,8 @@ const Update_ShopMaintenance = () => {
         },
       });
       console.log(shop);
-      
-      
     }
-console.log("months array"+paidMonths);
-
+    console.log("months array" + paidMonths);
   }, [shop]);
 
   const handleInputChange = (e) => {
@@ -109,11 +115,9 @@ console.log("months array"+paidMonths);
   const handleUpdateBill = () => {
     const remainingRent = shop.r_rent - paidAmount;
     // Perform any other necessary logic with the updated values
-    console.log('Updated Paid Amount:', paidAmount);
-    console.log('Updated Remaining Rent:', remainingRent);
+    console.log("Updated Paid Amount:", paidAmount);
+    console.log("Updated Remaining Rent:", remainingRent);
   };
-
-  
 
   const handleUpdateData = async () => {
     const {
@@ -137,7 +141,6 @@ console.log("months array"+paidMonths);
       ShopRent,
     };
 
-
     const res = await updateShop({ shopId: id, updatedShopData });
     if (res) {
       console.log(res);
@@ -145,34 +148,33 @@ console.log("months array"+paidMonths);
     }
   };
 
-  
-
   //Rent update API
   const handleUpdateRent = async () => {
-   
     if (paidAmount === 0) {
       alert("Please Add the charges.");
     }
-    
-    
-    if(shop.shop.shop_remaining_rent==0){
-        alert("There Is No Remaining charges, Can't Update charges")
+
+    if (shop.shop.shop_remaining_rent == 0) {
+      alert("There Is No Remaining charges, Can't Update charges");
     }
-    
-    if (rentPaidDate === '') {
+
+    if (rentPaidDate === "") {
       alert("Please select a Charges paid date.");
       return;
-    }
-    else if(paidAmount.toString()!==shop.shop.Monthly_rent&&paidAmount.toString()!==shop.shop.shop_remaining_rent){
-        alert("Please Pay A Single Month Charges Or Complete Remaining Charges");
-        return;
-      }
-    
-    else {
+    } else if (
+      paidAmount.toString() !== shop.shop.Monthly_rent &&
+      paidAmount.toString() !== shop.shop.shop_remaining_rent
+    ) {
+      alert("Please Pay A Single Month Charges Or Complete Remaining Charges");
+      return;
+    } else {
       let updatedRentDate = rentPaidDate;
 
-
-      const res = await updateCharges({ shopId: id, date: updatedRentDate, paidRent: paidAmount });
+      const res = await updateCharges({
+        shopId: id,
+        date: updatedRentDate,
+        paidRent: paidAmount,
+      });
 
       if (res) {
         alert(res.data.message);
@@ -183,9 +185,7 @@ console.log("months array"+paidMonths);
         alert("Price is not correct.");
       }
     }
-  }
-
- 
+  };
 
   if (isError) {
     return (
@@ -216,53 +216,48 @@ console.log("months array"+paidMonths);
       </div>
     );
   }
-  
-  
-  
 
-  if(shop){
-
-    
-
+  if (shop) {
     const months = [
-      'January', 'February', 'March', 'April', 'May', 'June',
-      'July', 'August', 'September', 'October', 'November', 'December'
+      "January",
+      "February",
+      "March",
+      "April",
+      "May",
+      "June",
+      "July",
+      "August",
+      "September",
+      "October",
+      "November",
+      "December",
     ];
-    
-    const monthsInNumbers = [ ];
-    const zero_remaining_charges_date=shop.shop.zero_remaining_charges_date;
-    const allMonthsPaidDate=new Date(zero_remaining_charges_date);
-    const zero_remaining_charges_month=allMonthsPaidDate.getMonth();
-    shop.shop.rent.map((item)=>{
-      const rentPaidDateString = item.rent_paid_date
-  
-  const rentPaidDate = new Date(rentPaidDateString);
-  const month = rentPaidDate.getMonth() + 1; 
-    console.log('actual output'+ ""+month);
-  
-  console.log(monthsInNumbers); 
-  console.log(zero_remaining_charges_month);  
-    if (month >= 1 && month <= 12) {
-      paidMonths.push(months[month - 1]);
-      monthsInNumbers.push(month-1);
-      
+
+    const monthsInNumbers = [];
+    const zero_remaining_charges_date = shop.shop.zero_remaining_charges_date;
+    const allMonthsPaidDate = new Date(zero_remaining_charges_date);
+    const zero_remaining_charges_month = allMonthsPaidDate.getMonth();
+    shop.shop.rent.map((item) => {
+      const rentPaidDateString = item.rent_paid_date;
+
+      const rentPaidDate = new Date(rentPaidDateString);
+      const month = rentPaidDate.getMonth() + 1;
+      console.log("actual output" + "" + month);
+
+      console.log(monthsInNumbers);
+      console.log(zero_remaining_charges_month);
+      if (month >= 1 && month <= 12) {
+        paidMonths.push(months[month - 1]);
+        monthsInNumbers.push(month - 1);
+      }
+    });
+
+    if (shop.shop.shop_remaining_rent == 0 || paidMonths.length > 0) {
+      for (let i = monthsInNumbers[0]; i <= zero_remaining_charges_month; i++) {
+        paidMonths.push(months[i]);
+      }
     }
-    })
-
-    if (shop.shop.shop_remaining_rent==0||paidMonths.length>0){
-      for (let i = monthsInNumbers[0]; i <=  zero_remaining_charges_month; i++) {
-        
-        
-          paidMonths.push(months[i ]);
-
-        
-      } }
-   
-
-   
   }
-
-  
 
   return (
     <div>
@@ -270,10 +265,12 @@ console.log("months array"+paidMonths);
         <Box mr={2}>
           <Box display="flex" justifyContent="space-between" py={2}>
             <h2>
-              Shop No:<span style={{ color: '#FF8E53' }}> {shop.shop.shopNumber}</span>
+              Shop No:
+              <span style={{ color: "#FF8E53" }}> {shop.shop.shopNumber}</span>
             </h2>
             <Button onClick={goBack}>
-              <FontAwesomeIcon icon={faBackward} /> <span style={{ marginLeft: '7px' }}>Go Back</span>
+              <FontAwesomeIcon icon={faBackward} />{" "}
+              <span style={{ marginLeft: "7px" }}>Go Back</span>
             </Button>
           </Box>
         </Box>
@@ -282,11 +279,20 @@ console.log("months array"+paidMonths);
         <Grid item xs={8} className="Right">
           {shop && (
             <Box>
-              <Typography variant="h4" color="initial" fontWeight={600} textAlign="center">
+              <Typography
+                variant="h4"
+                color="initial"
+                fontWeight={600}
+                textAlign="center"
+              >
                 Invoice Bill
               </Typography>
-              <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Divider
+                variant="middle"
+                orientation="horizontal"
+                sx={{ my: 2 }}
+              />
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box width="60%">
                   <Typography variant="body1" color="initial" fontWeight={600}>
                     Shop No
@@ -316,38 +322,82 @@ console.log("months array"+paidMonths);
                   </Typography>
                 </Box>
               </Box>
-              <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Divider
+                variant="middle"
+                orientation="horizontal"
+                sx={{ my: 2 }}
+              />
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box width="60%">
                   <Typography variant="body1" color="initial" fontWeight={600}>
                     Paid Amount
                   </Typography>
-                  <Typography variant="body1" color="initial" fontWeight={600} mt={1.5}>
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    fontWeight={600}
+                    mt={1.5}
+                  >
                     Remaining Rent
                   </Typography>
                 </Box>
                 <Box width="30%">
-                  <input type="number" onChange={handlePaidAmountChange} value={paidAmount} className='input' />
-                  <Typography variant="body1" color="initial" fontWeight={600} fontSize={20} ml={1}>
-                    {Number(shop.shop.shop_remaining_rent)===0?Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent):Number(shop.shop.shop_remaining_rent)}
-                    
+                  <input
+                    type="number"
+                    onChange={handlePaidAmountChange}
+                    value={paidAmount}
+                    className="input"
+                  />
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    fontWeight={600}
+                    fontSize={20}
+                    ml={1}
+                  >
+                    {Number(shop.shop.shop_remaining_rent) === 0
+                      ? Number(shop.shop.ShopRent) +
+                        Number(shop.shop.shop_remaining_rent)
+                      : Number(shop.shop.shop_remaining_rent)}
                   </Typography>
                 </Box>
               </Box>
-              <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-              <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+              <Divider
+                variant="middle"
+                orientation="horizontal"
+                sx={{ my: 2 }}
+              />
+              <Box sx={{ display: "flex", justifyContent: "space-between" }}>
                 <Box width="60%">
-                  <Typography variant="body1" color="initial" fontWeight={600} mt={1.4}>
+                  <Typography
+                    variant="body1"
+                    color="initial"
+                    fontWeight={600}
+                    mt={1.4}
+                  >
                     Charges Paid Date
                   </Typography>
                 </Box>
                 <Box width="30%">
-                  <input type="date" onChange={handleRentPaidDateChange} value={rentPaidDate} className='input' />
+                  <input
+                    type="date"
+                    onChange={handleRentPaidDateChange}
+                    value={rentPaidDate}
+                    className="input"
+                  />
                 </Box>
               </Box>
-              <Divider variant="middle" orientation="horizontal" sx={{ my: 2 }} />
-              <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Button variant="contained" onClick={handleUpdateRent} disabled={isUpdatingRent}>
+              <Divider
+                variant="middle"
+                orientation="horizontal"
+                sx={{ my: 2 }}
+              />
+              <Box sx={{ display: "flex", justifyContent: "center" }}>
+                <Button
+                  variant="contained"
+                  onClick={handleUpdateRent}
+                  disabled={isUpdatingRent}
+                >
                   Update Charges
                 </Button>
               </Box>
@@ -355,24 +405,39 @@ console.log("months array"+paidMonths);
           )}
         </Grid>
         <Grid item xs={4}>
-          <Card sx={{ minHeight: '200px', position: 'relative' }}>
+          <Card sx={{ minHeight: "200px", position: "relative" }}>
             <CardContent>
               <Box display="flex" justifyContent="space-between">
                 <Typography variant="body1" color="initial">
                   Remaining Charges
                 </Typography>
                 <Typography variant="body1" color="initial" fontSize={20}>
-                {Number(shop.shop.shop_remaining_rent)===0?Number(shop.shop.ShopRent) + Number(shop.shop.shop_remaining_rent):Number(shop.shop.shop_remaining_rent)}
+                  {Number(shop.shop.shop_remaining_rent) === 0
+                    ? Number(shop.shop.ShopRent) +
+                      Number(shop.shop.shop_remaining_rent)
+                    : Number(shop.shop.shop_remaining_rent)}
                 </Typography>
               </Box>
-              <Box mt={2} sx={{ maxHeight: "300px", minHeight: "200px", overflow: "scroll" }}>
+              <Box
+                mt={2}
+                sx={{
+                  maxHeight: "300px",
+                  minHeight: "200px",
+                  overflow: "scroll",
+                }}
+              >
                 <Typography variant="h6">Charge's History:</Typography>
                 {[...shop.shop.rent]
-                  .sort((a, b) => new Date(b.rent_paid_date) - new Date(a.rent_paid_date))
+                  .sort(
+                    (a, b) =>
+                      new Date(b.rent_paid_date) - new Date(a.rent_paid_date)
+                  )
                   .map((rent, index) => (
                     <Box key={index}>
                       <Typography variant="body1">
-                        Date: {new Date(rent.rent_paid_date).toLocaleDateString()} Paid Rent: {rent.rent_paid_amount}
+                        Date:{" "}
+                        {new Date(rent.rent_paid_date).toLocaleDateString()}{" "}
+                        Paid Rent: {rent.rent_paid_amount}
                       </Typography>
                     </Box>
                   ))}
@@ -383,50 +448,120 @@ console.log("months array"+paidMonths);
       </Grid>
       <ToastContainer />
       <TableContainer component={Paper}>
-      <Table sx={{ minWidth: 650 }} aria-label="simple table">
-        <TableHead>
-          <TableRow>
-            <TableCell align="right">January</TableCell>
-            <TableCell align="right">February</TableCell>
-            <TableCell align="right">March</TableCell>
-            <TableCell align="right">April</TableCell>
-            <TableCell align="right">May</TableCell>
-            <TableCell align="right">June</TableCell>
-            <TableCell align="right">July</TableCell>
-            <TableCell align="right">August</TableCell>
-            <TableCell align="right">September</TableCell>
-            <TableCell align="right">October</TableCell>
-            <TableCell align="right">November</TableCell>
-            <TableCell align="right">December</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          <TableRow>
-          
-          <TableCell align="right">{paidMonths.includes('January')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('February')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('March')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('April')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('May')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('June')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('July')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('August')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('September')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('October')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('November')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          <TableCell align="right">{paidMonths.includes('December')?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>}</TableCell>
-          </TableRow>
-         
-        </TableBody>
-      </Table>
-    </TableContainer>
-    {
-  
-}
+        <Table sx={{ minWidth: 650 }} aria-label="simple table">
+          <TableHead>
+            <TableRow>
+              <TableCell align="right">January</TableCell>
+              <TableCell align="right">February</TableCell>
+              <TableCell align="right">March</TableCell>
+              <TableCell align="right">April</TableCell>
+              <TableCell align="right">May</TableCell>
+              <TableCell align="right">June</TableCell>
+              <TableCell align="right">July</TableCell>
+              <TableCell align="right">August</TableCell>
+              <TableCell align="right">September</TableCell>
+              <TableCell align="right">October</TableCell>
+              <TableCell align="right">November</TableCell>
+              <TableCell align="right">December</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            <TableRow>
+              <TableCell align="right">
+                {paidMonths.includes("January") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("February") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("March") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("April") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("May") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("June") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("July") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("August") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("September") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("October") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("November") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+              <TableCell align="right">
+                {paidMonths.includes("December") ? (
+                  <Typography className="PaidStatus">Paid</Typography>
+                ) : (
+                  <Typography className="UnpaidStatus">Unpaid</Typography>
+                )}
+              </TableCell>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </TableContainer>
+      {}
 
-{paidMonths.length<=0?<Typography>No Values</ Typography>: 
-  <Typography>Has Values</Typography>
-}
+      {paidMonths.length <= 0 ? (
+        <Typography>No Values</Typography>
+      ) : (
+        <Typography>Has Values</Typography>
+      )}
     </div>
   );
 };

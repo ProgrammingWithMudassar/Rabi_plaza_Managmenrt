@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
-import { DataGrid } from '@mui/x-data-grid';
-import { Box, Typography, Button } from '@mui/material';
-import AddIcon from '@mui/icons-material/Add';
-import { Link } from 'react-router-dom';
-import { useGetShopsQuery,useDeleteShopMutation,} from '../../Features/API/Api.js'
-
-
+import React, { useEffect } from "react";
+import { DataGrid } from "@mui/x-data-grid";
+import { Box, Typography, Button } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
+import { Link } from "react-router-dom";
+import {
+  useGetShopsQuery,
+  useDeleteShopMutation,
+} from "../../Features/API/Api.js";
 
 const All_shops_data = () => {
   const { data, error, isLoading, refetch } = useGetShopsQuery();
@@ -24,8 +25,6 @@ const All_shops_data = () => {
     }
   };
 
-
-
   if (isLoading) {
     return <div>Loading...</div>;
   }
@@ -42,33 +41,43 @@ const All_shops_data = () => {
       rental: shop.shopRental,
       S_size: shop.shopSize,
       r_rent: shop.Monthly_rent,
-      status: shop.shop_remaining_rent
+      status: shop.shop_remaining_rent,
     }));
 
-
     const columns = [
-      { field: 'Shop_No', headerName: 'Shop_No.', width: 100 },
-      { field: 'rental', headerName: 'Shop Rental', width: 200 },      
-      { field: 'r_rent', headerName: 'Maintenance Charges', width: 230 },
-      { field: 'S_size', headerName: 'Shop Size', width: 120 },
-      
-      { field: 'status', headerName: 'Status', width: 120, renderCell: (params) => (
-        params.value==0?<Typography className='PaidStatus'>Paid</Typography>:<Typography className='UnpaidStatus'>Unpaid</Typography>
-        
-      ),
+      { field: "Shop_No", headerName: "Shop_No.", width: 100 },
+      { field: "rental", headerName: "Shop Rental", width: 200 },
+      { field: "r_rent", headerName: "Maintenance Charges", width: 230 },
+      { field: "S_size", headerName: "Shop Size", width: 120 },
+
+      {
+        field: "status",
+        headerName: "Status",
+        width: 120,
+        renderCell: (params) =>
+          params.value == 0 ? (
+            <Typography className="PaidStatus">Paid</Typography>
+          ) : (
+            <Typography className="UnpaidStatus">Unpaid</Typography>
+          ),
       },
       {
-        field: 'rent',  
-        headerName: 'Update Charges',
+        field: "rent",
+        headerName: "Update Charges",
         width: 150,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/update_shopmaintenance/${params.row.shopId}`}
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            component={Link}
+            to={`/update_shopmaintenance/${params.row.shopId}`}
             sx={{
-              backgroundColor: '#FF870F',
-              boxShadow: '0 3px 5px 2px rgba(255, 135, 15, .3)',
-              ':hover': {
-                backgroundColor: '#FF870F',
-                border: "1px solid #FF870F"
+              backgroundColor: "#FF870F",
+              boxShadow: "0 3px 5px 2px rgba(255, 135, 15, .3)",
+              ":hover": {
+                backgroundColor: "#FF870F",
+                border: "1px solid #FF870F",
               },
             }}
           >
@@ -77,17 +86,22 @@ const All_shops_data = () => {
         ),
       },
       {
-        field: 'invoice',
-        headerName: 'Invoice',
+        field: "invoice",
+        headerName: "Invoice",
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_Invoice/${params.row.shopId}`}
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            component={Link}
+            to={`/shop_Invoice/${params.row.shopId}`}
             sx={{
-              backgroundColor: '#00C123',
-              boxShadow: '0 3px 5px 2px rgba(57, 250, 92, .3)',
-              ':hover': {
-                backgroundColor: '#00C123',
-                border: "1px solid #00C123"
+              backgroundColor: "#00C123",
+              boxShadow: "0 3px 5px 2px rgba(57, 250, 92, .3)",
+              ":hover": {
+                backgroundColor: "#00C123",
+                border: "1px solid #00C123",
               },
             }}
           >
@@ -96,67 +110,90 @@ const All_shops_data = () => {
         ),
       },
       {
-        field: 'details',
-        headerName: 'Details',
+        field: "details",
+        headerName: "Details",
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop/${params.row.shopId}`}>
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            component={Link}
+            to={`/shop/${params.row.shopId}`}
+          >
             More
           </Button>
         ),
       },
       {
-        field: 'edit',
-        headerName: 'Edit',
+        field: "edit",
+        headerName: "Edit",
         width: 100,
         renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary" component={Link} to={`/shop_edit/${params.row.shopId}`}
+          <Button
+            variant="outlined"
+            size="small"
+            color="primary"
+            component={Link}
+            to={`/shop_edit/${params.row.shopId}`}
             sx={{
-              backgroundColor: '#096AFF',
-              boxShadow: '0 3px 5px 2px rgba(9, 106, 255, .3)',
-              ':hover': {
-                backgroundColor: '#096AFF',
-                border: "1px solid #096AFF"
+              backgroundColor: "#096AFF",
+              boxShadow: "0 3px 5px 2px rgba(9, 106, 255, .3)",
+              ":hover": {
+                backgroundColor: "#096AFF",
+                border: "1px solid #096AFF",
               },
-            }} >
+            }}
+          >
             Edit
           </Button>
         ),
       },
       {
-        field: 'delete',
-        headerName: 'Delete',
+        field: "delete",
+        headerName: "Delete",
         width: 100,
-        renderCell: (params) => (
-          <Button variant="outlined" size="small" color="primary"
-            sx={{
-              backgroundColor: '#FF0000',
-              boxShadow: '0 3px 5px 2px rgba(255, 0, 0, .3)',
-              ':hover': {
-                backgroundColor: '#FF0000',
-                border: "1px solid #FF0000"
-              },
-            }}
-            onClick={() => handleDeleteShop(params.row.Shop_No)}
-          >
-            Delete
-          </Button>
-        ),
+        renderCell: (params) => {
+          return (
+            <Button
+              variant="outlined"
+              size="small"
+              color="primary"
+              sx={{
+                backgroundColor: "#FF0000",
+                boxShadow: "0 3px 5px 2px rgba(255, 0, 0, .3)",
+                ":hover": {
+                  backgroundColor: "#FF0000",
+                  border: "1px solid #FF0000",
+                },
+              }}
+              onClick={() => handleDeleteShop(params.row.Shop_No)}
+            >
+              Delete
+            </Button>
+          );
+        },
       },
     ];
 
-
     return (
       <Box>
-        <Box display='flex' alignItems='center' justifyContent='space-between' pr={3}>
-          <Typography variant="h5" color="initial" my={2}>All Shop's Data</Typography>
-          <Link to='/ShopForm'>
+        <Box
+          display="flex"
+          alignItems="center"
+          justifyContent="space-between"
+          pr={3}
+        >
+          <Typography variant="h5" color="initial" my={2}>
+            All Shop's Data
+          </Typography>
+          <Link to="/ShopForm">
             <Button>
               Add New <AddIcon />
             </Button>
           </Link>
         </Box>
-        <div style={{ height: 500, width: '100%' }}>
+        <div style={{ height: 500, width: "100%" }}>
           <DataGrid
             rows={rows}
             columns={columns}
@@ -166,14 +203,13 @@ const All_shops_data = () => {
               },
             }}
             pageSizeOptions={[7, 14, 21]}
-          // checkboxSelection
+            // checkboxSelection
           />
-
         </div>
       </Box>
-    )
+    );
   }
   return null;
-}
+};
 
-export default All_shops_data
+export default All_shops_data;

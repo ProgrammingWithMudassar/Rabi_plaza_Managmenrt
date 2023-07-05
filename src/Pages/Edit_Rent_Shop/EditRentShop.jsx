@@ -1,13 +1,16 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
-import { Button, Box, Typography, Grid, Divider } from '@mui/material';
-import { faBackward, faFileInvoice } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
-import ReactToPrint from 'react-to-print';
-import { useGetRentShopByIdQuery, useUpdateRentShopMutation } from '../../Features/API/Api';
-import { ToastContainer, toast } from 'react-toastify';
-import { useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from "react";
+import { useParams } from "react-router-dom";
+import { Button, Box, Typography, Grid, Divider } from "@mui/material";
+import { faBackward, faFileInvoice } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import ReactToPrint from "react-to-print";
+import {
+  useGetRentShopByIdQuery,
+  useUpdateRentShopMutation,
+} from "../../Features/API/Api";
+import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const EditRentShop = () => {
   const { id } = useParams();
@@ -21,21 +24,27 @@ const EditRentShop = () => {
     }
   }, [isPageRefreshed]);
 
-
-  const { data: shop, isLoading, isError, refetch } = useGetRentShopByIdQuery(id);
-  const [updateRentShop, { isLoading: isUpdating }] = useUpdateRentShopMutation();
+  const {
+    data: shop,
+    isLoading,
+    isError,
+    refetch,
+  } = useGetRentShopByIdQuery(id);
+  const [updateRentShop, { isLoading: isUpdating }] =
+    useUpdateRentShopMutation();
   const componentRef = useRef();
   const [paidAmount, setPaidAmount] = useState(0);
-  const [rentPaidDate, setRentPaidDate] = useState('');
+  const [rentPaidDate, setRentPaidDate] = useState("");
   const initialShop = {
-    shopNumber: '',
-    shopOwner: '',
-    registrationDate: '',
-    shopSize: '',
-    mobileNumber: '',
-    shopRental: '',
-    floorNo: '',
-    Monthly_rent: '',
+    shopNumber: "",
+    shopOwner: "",
+    registrationDate: "",
+    shopSize: "",
+    mobileNumber: "",
+    shopRental: "",
+    floorNo: "",
+    Monthly_rent: "",
+    shopRemainingRent: "",
   };
   let [formData, setFormData] = useState({
     shop: initialShop,
@@ -57,6 +66,7 @@ const EditRentShop = () => {
           shopRental: shop.shop.shopRental,
           floorNo: shop.shop.floorNo,
           Monthly_rent: shop.shop.Monthly_rent,
+          shopRemainingRent: shop.shop.shop_remaining_rent,
         },
       });
     }
@@ -87,8 +97,8 @@ const EditRentShop = () => {
   const handleUpdateBill = () => {
     const remainingRent = shop.r_rent - paidAmount;
     // Perform any other necessary logic with the updated values
-    console.log('Updated Paid Amount:', paidAmount);
-    console.log('Updated Remaining Rent:', remainingRent);
+    console.log("Updated Paid Amount:", paidAmount);
+    console.log("Updated Remaining Rent:", remainingRent);
   };
 
   const handleUpdateData = () => {
@@ -101,6 +111,7 @@ const EditRentShop = () => {
       shopRental,
       floorNo,
       Monthly_rent,
+      shopRemainingRent,
     } = formData.shop;
     const updatedShopData = {
       shopNumber,
@@ -111,6 +122,7 @@ const EditRentShop = () => {
       shopRental,
       floorNo,
       Monthly_rent,
+      shopRemainingRent,
     };
     const res = updateRentShop({ shopId: id, updatedShopData });
     if (res) {
@@ -144,20 +156,26 @@ const EditRentShop = () => {
           <Box display="flex" justifyContent="space-between" py={2}>
             <h2>
               Shop Rental:
-              <span style={{ color: '#FF8E53' }}> {shop.shop.shopRental}</span>
+              <span style={{ color: "#FF8E53" }}> {shop.shop.shopRental}</span>
             </h2>
             <Box>
               <Button onClick={goBack}>
                 <FontAwesomeIcon icon={faBackward} />
-                <span style={{ marginLeft: '7px' }}> Go Back</span>
+                <span style={{ marginLeft: "7px" }}> Go Back</span>
               </Button>
             </Box>
           </Box>
           <Box mt={4}>
             <Grid container spacing={2}>
               <Grid item xs={6}>
-                <label htmlFor="shopNumber" style={{ fontWeight: '600' }}>
-                  Shop Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                <label htmlFor="shopNumber" style={{ fontWeight: "600" }}>
+                  Shop Number{" "}
+                  <span
+                    className="required"
+                    style={{ color: "red", fontSize: "0.8em" }}
+                  >
+                    *
+                  </span>
                 </label>
                 <input
                   defaultValue={shop.shop.shopNumber}
@@ -169,8 +187,14 @@ const EditRentShop = () => {
                 />
                 <br />
                 <Box mt={1}>
-                  <label htmlFor="shopOwner" style={{ fontWeight: '600' }}>
-                    Shop Owner <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label htmlFor="shopOwner" style={{ fontWeight: "600" }}>
+                    Shop Owner{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.shopOwner}
@@ -183,8 +207,17 @@ const EditRentShop = () => {
                   <br />
                 </Box>
                 <Box mt={1}>
-                  <label htmlFor="registrationDate" style={{ fontWeight: '600' }}>
-                    Registration Date <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label
+                    htmlFor="registrationDate"
+                    style={{ fontWeight: "600" }}
+                  >
+                    Registration Date{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.registrationDate}
@@ -197,9 +230,14 @@ const EditRentShop = () => {
                   <br />
                 </Box>
                 <Box mt={1}>
-                  <label htmlFor="Monthly_rent" style={{ fontWeight: '600' }}>
-                    Monthly_rent{' '}
-                    <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label htmlFor="Monthly_rent" style={{ fontWeight: "600" }}>
+                    Monthly_rent{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.Monthly_rent}
@@ -211,12 +249,40 @@ const EditRentShop = () => {
                   />
                   <br />
                 </Box>
-                
+                <Box mt={1}>
+                  <label
+                    htmlFor="shopRemainingRentt"
+                    style={{ fontWeight: "600" }}
+                  >
+                    Remaining Rent
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
+                  </label>
+                  <input
+                    defaultValue={shop.shop.shop_remaining_rent}
+                    type="number"
+                    id="shopRemainingRent"
+                    placeholder="shopRemainingRent"
+                    className="form_input"
+                    onChange={handleInputChange}
+                  />
+                  <br />
+                </Box>
               </Grid>
 
               <Grid item xs={6} sx={{ pr: { xs: 0, md: 2 } }}>
-                <label htmlFor="shopSize" style={{ fontWeight: '600' }}>
-                  Shop Size <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                <label htmlFor="shopSize" style={{ fontWeight: "600" }}>
+                  Shop Size{" "}
+                  <span
+                    className="required"
+                    style={{ color: "red", fontSize: "0.8em" }}
+                  >
+                    *
+                  </span>
                 </label>
                 <input
                   defaultValue={shop.shop.shopSize}
@@ -228,8 +294,14 @@ const EditRentShop = () => {
                 />
                 <br />
                 <Box mt={1}>
-                  <label htmlFor="mobileNumber" style={{ fontWeight: '600' }}>
-                    Mobile Number <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label htmlFor="mobileNumber" style={{ fontWeight: "600" }}>
+                    Mobile Number{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.mobileNumber}
@@ -242,8 +314,14 @@ const EditRentShop = () => {
                   <br />
                 </Box>
                 <Box mt={1}>
-                  <label htmlFor="shopRental" style={{ fontWeight: '600' }}>
-                    Shop Rental <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label htmlFor="shopRental" style={{ fontWeight: "600" }}>
+                    Shop Rental{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.shopRental}
@@ -256,8 +334,14 @@ const EditRentShop = () => {
                   <br />
                 </Box>
                 <Box mt={1}>
-                  <label htmlFor="floorNo" style={{ fontWeight: '600' }}>
-                    Floor No <span className="required" style={{ color: 'red', fontSize: '0.8em' }}>*</span>
+                  <label htmlFor="floorNo" style={{ fontWeight: "600" }}>
+                    Floor No{" "}
+                    <span
+                      className="required"
+                      style={{ color: "red", fontSize: "0.8em" }}
+                    >
+                      *
+                    </span>
                   </label>
                   <input
                     defaultValue={shop.shop.floorNo}
