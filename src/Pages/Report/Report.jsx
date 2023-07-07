@@ -65,6 +65,7 @@ const Report = () => {
               <TableHead>
                 <TableRow>
                   <TableCell align="left">Shop No</TableCell>
+                  <TableCell align="left">Shop Rent</TableCell>
                   <TableCell align="right">January</TableCell>
                   <TableCell align="right">February</TableCell>
                   <TableCell align="right">March</TableCell>
@@ -142,7 +143,11 @@ const Report = () => {
                           {item.shopNumber}
                         </Typography>
                       </TableCell>
-
+                      <TableCell>
+                        <Typography sx={{ fontWeight: "bold" }}>
+                          {item.Monthly_rent}
+                        </Typography>
+                      </TableCell>
                       <TableCell align="right">
                         {paidMonths.includes("January") ? (
                           <Typography className="PaidStatus">Paid</Typography>
